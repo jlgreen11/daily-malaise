@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
 """THE GRUDGE REPORT — an auto-populated Drudge Report competitor.
 
-Fetches headlines from major news RSS feeds (stdlib only, no dependencies),
-scores and dedupes them, picks a lead story, and renders a classic
-three-column, all-caps, Courier-font front page to index.html.
+Fetches headlines from 25 news RSS feeds (stdlib only, no dependencies),
+scores each for drama AND judges its tone (grim vs. rosy), dedupes across
+outlets, picks a lead story, and renders a classic three-column, all-caps,
+Courier-font front page to index.html — topped by THE JUDGMENT, a slider
+that lets readers dial the mix of negative and positive news.
 
 Run:  python3 build.py
 """
 
 import concurrent.futures
 import html
+import json
 import re
 import sys
 import urllib.request
@@ -32,7 +35,27 @@ FEEDS = [
     ("ABC", "https://abcnews.go.com/abcnews/topstories"),
     ("CBS", "https://www.cbsnews.com/latest/rss/main"),
     ("WSJ", "https://feeds.a.dj.com/rss/RSSWorldNews.xml"),
+    ("SKY", "https://feeds.skynews.com/feeds/rss/world.xml"),
+    ("DW", "https://rss.dw.com/rdf/rss-en-all"),
+    ("FRANCE 24", "https://www.france24.com/en/rss"),
+    ("INDEPENDENT", "https://www.independent.co.uk/news/world/rss"),
+    ("TIME", "https://time.com/feed/"),
+    ("AXIOS", "https://api.axios.com/feed/"),
+    ("ECONOMIST", "https://www.economist.com/latest/rss.xml"),
+    ("MARKETWATCH", "https://feeds.content.dowjones.io/public/rss/mw_topstories"),
+    ("GOOD NEWS NETWORK", "https://www.goodnewsnetwork.org/feed/"),
+    ("POSITIVE.NEWS", "https://www.positive.news/feed/"),
+    ("REASONS TO BE CHEERFUL", "https://reasonstobecheerful.world/feed/"),
 ]
+
+# Dedicated good-news outlets: they publish slowly (so they get a 7-day
+# freshness window instead of 48h) and their stories are positive by
+# construction (so they get a +1 tone prior on top of the lexicon).
+GOOD_SOURCES = {"GOOD NEWS NETWORK", "POSITIVE.NEWS", "REASONS TO BE CHEERFUL"}
+
+MAX_PER_SOURCE = 40   # stop one chatty feed from flooding the page
+POOL_SIZE = 150       # stories embedded for the client-side judgment mixer
+PAGE_STORIES = 60     # stories shown below the lead
 
 # Words that make a headline siren-worthy. Weight = drama.
 HOT_WORDS = {
@@ -49,6 +72,57 @@ HOT_WORDS = {
     "riot": 6, "protest": 4, "hostage": 7, "missile": 7, "troops": 5,
     "banned": 4, "lawsuit": 4, "verdict": 5, "guilty": 6, "billion": 3,
     "trillion": 4, "ai": 3, "hack": 5, "breach": 5,
+    "breakthrough": 6, "cure": 6, "rescue": 6, "miracle": 6, "triumph": 5,
+}
+
+# THE JUDGMENT: tone lexicons. tone = sum(pos) - sum(neg); >0 rosy, <0 grim.
+GRIM_WORDS = {
+    "dead": 3, "dies": 3, "death": 3, "killed": 3, "kills": 3, "murder": 3,
+    "war": 3, "massacre": 3, "genocide": 3, "terror": 3, "bomb": 3,
+    "suicide": 3, "rape": 3,
+    "attack": 2, "crisis": 2, "crash": 2, "shooting": 2, "shot": 2,
+    "explosion": 2, "missile": 2, "nuclear": 2, "invasion": 2, "hostage": 2,
+    "riot": 2, "violence": 2, "violent": 2, "deadly": 2, "fatal": 2,
+    "tragedy": 2, "tragic": 2, "disaster": 2, "famine": 2, "outbreak": 2,
+    "pandemic": 2, "collapse": 2, "wildfire": 2, "hurricane": 2,
+    "earthquake": 2, "flood": 2, "evacuation": 2, "destroyed": 2,
+    "guilty": 2, "fraud": 2, "corruption": 2, "arrested": 2, "indicted": 2,
+    "prison": 2, "abuse": 2, "assault": 2, "victims": 2, "victim": 2,
+    "wounded": 2, "injured": 2, "toll": 2, "grim": 2, "dire": 2,
+    "worst": 2, "fears": 2, "threat": 2, "sanctions": 2, "layoffs": 2,
+    "recession": 2, "torture": 2, "kidnap": 2, "kidnapped": 2,
+    "warns": 1, "warning": 1, "fear": 1, "cuts": 1, "debt": 1,
+    "inflation": 1, "lawsuit": 1, "sued": 1, "banned": 1, "ban": 1,
+    "protest": 1, "clash": 1, "scandal": 1, "slams": 1, "backlash": 1,
+    "fury": 1, "outrage": 1, "anger": 1, "angry": 1, "feud": 1, "row": 1,
+    "crackdown": 1, "resigns": 1, "fired": 1, "ousted": 1, "impeach": 1,
+    "coup": 1, "plunge": 1, "plummets": 1, "slump": 1, "tumble": 1,
+    "losses": 1, "loses": 1, "missing": 1, "homeless": 1, "cancer": 1,
+    "disease": 1, "virus": 1, "drought": 1, "smuggling": 1, "overdose": 1,
+    "custody": 1, "chaos": 1, "struggling": 1, "shortage": 1, "blackout": 1,
+    "fighting": 2, "displaced": 2, "fraudsters": 2, "scam": 2,
+    "hospitalized": 1, "lose": 1, "divided": 1, "concerns": 1,
+}
+ROSY_WORDS = {
+    "breakthrough": 3, "cure": 3, "cured": 3, "rescue": 3, "rescued": 3,
+    "saves": 3, "saved": 3, "hero": 3, "heroes": 3, "reunited": 3,
+    "triumph": 3, "miracle": 3,
+    "wins": 2, "win": 2, "won": 2, "victory": 2, "celebrates": 2,
+    "celebration": 2, "joy": 2, "hope": 2, "hopeful": 2, "recovery": 2,
+    "recovers": 2, "survives": 2, "survivor": 2, "success": 2,
+    "successful": 2, "award": 2, "awarded": 2, "prize": 2, "honored": 2,
+    "milestone": 2, "discovery": 2, "donates": 2, "donation": 2,
+    "kindness": 2, "inspiring": 2, "uplifting": 2, "beloved": 2,
+    "peace": 2, "ceasefire": 2, "treaty": 2, "thriving": 2, "revival": 2,
+    "restored": 2, "champions": 2, "champion": 2, "medal": 2,
+    "happy": 1, "happiness": 1, "love": 1, "adorable": 1, "cute": 1,
+    "smile": 1, "laughter": 1, "generous": 1, "volunteer": 1,
+    "volunteers": 1, "charity": 1, "festival": 1, "wedding": 1,
+    "birth": 1, "born": 1, "baby": 1, "graduates": 1, "scholarship": 1,
+    "boost": 1, "boosts": 1, "gains": 1, "rally": 1, "soars": 1,
+    "deal": 1, "agreement": 1, "growth": 1, "expands": 1, "hiring": 1,
+    "anniversary": 1, "celebrate": 1, "welcomes": 1, "blooming": 1,
+    "renewable": 1, "protects": 1, "protected": 1, "cleaner": 1,
 }
 
 USER_AGENT = "Mozilla/5.0 (compatible; GrudgeReport/1.0; +https://github.com/jlgreen11/drudge)"
@@ -69,29 +143,36 @@ def text_of(el):
     return (el.text or "").strip() if el is not None else ""
 
 
+def find_date(node):
+    """First date-ish child of an item: pubDate, dc:date, published, updated."""
+    for child in node:
+        tag = child.tag.rsplit("}", 1)[-1].lower()
+        if tag in ("pubdate", "date", "published", "updated"):
+            return text_of(child)
+    return ""
+
+
 def parse_feed(source, raw):
-    """Parse RSS 2.0 or Atom into a list of item dicts."""
-    # Strip default-namespace so Atom tags are addressable without prefixes.
+    """Parse RSS 2.0, RSS 1.0/RDF, or Atom into a list of item dicts."""
+    # Strip default-namespace so RSS 1.0 / Atom tags are addressable plainly.
     raw = re.sub(rb'xmlns="[^"]+"', b"", raw, count=1)
     root = ET.fromstring(raw)
     items = []
     now = datetime.now(timezone.utc)
 
-    for node in root.iter("item"):  # RSS
+    for node in root.iter("item"):  # RSS 2.0 and RSS 1.0/RDF
         title = text_of(node.find("title"))
         link = text_of(node.find("link"))
-        pub = text_of(node.find("pubDate"))
-        items.append((title, link, pub))
+        items.append((title, link, find_date(node)))
     if not items:
         for node in root.iter("entry"):  # Atom
             title = text_of(node.find("title"))
             link_el = node.find("link")
             link = link_el.get("href", "") if link_el is not None else ""
-            pub = text_of(node.find("published")) or text_of(node.find("updated"))
-            items.append((title, link, pub))
+            items.append((title, link, find_date(node)))
 
     out = []
-    for title, link, pub in items:
+    for title, link, pub in items[:MAX_PER_SOURCE]:
         title = re.sub(r"\s+", " ", html.unescape(title)).strip()
         if not title or not link.startswith("http"):
             continue
@@ -107,7 +188,8 @@ def parse_feed(source, raw):
         if when is not None and when.tzinfo is None:
             when = when.replace(tzinfo=timezone.utc)
         age_hours = (now - when).total_seconds() / 3600 if when else 24.0
-        if age_hours > 48:  # stale news is no news
+        max_age = 168 if source in GOOD_SOURCES else 48
+        if age_hours > max_age:  # stale news is no news
             continue
         out.append({
             "source": source,
@@ -123,12 +205,18 @@ def tokens(title):
     return frozenset(w for w in words if w not in STOPWORDS and len(w) > 2)
 
 
+def lexicon_score(title, lexicon):
+    padded = " " + re.sub(r"[^a-z0-9' ]", " ", title.lower()) + " "
+    return sum(w for word, w in lexicon.items() if f" {word} " in padded)
+
+
+def judge(title):
+    """THE JUDGMENT: tone of a headline. >0 rosy, <0 grim, 0 neutral."""
+    return lexicon_score(title, ROSY_WORDS) - lexicon_score(title, GRIM_WORDS)
+
+
 def score(item, cluster_size):
-    lower = " " + item["title"].lower() + " "
-    s = 0.0
-    for word, weight in HOT_WORDS.items():
-        if f" {word} " in lower or lower.strip().startswith(word + " "):
-            s += weight
+    s = float(lexicon_score(item["title"], HOT_WORDS))
     s += max(0.0, 12.0 - item["age_hours"])          # fresher is hotter
     s += (cluster_size - 1) * 8                       # multiple outlets = big story
     if item["title"].isupper():
@@ -158,8 +246,10 @@ def dedupe_and_rank(items):
     ranked = []
     for cluster in clusters:
         best = min(cluster, key=lambda i: i["age_hours"])
-        best["score"] = score(best, len(cluster))
-        best["cluster"] = len(cluster)
+        n_sources = len({i["source"] for i in cluster})
+        best["score"] = score(best, n_sources)
+        best["cluster"] = n_sources
+        best["tone"] = judge(best["title"]) + (1 if best["source"] in GOOD_SOURCES else 0)
         ranked.append(best)
     ranked.sort(key=lambda i: i["score"], reverse=True)
     return ranked
@@ -169,13 +259,21 @@ def headline_case(title):
     return html.escape(title.upper())
 
 
+def tone_tag(tone):
+    if tone > 0:
+        return ' &middot; <span class="rosy">ROSY</span>'
+    if tone < 0:
+        return ' &middot; <span class="grim">GRIM</span>'
+    return ""
+
+
 def render(ranked, sources_ok, now):
     lead = ranked[0] if ranked else None
     rest = ranked[1:]
 
     # Round-robin the remaining stories into three columns.
     cols = [[], [], []]
-    for i, item in enumerate(rest[:60]):
+    for i, item in enumerate(rest[:PAGE_STORIES]):
         cols[i % 3].append(item)
 
     def link_html(item, cls=""):
@@ -184,7 +282,7 @@ def render(ranked, sources_ok, now):
         return (
             f'<div class="story"><a{klass} href="{html.escape(item["link"])}" '
             f'target="_blank" rel="noopener">{headline_case(item["title"])}</a>'
-            f'<span class="src">{src}</span></div>'
+            f'<span class="src">{src}{tone_tag(item["tone"])}</span></div>'
         )
 
     col_html = []
@@ -207,6 +305,33 @@ def render(ranked, sources_ok, now):
             + (f' &middot; REPORTED BY {lead["cluster"]} OUTLETS' if lead["cluster"] > 1 else "")
             + "</div>"
         )
+
+    # The natural news cycle's rosy share (of the tone-committed top stories)
+    # is the slider's default position.
+    top = ranked[:PAGE_STORIES + 1]
+    n_rosy = sum(1 for i in top if i["tone"] > 0)
+    n_grim = sum(1 for i in top if i["tone"] < 0)
+    natural = round(100 * n_rosy / (n_rosy + n_grim)) if (n_rosy + n_grim) else 50
+
+    # Pool for the client-side mixer: top stories by rank, plus extra rosy
+    # stories from further down so the sunshine end of the slider has
+    # inventory (drama scoring naturally buries the gentle stuff).
+    pool_items = list(ranked[:POOL_SIZE])
+    rosy_extra = [i for i in ranked[POOL_SIZE:] if i["tone"] > 0][:PAGE_STORIES]
+    pool_items = sorted(pool_items + rosy_extra, key=lambda i: i["score"], reverse=True)
+
+    pool = [
+        {
+            "t": item["title"],
+            "u": item["link"],
+            "s": item["source"],
+            "sc": round(item["score"], 1),
+            "tn": item["tone"],
+            "cl": item["cluster"],
+        }
+        for item in pool_items
+    ]
+    pool_json = json.dumps(pool, ensure_ascii=False).replace("</", "<\\/")
 
     stamp = now.strftime("%A %B %d, %Y").upper() + now.strftime(" &middot; %H:%M UTC")
     src_line = " &middot; ".join(html.escape(s) for s in sources_ok)
@@ -234,12 +359,34 @@ def render(ranked, sources_ok, now):
                letter-spacing: 4px; margin: 14px 0 2px; }}
   .tagline {{ text-align: center; font-size: 11px; letter-spacing: 3px;
               margin-bottom: 16px; }}
+  .judgment {{ border: 3px double #000; max-width: 560px; margin: 0 auto 8px;
+               padding: 10px 18px 14px; text-align: center; }}
+  .judgment .jtitle {{ font-size: 13px; font-weight: bold; letter-spacing: 3px; }}
+  .judgment .jread {{ font-size: 11px; letter-spacing: 1px; margin: 4px 0 8px; }}
+  .judgment .jread .grim {{ color: #c00; font-weight: bold; }}
+  .judgment .jread .rosy {{ color: #070; font-weight: bold; }}
+  .jrow {{ display: flex; align-items: center; gap: 10px; }}
+  .jrow .jend {{ font-size: 14px; }}
+  input[type=range] {{
+    flex: 1; appearance: none; -webkit-appearance: none; height: 4px;
+    background: #000; outline: none; cursor: pointer;
+  }}
+  input[type=range]::-webkit-slider-thumb {{
+    appearance: none; -webkit-appearance: none; width: 18px; height: 18px;
+    background: #fff; border: 3px solid #000; border-radius: 0;
+  }}
+  input[type=range]::-moz-range-thumb {{
+    width: 12px; height: 12px; background: #fff; border: 3px solid #000;
+    border-radius: 0;
+  }}
   .leadbox {{ text-align: center; margin: 22px auto 26px; max-width: 760px; }}
   .siren {{ font-size: 34px; animation: flash 1s step-start infinite; }}
   @keyframes flash {{ 50% {{ opacity: 0.25; }} }}
   a.lead {{ font-size: 32px; font-weight: bold; line-height: 1.2;
             color: #c00; text-decoration: underline; }}
   a.lead:hover {{ background: #c00; color: #fff; }}
+  a.lead.sunny {{ color: #070; }}
+  a.lead.sunny:hover {{ background: #070; color: #fff; }}
   .lead-src {{ font-size: 11px; margin-top: 6px; letter-spacing: 1px; }}
   .columns {{ display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 26px;
               border-top: 1px solid #000; padding-top: 18px; }}
@@ -249,6 +396,8 @@ def render(ranked, sources_ok, now):
   .story a.hot:hover {{ background: #c00; color: #fff; }}
   .src {{ display: block; font-size: 10px; font-weight: normal; color: #555;
           letter-spacing: 1px; margin-top: 1px; }}
+  .src .grim {{ color: #c00; }}
+  .src .rosy {{ color: #070; }}
   hr.rule {{ border: none; border-top: 1px solid #000; margin: 16px 30%; }}
   .footer {{ border-top: 3px double #000; margin-top: 26px; padding-top: 8px;
              text-align: center; font-size: 10px; color: #333;
@@ -264,17 +413,141 @@ def render(ranked, sources_ok, now):
   <div class="topbar">{stamp} &middot; UPDATES EVERY 30 MINUTES &middot; ALL LINKS GO TO ORIGINAL SOURCES</div>
   <div class="masthead">THE GRUDGE REPORT</div>
   <div class="tagline">HOLDING A GRUDGE AGAINST SLOW NEWS SINCE {now.year}</div>
-  <div class="leadbox">{lead_html}</div>
+  <div class="judgment">
+    <div class="jtitle">⚖ THE JUDGMENT ⚖</div>
+    <div class="jread" id="jread">TODAY'S NEWS CYCLE: <span class="grim">{100 - natural}% GRIM</span> / <span class="rosy">{natural}% ROSY</span></div>
+    <div class="jrow">
+      <span class="jend" title="100% doom">😱</span>
+      <input type="range" id="mix" min="0" max="100" value="{natural}"
+             aria-label="Percentage of positive news">
+      <span class="jend" title="100% sunshine">😊</span>
+    </div>
+  </div>
+  <div class="leadbox" id="leadbox">{lead_html}</div>
   <div class="columns">
-    <div class="col">{col_html[0]}</div>
-    <div class="col">{col_html[1]}</div>
-    <div class="col">{col_html[2]}</div>
+    <div class="col" id="col0">{col_html[0]}</div>
+    <div class="col" id="col1">{col_html[1]}</div>
+    <div class="col" id="col2">{col_html[2]}</div>
   </div>
   <div class="footer">
     WIRES: {src_line}<br>
     AUTO-GENERATED BY <a href="https://github.com/jlgreen11/drudge">build.py</a> &middot;
     HEADLINES BELONG TO THEIR PUBLISHERS &middot; NOT AFFILIATED WITH ANY OTHER REPORT
   </div>
+  <script id="pool" type="application/json">{pool_json}</script>
+  <script>
+  (function () {{
+    var POOL = JSON.parse(document.getElementById("pool").textContent);
+    var NATURAL = {natural};
+    var TOTAL = {PAGE_STORIES};
+    var slider = document.getElementById("mix");
+    var jread = document.getElementById("jread");
+
+    function pick(p) {{
+      var pos = POOL.filter(function (x) {{ return x.tn > 0; }});
+      var neg = POOL.filter(function (x) {{ return x.tn < 0; }});
+      var neu = POOL.filter(function (x) {{ return x.tn === 0; }});
+      var want = TOTAL + 1; // lead + columns
+      var nPos = Math.round(want * p / 100);
+      var nNeg = want - nPos;
+      var take = pos.slice(0, nPos).concat(neg.slice(0, nNeg));
+      var short_ = want - take.length;
+      if (short_ > 0) take = take.concat(neu.slice(0, short_));
+      take.sort(function (a, b) {{ return b.sc - a.sc; }});
+      return take;
+    }}
+
+    function toneTag(tn) {{
+      if (tn > 0) return ' \\u00b7 <span class="rosy">ROSY</span>';
+      if (tn < 0) return ' \\u00b7 <span class="grim">GRIM</span>';
+      return "";
+    }}
+
+    function storyNode(item) {{
+      var div = document.createElement("div");
+      div.className = "story";
+      var a = document.createElement("a");
+      a.href = item.u;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = item.t.toUpperCase();
+      if (item.sc >= 25) a.className = "hot";
+      var src = document.createElement("span");
+      src.className = "src";
+      src.innerHTML = item.s.replace(/[<>&]/g, "") + toneTag(item.tn);
+      div.appendChild(a);
+      div.appendChild(src);
+      return div;
+    }}
+
+    function renderPage(p) {{
+      var chosen = pick(p);
+      if (!chosen.length) return;
+      var lead = chosen[0], rest = chosen.slice(1);
+
+      var box = document.getElementById("leadbox");
+      box.innerHTML = "";
+      if (lead.sc >= 30) {{
+        var siren = document.createElement("div");
+        siren.className = "siren";
+        siren.textContent = lead.tn > 0 ? "🌈" : "🚨";
+        box.appendChild(siren);
+      }}
+      var la = document.createElement("a");
+      la.className = "lead" + (lead.tn > 0 ? " sunny" : "");
+      la.href = lead.u;
+      la.target = "_blank";
+      la.rel = "noopener";
+      la.textContent = lead.t.toUpperCase();
+      box.appendChild(la);
+      var ls = document.createElement("div");
+      ls.className = "lead-src";
+      ls.textContent = lead.s + (lead.cl > 1 ? " \\u00b7 REPORTED BY " + lead.cl + " OUTLETS" : "");
+      box.appendChild(ls);
+
+      var cols = [[], [], []];
+      rest.forEach(function (item, i) {{ cols[i % 3].push(item); }});
+      cols.forEach(function (col, c) {{
+        var el = document.getElementById("col" + c);
+        el.innerHTML = "";
+        col.forEach(function (item, i) {{
+          el.appendChild(storyNode(item));
+          if ((i + 1) % 6 === 0 && i + 1 < col.length) {{
+            var hr = document.createElement("hr");
+            hr.className = "rule";
+            el.appendChild(hr);
+          }}
+        }});
+      }});
+    }}
+
+    function readout(p) {{
+      var label = (p === NATURAL)
+        ? "TODAY'S NEWS CYCLE: "
+        : "YOUR VERDICT: ";
+      jread.innerHTML = label +
+        '<span class="grim">' + (100 - p) + "% GRIM</span> / " +
+        '<span class="rosy">' + p + "% ROSY</span>";
+    }}
+
+    function apply(p, save) {{
+      readout(p);
+      renderPage(p);
+      if (save) try {{ localStorage.setItem("grudgeMix", String(p)); }} catch (e) {{}}
+    }}
+
+    slider.addEventListener("input", function () {{
+      apply(parseInt(slider.value, 10), true);
+    }});
+
+    var saved = null;
+    try {{ saved = localStorage.getItem("grudgeMix"); }} catch (e) {{}}
+    if (saved !== null && parseInt(saved, 10) !== NATURAL) {{
+      slider.value = saved;
+      apply(parseInt(saved, 10), false);
+    }}
+  }})();
+  </script>
 </body>
 </html>
 """
@@ -306,8 +579,12 @@ def main():
     page = render(ranked, sources_ok, datetime.now(timezone.utc))
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(page)
-    print(f"Wrote index.html: 1 lead + {min(len(ranked) - 1, 60)} stories "
-          f"from {len(sources_ok)} sources.", file=sys.stderr)
+    n_rosy = sum(1 for i in ranked if i["tone"] > 0)
+    n_grim = sum(1 for i in ranked if i["tone"] < 0)
+    print(f"Wrote index.html: 1 lead + {min(len(ranked) - 1, PAGE_STORIES)} stories "
+          f"from {len(sources_ok)} sources "
+          f"({len(ranked)} clusters: {n_grim} grim / {n_rosy} rosy).",
+          file=sys.stderr)
 
 
 if __name__ == "__main__":
