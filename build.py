@@ -5,26 +5,37 @@ Fetches headlines from 25 news RSS feeds (stdlib only, no dependencies),
 scores each for drama AND judges its tone (grim vs. rosy), dedupes across
 outlets, picks a lead story, and renders a classic three-column, all-caps,
 Courier-font front page to index.html — topped by THE JUDGMENT, a slider
-that lets readers dial the mix of negative and positive news, and THE
-DOSAGE, a slider that dials how much Trump coverage the page carries.
+that lets readers dial the mix of negative and positive news, and TRUMP
+DENSITY, a dial that sets how much administration coverage the page
+carries. The measured share is published as a live stat with an uncapped
+daily history — the only consumer front page that prints its own number
+and hands the reader the dial.
 
 The editor never sleeps: state.json is the paper's memory between runs.
 Stories that are being picked up by more outlets get boosted and badged
 RISING; stories that have sat on the page too long decay and get pulled;
 a lead that stops growing loses the siren after a few hours.
 
-Run:  python3 build.py
+The page itself lives in template.html (string.Template, still stdlib);
+build.py fills it in. Outputs: index.html, feed.xml, state.json.
+
+Run:   python3 build.py
+Test:  python3 -m unittest -v
 """
 
 import concurrent.futures
+import hashlib
 import html
 import json
+import os
 import re
+import string
 import sys
+import time
 import urllib.request
 import xml.etree.ElementTree as ET
-from datetime import datetime, timezone
-from email.utils import parsedate_to_datetime
+from datetime import datetime, timedelta, timezone
+from email.utils import format_datetime, parsedate_to_datetime
 
 FEEDS = [
     ("BBC", "https://feeds.bbci.co.uk/news/world/rss.xml"),
@@ -63,6 +74,29 @@ MAX_PER_SOURCE = 40   # stop one chatty feed from flooding the page
 POOL_SIZE = 150       # stories embedded for the client-side judgment mixer
 PAGE_STORIES = 60     # stories shown below the lead
 
+SITE_URL = "https://jlgreen11.github.io/drudge/"   # canonical; swap on custom domain
+
+# Analytics (optional): create a free GoatCounter account and put its site
+# code here (e.g. "grudgereport"). Empty string = no analytics, no external
+# scripts — the page stays fully self-contained. See README.
+GOATCOUNTER_CODE = ""
+
+# The page template lives next to this script so build.py can run from any
+# working directory (tests run it from a temp dir).
+TEMPLATE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "template.html")
+
+FEED_FILE = "feed.xml"
+FEED_ITEMS = 30       # stories in the RSS output feed
+
+MIN_ITEMS = 10        # rebuild only with this many stories...
+MIN_SOURCES = 5       # ...from this many distinct outlets (one chatty feed
+                      # must not rebuild a single-outlet front page)
+
+FETCH_MAX_BYTES = 5 * 2 ** 20   # a feed bigger than 5MB is not a feed
+FETCH_DEADLINE = 60.0           # wall-clock seconds per feed (timeout= is per
+                                # socket op; a tarpit drip never trips it)
+FETCH_ALL_TIMEOUT = 300         # global budget: ceil(25/8) waves x ~80s + margin
+
 # ── The night editor's rulebook: when to put on, when to pull off ──────────
 STATE_FILE = "state.json"
 STATE_PRUNE_H = 72.0        # forget clusters not seen for this long
@@ -75,6 +109,9 @@ LEAD_FATIGUE_H = 4.0        # max hours a non-growing lead keeps the siren
 LEAD_MIN_OUTLETS = 2        # a lead must be confirmed by 2+ outlets...
 LEAD_SOLO_SCORE = 40.0      # ...or be scorching hot on its own
 LEAD_RIVAL_RATIO = 0.75     # a challenger this close (or better) can take a tired crown
+HISTORY_DAYS = 30           # sparkline display window; the history series
+                            # itself is kept UNCAPPED (~15KB/yr) — the daily
+                            # time series is the asset, never FIFO it away
 
 # Words that make a headline siren-worthy. Weight = drama.
 HOT_WORDS = {
@@ -224,8 +261,24 @@ STOPWORDS = frozenset(
 
 def fetch(url, timeout=20):
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    # Read in bounded chunks against a wall-clock deadline: urlopen's timeout
+    # covers each socket operation, so a hijacked feed dripping one byte per
+    # second (or serving a multi-GB body) would otherwise wedge the run and,
+    # via CI cancel-in-progress, every run after it. Oversize/overtime feeds
+    # are aborted and skipped like any other broken feed.
+    deadline = time.monotonic() + FETCH_DEADLINE
+    data = bytearray()
     with urllib.request.urlopen(req, timeout=timeout) as resp:
-        return resp.read()
+        while True:
+            chunk = resp.read(2 ** 20)
+            if not chunk:
+                break
+            data += chunk
+            if len(data) > FETCH_MAX_BYTES:
+                raise ValueError(f"feed exceeds {FETCH_MAX_BYTES >> 20}MB cap")
+            if time.monotonic() > deadline:
+                raise ValueError(f"feed exceeded {FETCH_DEADLINE:.0f}s deadline")
+    return bytes(data)
 
 
 def text_of(el):
@@ -276,7 +329,12 @@ def parse_feed(source, raw):
                     when = None
         if when is not None and when.tzinfo is None:
             when = when.replace(tzinfo=timezone.utc)
-        age_hours = (now - when).total_seconds() / 3600 if when else 24.0
+        if when is not None and (when - now).total_seconds() > 3600:
+            when = None  # clock-broken feed: don't let it squat at max freshness
+        # Undated items get 47.9h: inside the window but never fresh enough
+        # for the NEW badge or freshness bonus. (The default recurs every run;
+        # actual re-injection is contained by the tenure system's 30h pull.)
+        age_hours = (now - when).total_seconds() / 3600 if when else 47.9
         max_age = 168 if source in GOOD_SOURCES else 48
         if age_hours > max_age:  # stale news is no news
             continue
@@ -351,6 +409,9 @@ def dedupe_and_rank(items):
         best["tone"] = judge(best["title"]) + (1 if best["source"] in GOOD_SOURCES else 0)
         best["topic"] = classify(best["title"])
         best["trump"] = bool(TRUMP_RE.search(best["title"]))
+        # Per-link key for the optional click beacons. Computed here because
+        # browser JS has no synchronous SHA-1; the pool ships it ready-made.
+        best["k"] = hashlib.sha1(best["link"].encode("utf-8")).hexdigest()[:10]
         ranked.append(best)
     ranked.sort(key=lambda i: i["score"], reverse=True)
     return ranked
@@ -359,11 +420,33 @@ def dedupe_and_rank(items):
 # ── Editorial memory: state.json survives between runs via the CI commit ───
 
 def load_state():
+    """Load and shape-validate the desk's memory. Salvage PER KEY: state.json
+    is committed and reloaded forever, so a single corrupt section must never
+    nuke the others — especially "history", the daily stat series (the asset).
+    """
     try:
         with open(STATE_FILE, encoding="utf-8") as f:
-            return json.load(f)
+            raw = json.load(f)
     except (OSError, ValueError):
-        return {"clusters": [], "lead": None}
+        raw = {}
+    if not isinstance(raw, dict):
+        raw = {}
+
+    def _list(key):
+        v = raw.get(key)
+        return v if isinstance(v, list) else []
+
+    clusters = [e for e in _list("clusters")
+                if isinstance(e, dict) and isinstance(e.get("toks"), list)]
+    history = [h for h in _list("history")
+               if isinstance(h, dict) and isinstance(h.get("d"), str)]
+    lead = raw.get("lead")
+    if not (isinstance(lead, dict) and isinstance(lead.get("toks"), list)):
+        lead = None
+    dropped = (len(_list("clusters")) - len(clusters)) + (len(_list("history")) - len(history))
+    if dropped:
+        print(f"  [state] salvaged: dropped {dropped} malformed entries", file=sys.stderr)
+    return {"clusters": clusters, "lead": lead, "history": history}
 
 
 def parse_iso(s, fallback):
@@ -463,9 +546,43 @@ def choose_lead(ranked, state, now):
     return [top] + [i for i in ranked if i is not top]
 
 
-def save_state(state, tracked, lead, now):
+def wire_stats(ranked):
+    """FRONT PAGE stats: rosy share of tone-committed top stories, and Trump
+    share of the top stories. These are the dials' defaults and the page's
+    self-published stat line. (The methodology note in the README defines
+    this and the full-wire number side by side.)"""
+    top = ranked[:PAGE_STORIES + 1]
+    n_rosy = sum(1 for i in top if i["tone"] > 0)
+    n_grim = sum(1 for i in top if i["tone"] < 0)
+    natural = round(100 * n_rosy / (n_rosy + n_grim)) if (n_rosy + n_grim) else 50
+    nat_dose = round(100 * sum(1 for i in top if i["trump"]) / len(top)) if top else 0
+    return natural, nat_dose
+
+
+def full_wire_dose(clusters):
+    """FULL WIRE stat: Trump share of every unique story cluster fetched this
+    run (post-dedup — pre-dedup would double-weight multi-outlet stories)."""
+    if not clusters:
+        return 0
+    return round(100 * sum(1 for i in clusters if i["trump"]) / len(clusters))
+
+
+def yesterday_dose(state, now):
+    """Yesterday's published front-page Trump share — only from a history
+    entry dated EXACTLY yesterday. After an outage gap the stat is omitted
+    rather than mislabeling a week-old number 'YESTERDAY'."""
+    want = (now - timedelta(days=1)).strftime("%Y-%m-%d")
+    for h in reversed(state.get("history", [])):
+        if h.get("d") == want:
+            v = h.get("trump")
+            return v if isinstance(v, (int, float)) else None
+    return None
+
+
+def save_state(state, tracked, lead, now, natural, nat_dose, fw_dose):
     """Persist the desk's memory. Carries over unclaimed recent clusters so
-    a one-run feed hiccup doesn't reset a story's tenure."""
+    a one-run feed hiccup doesn't reset a story's tenure. Also appends the
+    day's wire stats to the (uncapped) daily history series."""
     entries = []
     for item in tracked[:400]:
         entries.append({
@@ -491,9 +608,19 @@ def save_state(state, tracked, lead, now):
             lead_entry["since"] = prev.get("since", lead_entry["since"])
             lead_entry["score"] = prev.get("score", lead_entry["score"])
 
-    with open(STATE_FILE, "w", encoding="utf-8") as f:
-        json.dump({"clusters": entries[:500], "lead": lead_entry}, f,
-                  ensure_ascii=False, separators=(",", ":"))
+    today = now.strftime("%Y-%m-%d")
+    history = [h for h in state.get("history", []) if h.get("d") != today]
+    history.append({"d": today, "rosy": natural, "trump": nat_dose, "fw": fw_dose})
+    # Uncapped on purpose (~15KB/yr): HISTORY_DAYS only windows the sparkline.
+
+    payload = {"v": 2, "clusters": entries[:500], "lead": lead_entry,
+               "history": history}
+    # Atomic write: a crash mid-dump must never leave a truncated state.json
+    # to be committed and reloaded forever.
+    tmp = STATE_FILE + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, separators=(",", ":"))
+    os.replace(tmp, STATE_FILE)
 
 
 # ── Rendering ───────────────────────────────────────────────────────────────
@@ -531,7 +658,61 @@ def partition(stories):
     return cols
 
 
-def render(ranked, sources_ok, now):
+def sparkline_svg(series, color, width=220, height=28):
+    """Inline SVG polyline for a 0-100 percentage series. Empty below two
+    points — a one-entry polyline is a division by zero, not a chart."""
+    if len(series) < 2:
+        return ""
+    step = width / (len(series) - 1)
+    pts = " ".join(f"{i * step:.1f},{height - 2 - (height - 4) * v / 100:.1f}"
+                   for i, v in enumerate(series))
+    return (f'<svg width="{width}" height="{height}" '
+            f'viewBox="0 0 {width} {height}" role="img" aria-label="daily history">'
+            f'<polyline points="{pts}" fill="none" stroke="{color}" '
+            f'stroke-width="1.5"/></svg>')
+
+
+def spark_html(history):
+    """The stat-history block inside THE JUDGMENT box. HISTORY_DAYS is only
+    the display window; the underlying series in state.json is uncapped."""
+    trump_w = [h["trump"] for h in history
+               if isinstance(h.get("trump"), (int, float))][-HISTORY_DAYS:]
+    rosy_w = [h["rosy"] for h in history
+              if isinstance(h.get("rosy"), (int, float))][-HISTORY_DAYS:]
+    trump = sparkline_svg(trump_w, "#c00")
+    rosy = sparkline_svg(rosy_w, "#070")
+    if not trump and not rosy:
+        return ('    <div class="spark"><div class="accruing">'
+                'STAT HISTORY ACCRUING &middot; CHECK BACK TOMORROW</div></div>\n')
+    out = ['    <div class="spark">']
+    if trump:
+        out.append(f'<div class="slabel">TRUMP SHARE OF THE FRONT PAGE, '
+                   f'LAST {len(trump_w)} DAYS</div>{trump}')
+    if rosy:
+        out.append(f'<div class="slabel">ROSY SHARE, LAST {len(rosy_w)} DAYS</div>{rosy}')
+    out.append('</div>\n')
+    return "".join(out)
+
+
+# Client-side beacons, injected only when GOATCOUNTER_CODE is set. Dials
+# count on "change" (not "input" — a drag would fire dozens of beacons) and
+# every call is guarded: an ad-blocked counter is a silent no-op.
+GC_JS = """
+    function gcount(path) {
+      if (window.goatcounter && goatcounter.count) {
+        goatcounter.count({path: path, event: true});
+      }
+    }
+    document.addEventListener("click", function (e) {
+      var a = e.target && e.target.closest ? e.target.closest("a[data-k]") : null;
+      if (a) gcount("click/" + a.getAttribute("data-k"));
+    });
+    mix.addEventListener("change", function () { gcount("dial/mix/" + mix.value); });
+    dose.addEventListener("change", function () { gcount("dial/dose/" + dose.value); });
+"""
+
+
+def render(ranked, sources_ok, now, natural, nat_dose, prev_dose, history):
     lead = ranked[0] if ranked else None
     rest = ranked[1:]
 
@@ -550,6 +731,7 @@ def render(ranked, sources_ok, now):
         src = " &middot; ".join([html.escape(item["source"])] + badge_bits(item))
         return (
             f'<div class="story"><a{klass} href="{html.escape(item["link"])}" '
+            f'data-k="{item.get("k", "")}" '
             f'target="_blank" rel="noopener">{headline_case(item["title"])}</a>'
             f'<span class="src">{src}{tone_tag(item["tone"])}</span></div>'
         )
@@ -579,18 +761,12 @@ def render(ranked, sources_ok, now):
             lead_bits.append('<span class="rise">RISING &#9650;</span>')
         lead_html = (
             f'{siren}<a class="lead" href="{html.escape(lead["link"])}" '
+            f'data-k="{lead.get("k", "")}" '
             f'target="_blank" rel="noopener">{headline_case(lead["title"])}</a>'
             f'<div class="lead-src">{" &middot; ".join(lead_bits)}</div>'
         )
 
-    # The natural news cycle's rosy share (of the tone-committed top stories)
-    # is the tone slider's default position; the wire's Trump share is the
-    # dosage slider's default.
-    top = ranked[:PAGE_STORIES + 1]
-    n_rosy = sum(1 for i in top if i["tone"] > 0)
-    n_grim = sum(1 for i in top if i["tone"] < 0)
-    natural = round(100 * n_rosy / (n_rosy + n_grim)) if (n_rosy + n_grim) else 50
-    nat_dose = round(100 * sum(1 for i in top if i["trump"]) / len(top)) if top else 0
+    yday = f" &middot; YESTERDAY {prev_dose}%" if prev_dose is not None else ""
 
     # Pool for the client-side mixer: top stories by rank, plus extra rosy
     # stories from further down so the sunshine end of the slider has
@@ -603,6 +779,7 @@ def render(ranked, sources_ok, now):
         {
             "t": item["title"],
             "u": item["link"],
+            "k": item.get("k", ""),
             "s": item["source"],
             "sc": round(item["score"], 1),
             "tn": item["tone"],
@@ -620,330 +797,91 @@ def render(ranked, sources_ok, now):
     src_line = " &middot; ".join(html.escape(s) for s in sources_ok)
     og_desc = html.escape(
         (lead["title"].upper() + " — " if lead else "")
-        + "Auto-refreshing front page. Dial your doom with THE JUDGMENT; "
-          "dial your Trump with THE DOSAGE.", quote=True)
+        + "The only front page you can tune: dial the doom with THE JUDGMENT. "
+          "Rebuilt from 25 wires every 30 minutes.", quote=True)
 
-    return f"""<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="refresh" content="1800">
-<meta name="description" content="{og_desc}">
-<meta property="og:title" content="THE GRUDGE REPORT">
-<meta property="og:description" content="{og_desc}">
-<meta property="og:type" content="website">
-<title>THE GRUDGE REPORT</title>
-<style>
-  * {{ margin: 0; padding: 0; box-sizing: border-box; }}
-  body {{
-    background: #fff; color: #000;
-    font-family: "Courier New", Courier, monospace;
-    padding: 12px; max-width: 1100px; margin: 0 auto;
-  }}
-  a {{ color: #000; }}
-  a:visited {{ color: #444; }}
-  a:hover {{ background: #000; color: #fff; text-decoration: none; }}
-  .topbar {{ text-align: center; font-size: 11px; letter-spacing: 1px;
-             border-bottom: 3px double #000; padding-bottom: 6px; }}
-  .masthead {{ text-align: center; font-size: 44px; font-weight: bold;
-               letter-spacing: 4px; margin: 14px 0 2px; }}
-  .tagline {{ text-align: center; font-size: 11px; letter-spacing: 3px;
-              margin-bottom: 16px; }}
-  .judgment {{ border: 3px double #000; max-width: 560px; margin: 0 auto 8px;
-               padding: 10px 18px 14px; text-align: center; }}
-  .judgment .jtitle {{ font-size: 13px; font-weight: bold; letter-spacing: 3px; }}
-  .judgment .jread {{ font-size: 11px; letter-spacing: 1px; margin: 4px 0 8px; }}
-  .judgment .jread .grim {{ color: #c00; font-weight: bold; }}
-  .judgment .jread .rosy {{ color: #070; font-weight: bold; }}
-  .judgment .jsplit {{ border-top: 1px solid #000; margin: 12px -18px 10px; }}
-  .jrow {{ display: flex; align-items: center; gap: 10px; }}
-  .jrow .jend {{ font-size: 14px; }}
-  input[type=range] {{
-    flex: 1; appearance: none; -webkit-appearance: none; height: 4px;
-    background: #000; outline: none; cursor: pointer;
-  }}
-  input[type=range]::-webkit-slider-thumb {{
-    appearance: none; -webkit-appearance: none; width: 18px; height: 18px;
-    background: #fff; border: 3px solid #000; border-radius: 0;
-  }}
-  input[type=range]::-moz-range-thumb {{
-    width: 12px; height: 12px; background: #fff; border: 3px solid #000;
-    border-radius: 0;
-  }}
-  .leadbox {{ text-align: center; margin: 22px auto 26px; max-width: 760px; }}
-  .siren {{ font-size: 34px; animation: flash 1s step-start infinite; }}
-  @keyframes flash {{ 50% {{ opacity: 0.25; }} }}
-  a.lead {{ font-size: 32px; font-weight: bold; line-height: 1.2;
-            color: #c00; text-decoration: underline; }}
-  a.lead:hover {{ background: #c00; color: #fff; }}
-  a.lead.sunny {{ color: #070; }}
-  a.lead.sunny:hover {{ background: #070; color: #fff; }}
-  .lead-src {{ font-size: 11px; margin-top: 6px; letter-spacing: 1px; }}
-  .columns {{ display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 26px;
-              border-top: 1px solid #000; padding-top: 18px; }}
-  .sec {{ margin-bottom: 22px; }}
-  .schead {{ color: #c00; font-size: 11px; font-weight: bold;
-             letter-spacing: 3px; border-bottom: 1px solid #000;
-             margin: 2px 0 10px; padding-bottom: 2px; }}
-  .story {{ margin-bottom: 13px; font-size: 14px; font-weight: bold;
-            line-height: 1.35; }}
-  .story a.hot {{ color: #c00; }}
-  .story a.hot:hover {{ background: #c00; color: #fff; }}
-  .src {{ display: block; font-size: 10px; font-weight: normal; color: #555;
-          letter-spacing: 1px; margin-top: 1px; }}
-  .src .grim {{ color: #c00; }}
-  .src .rosy {{ color: #070; }}
-  .src .rise, .lead-src .rise {{ color: #c00; font-weight: bold; }}
-  .src .fresh {{ color: #070; font-weight: bold; }}
-  hr.rule {{ border: none; border-top: 1px solid #000; margin: 16px 30%; }}
-  .footer {{ border-top: 3px double #000; margin-top: 26px; padding-top: 8px;
-             text-align: center; font-size: 10px; color: #333;
-             letter-spacing: 1px; line-height: 1.8; }}
-  @media (max-width: 720px) {{
-    .columns {{ grid-template-columns: 1fr; }}
-    .masthead {{ font-size: 30px; letter-spacing: 2px; }}
-    a.lead {{ font-size: 24px; }}
-  }}
-</style>
-</head>
-<body>
-  <div class="topbar">{stamp} &middot; UPDATES EVERY 30 MINUTES &middot; ALL LINKS GO TO ORIGINAL SOURCES</div>
-  <div class="masthead">THE GRUDGE REPORT</div>
-  <div class="tagline">HOLDING A GRUDGE AGAINST SLOW NEWS SINCE {now.year}</div>
-  <div class="judgment">
-    <div class="jtitle">⚖ THE JUDGMENT ⚖</div>
-    <div class="jread" id="jread">TODAY'S NEWS CYCLE: <span class="grim">{100 - natural}% GRIM</span> / <span class="rosy">{natural}% ROSY</span></div>
-    <div class="jrow">
-      <span class="jend" title="100% doom">😱</span>
-      <input type="range" id="mix" min="0" max="100" value="{natural}"
-             aria-label="Percentage of positive news">
-      <span class="jend" title="100% sunshine">😊</span>
-    </div>
-    <div class="jsplit"></div>
-    <div class="jtitle">☢ THE DOSAGE ☢</div>
-    <div class="jread" id="dread">TODAY'S WIRE IS <span class="grim">{nat_dose}% TRUMP</span></div>
-    <div class="jrow">
-      <span class="jend" title="Trump-free">🚫</span>
-      <input type="range" id="dose" min="0" max="100" value="{nat_dose}"
-             aria-label="Percentage of Trump coverage">
-      <span class="jend" title="Full firehose">🍊</span>
-    </div>
-  </div>
-  <div class="leadbox" id="leadbox">{lead_html}</div>
-  <div class="columns">
-    <div class="col" id="col0">{col_html[0]}</div>
-    <div class="col" id="col1">{col_html[1]}</div>
-    <div class="col" id="col2">{col_html[2]}</div>
-  </div>
-  <div class="footer">
-    WIRES: {src_line}<br>
-    AUTO-GENERATED BY <a href="https://github.com/jlgreen11/drudge">build.py</a> &middot;
-    HEADLINES BELONG TO THEIR PUBLISHERS &middot; NOT AFFILIATED WITH ANY OTHER REPORT
-  </div>
-  <script id="pool" type="application/json">{pool_json}</script>
-  <script>
-  (function () {{
-    var POOL = JSON.parse(document.getElementById("pool").textContent);
-    var NATURAL = {natural};
-    var NATDOSE = {nat_dose};
-    var TOTAL = {PAGE_STORIES};
-    var CATCHALL = "{TOPIC_CATCHALL}";
-    var mix = document.getElementById("mix");
-    var dose = document.getElementById("dose");
-    var jread = document.getElementById("jread");
-    var dread = document.getElementById("dread");
+    gc_head = ""
+    gc_js = ""
+    disclosure = ""
+    if GOATCOUNTER_CODE:
+        gc_head = (f'<script data-goatcounter="https://{GOATCOUNTER_CODE}'
+                   '.goatcounter.com/count" async src="//gc.zgo.at/count.js">'
+                   '</script>\n')
+        gc_js = GC_JS
+        disclosure = (' &middot; ANONYMOUS, COOKIELESS USAGE COUNTS BY '
+                      '<a href="https://www.goatcounter.com">GOATCOUNTER</a>')
 
-    function toneMix(list, n, p) {{
-      if (n <= 0) return [];
-      var pos = [], neg = [], neu = [];
-      list.forEach(function (x) {{ (x.tn > 0 ? pos : x.tn < 0 ? neg : neu).push(x); }});
-      var nPos = Math.round(n * p / 100);
-      var take = pos.slice(0, nPos).concat(neg.slice(0, n - nPos));
-      if (take.length < n) take = take.concat(neu.slice(0, n - take.length));
-      if (take.length < n) {{
-        var got = {{}};
-        take.forEach(function (x) {{ got[x.u] = 1; }});
-        list.forEach(function (x) {{
-          if (take.length < n && !got[x.u]) take.push(x);
-        }});
-      }}
-      return take;
-    }}
+    with open(TEMPLATE_PATH, encoding="utf-8") as f:
+        tpl = string.Template(f.read())
+    return tpl.substitute(
+        og_desc=og_desc,
+        site_url=SITE_URL,
+        stamp=stamp,
+        year=now.year,
+        natural=natural,
+        grim_pct=100 - natural,
+        nat_dose=nat_dose,
+        yday=yday,
+        yday_js=json.dumps(yday),
+        built=int(now.timestamp()),
+        lead_html=lead_html,
+        col0=col_html[0],
+        col1=col_html[1],
+        col2=col_html[2],
+        src_line=src_line,
+        pool_json=pool_json,
+        page_stories=PAGE_STORIES,
+        catchall=TOPIC_CATCHALL,
+        spark_html=spark_html(history),
+        gc_head=gc_head,
+        gc_js=gc_js,
+        disclosure=disclosure,
+    )
 
-    function pick(p, t) {{
-      var want = TOTAL + 1; // lead + columns
-      var tr = POOL.filter(function (x) {{ return x.tr; }});
-      var non = POOL.filter(function (x) {{ return !x.tr; }});
-      var nT = Math.min(Math.round(want * t / 100), tr.length);
-      var take = toneMix(tr, nT, p).concat(toneMix(non, want - nT, p));
-      if (take.length < want) {{
-        var got = {{}};
-        take.forEach(function (x) {{ got[x.u] = 1; }});
-        POOL.forEach(function (x) {{
-          if (take.length < want && !got[x.u]) take.push(x);
-        }});
-      }}
-      take.sort(function (a, b) {{ return b.sc - a.sc; }});
-      return take;
-    }}
 
-    function toneTag(tn) {{
-      if (tn > 0) return ' \\u00b7 <span class="rosy">ROSY</span>';
-      if (tn < 0) return ' \\u00b7 <span class="grim">GRIM</span>';
-      return "";
-    }}
+def write_feed(ranked, now, natural, nat_dose, fw_dose):
+    """feed.xml: the day's stat line + top stories. Built with ElementTree so
+    titles and query-string links are escaped correctly — hand-rolled XML is
+    how feeds break. The stat item's guid is stable per day so 48 rebuilds
+    don't spam subscribers with 48 "new" items."""
+    rss = ET.Element("rss", version="2.0")
+    rss.set("xmlns:atom", "http://www.w3.org/2005/Atom")
+    ch = ET.SubElement(rss, "channel")
+    ET.SubElement(ch, "title").text = "THE GRUDGE REPORT"
+    ET.SubElement(ch, "link").text = SITE_URL
+    ET.SubElement(ch, "description").text = (
+        "The only front page you can tune. Holding a grudge against slow news.")
+    ET.SubElement(ch, "lastBuildDate").text = format_datetime(now)
+    self_link = ET.SubElement(ch, "atom:link")
+    self_link.set("href", SITE_URL + "feed.xml")
+    self_link.set("rel", "self")
+    self_link.set("type", "application/rss+xml")
 
-    function srcLine(item) {{
-      var bits = item.s.replace(/[<>&]/g, "");
-      if (item.rs) bits += ' \\u00b7 <span class="rise">RISING \\u25b2</span>';
-      else if (item.nw) bits += ' \\u00b7 <span class="fresh">NEW</span>';
-      if (item.cl >= 3) bits += " \\u00b7 " + item.cl + " OUTLETS";
-      return bits + toneTag(item.tn);
-    }}
+    day = now.strftime("%Y-%m-%d")
+    stat = ET.SubElement(ch, "item")
+    ET.SubElement(stat, "title").text = (
+        f"TODAY'S WIRE: {100 - natural}% GRIM / {natural}% ROSY &#8212; "
+        f"{nat_dose}% TRUMP ON THE FRONT PAGE, {fw_dose}% ON THE FULL WIRE"
+    ).replace("&#8212;", "—")
+    ET.SubElement(stat, "link").text = SITE_URL
+    guid = ET.SubElement(stat, "guid", isPermaLink="false")
+    guid.text = f"stat-{day}"
+    ET.SubElement(stat, "pubDate").text = format_datetime(
+        now.replace(hour=0, minute=0, second=0, microsecond=0))
 
-    function storyNode(item) {{
-      var div = document.createElement("div");
-      div.className = "story";
-      var a = document.createElement("a");
-      a.href = item.u;
-      a.target = "_blank";
-      a.rel = "noopener";
-      a.textContent = item.t.toUpperCase();
-      if (item.sc >= 25) a.className = "hot";
-      var src = document.createElement("span");
-      src.className = "src";
-      src.innerHTML = srcLine(item);
-      div.appendChild(a);
-      div.appendChild(src);
-      return div;
-    }}
+    for item in ranked[:FEED_ITEMS]:
+        it = ET.SubElement(ch, "item")
+        ET.SubElement(it, "title").text = f"{item['title']} ({item['source']})"
+        ET.SubElement(it, "link").text = item["link"]
+        guid = ET.SubElement(it, "guid", isPermaLink="false")
+        guid.text = item["link"]
+        ET.SubElement(it, "pubDate").text = format_datetime(
+            now - timedelta(hours=item["age_hours"]))
 
-    // Mirror of build.py partition(): group by desk, bin-pack onto columns.
-    function partition(rest) {{
-      var by = {{}}, names = [];
-      rest.forEach(function (x) {{
-        var t = x.tp || CATCHALL;
-        if (!by[t]) {{ by[t] = []; names.push(t); }}
-        by[t].push(x);
-      }});
-      var secs = names.map(function (n) {{ return [n, by[n]]; }});
-      secs.sort(function (a, b) {{
-        return b[1].length - a[1].length || (a[0] < b[0] ? -1 : 1);
-      }});
-      var cols = [[], [], []], counts = [0, 0, 0];
-      secs.forEach(function (s) {{
-        var c = counts.indexOf(Math.min.apply(null, counts));
-        cols[c].push(s);
-        counts[c] += s[1].length + 2;
-      }});
-      return cols;
-    }}
-
-    function renderPage(p, t) {{
-      var chosen = pick(p, t);
-      if (!chosen.length) return;
-      var lead = chosen[0], rest = chosen.slice(1);
-
-      var box = document.getElementById("leadbox");
-      box.innerHTML = "";
-      if (lead.sc >= 30) {{
-        var siren = document.createElement("div");
-        siren.className = "siren";
-        siren.textContent = lead.tn > 0 ? "🌈" : "🚨";
-        box.appendChild(siren);
-      }}
-      var la = document.createElement("a");
-      la.className = "lead" + (lead.tn > 0 ? " sunny" : "");
-      la.href = lead.u;
-      la.target = "_blank";
-      la.rel = "noopener";
-      la.textContent = lead.t.toUpperCase();
-      box.appendChild(la);
-      var ls = document.createElement("div");
-      ls.className = "lead-src";
-      ls.textContent = lead.s + (lead.cl > 1 ? " \\u00b7 REPORTED BY " + lead.cl + " OUTLETS" : "");
-      box.appendChild(ls);
-
-      partition(rest).forEach(function (col, c) {{
-        var el = document.getElementById("col" + c);
-        el.innerHTML = "";
-        col.forEach(function (sec) {{
-          var wrap = document.createElement("div");
-          wrap.className = "sec";
-          var head = document.createElement("div");
-          head.className = "schead";
-          head.textContent = sec[0];
-          wrap.appendChild(head);
-          sec[1].forEach(function (item, i) {{
-            wrap.appendChild(storyNode(item));
-            if ((i + 1) % 6 === 0 && i + 1 < sec[1].length) {{
-              var hr = document.createElement("hr");
-              hr.className = "rule";
-              wrap.appendChild(hr);
-            }}
-          }});
-          el.appendChild(wrap);
-        }});
-      }});
-    }}
-
-    function readout(p, t) {{
-      var jlabel = (p === NATURAL) ? "TODAY'S NEWS CYCLE: " : "YOUR VERDICT: ";
-      jread.innerHTML = jlabel +
-        '<span class="grim">' + (100 - p) + "% GRIM</span> / " +
-        '<span class="rosy">' + p + "% ROSY</span>";
-      if (t === NATDOSE) {{
-        dread.innerHTML = 'TODAY\\'S WIRE IS <span class="grim">' + t + "% TRUMP</span>";
-      }} else {{
-        dread.innerHTML = 'YOUR DOSAGE: <span class="grim">' + t + "% TRUMP</span>" +
-          " (WIRE: " + NATDOSE + "%)";
-      }}
-    }}
-
-    function apply(p, t, save) {{
-      readout(p, t);
-      renderPage(p, t);
-      if (save) {{
-        try {{
-          localStorage.setItem("grudgeMix", String(p));
-          localStorage.setItem("grudgeDose", String(t));
-        }} catch (e) {{}}
-      }}
-    }}
-
-    function current() {{
-      return [parseInt(mix.value, 10), parseInt(dose.value, 10)];
-    }}
-
-    mix.addEventListener("input", function () {{
-      var c = current();
-      apply(c[0], c[1], true);
-    }});
-    dose.addEventListener("input", function () {{
-      var c = current();
-      apply(c[0], c[1], true);
-    }});
-
-    var savedMix = null, savedDose = null;
-    try {{
-      savedMix = localStorage.getItem("grudgeMix");
-      savedDose = localStorage.getItem("grudgeDose");
-    }} catch (e) {{}}
-    var p = savedMix === null ? NATURAL : parseInt(savedMix, 10);
-    var t = savedDose === null ? NATDOSE : parseInt(savedDose, 10);
-    if (isNaN(p)) p = NATURAL;
-    if (isNaN(t)) t = NATDOSE;
-    if (p !== NATURAL || t !== NATDOSE) {{
-      mix.value = p;
-      dose.value = t;
-      apply(p, t, false);
-    }}
-  }})();
-  </script>
-</body>
-</html>
-"""
+    ET.indent(rss)
+    with open(FEED_FILE, "wb") as f:
+        f.write(b'<?xml version="1.0" encoding="UTF-8"?>\n')
+        f.write(ET.tostring(rss, encoding="utf-8"))
 
 
 def main():
@@ -951,43 +889,74 @@ def main():
     sources_ok = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
         futures = {pool.submit(fetch, url): (source, url) for source, url in FEEDS}
-        for fut in concurrent.futures.as_completed(futures):
-            source, url = futures[fut]
-            try:
-                items = parse_feed(source, fut.result())
-            except Exception as e:
-                print(f"  [skip] {source}: {e}", file=sys.stderr)
-                continue
-            if items:
-                sources_ok.append(source)
-                all_items.extend(items)
-                print(f"  [ok]   {source}: {len(items)} items", file=sys.stderr)
+        try:
+            for fut in concurrent.futures.as_completed(futures, timeout=FETCH_ALL_TIMEOUT):
+                source, url = futures[fut]
+                try:
+                    items = parse_feed(source, fut.result())
+                except Exception as e:
+                    print(f"  [skip] {source}: {e}", file=sys.stderr)
+                    continue
+                if items:
+                    sources_ok.append(source)
+                    all_items.extend(items)
+                    print(f"  [ok]   {source}: {len(items)} items", file=sys.stderr)
+        except concurrent.futures.TimeoutError:
+            n_left = sum(1 for f in futures if not f.done())
+            print(f"  [skip] global {FETCH_ALL_TIMEOUT}s budget spent: "
+                  f"{n_left} stragglers dropped", file=sys.stderr)
+            pool.shutdown(wait=False, cancel_futures=True)
 
-    if len(all_items) < 10:
-        print("Not enough news fetched; keeping existing page.", file=sys.stderr)
-        sys.exit(1)
+    if len(all_items) < MIN_ITEMS or len(sources_ok) < MIN_SOURCES:
+        # A broad outage is not a crash: keep the last good page and exit
+        # green (the CI commit step's diff guard no-ops). Nonzero exits are
+        # reserved for real bugs so red runs stay meaningful. The source
+        # floor stops one chatty feed from rebuilding a single-outlet page.
+        reason = (f"only {len(all_items)} items from {len(sources_ok)} sources "
+                  f"(need >={MIN_ITEMS} from >={MIN_SOURCES}) — keeping existing page")
+        print(f"  [hold] {reason}", file=sys.stderr)
+        summary = os.environ.get("GITHUB_STEP_SUMMARY")
+        if summary:
+            with open(summary, "a", encoding="utf-8") as f:
+                f.write(f"Skipped rebuild: {reason}\n")
+        return 0
 
     now = datetime.now(timezone.utc)
     state = load_state()
     ranked = dedupe_and_rank(all_items)
+    fw_dose = full_wire_dose(ranked)
     on_page, tracked = apply_state(ranked, state, now)
     on_page = choose_lead(on_page, state, now)
+    # Stats come AFTER lead selection: choose_lead can promote a below-fold
+    # challenger into the top window, and the published number must match
+    # the rendered page.
+    natural, nat_dose = wire_stats(on_page)
+    prev_dose = yesterday_dose(state, now)
+
+    today = now.strftime("%Y-%m-%d")
+    history = ([h for h in state.get("history", []) if h.get("d") != today]
+               + [{"d": today, "rosy": natural, "trump": nat_dose, "fw": fw_dose}])
 
     sources_ok.sort()
-    page = render(on_page, sources_ok, now)
+    page = render(on_page, sources_ok, now, natural, nat_dose, prev_dose, history)
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(page)
-    save_state(state, tracked, on_page[0] if on_page else None, now)
+    write_feed(on_page, now, natural, nat_dose, fw_dose)
+    save_state(state, tracked, on_page[0] if on_page else None, now,
+               natural, nat_dose, fw_dose)
 
     n_rosy = sum(1 for i in on_page if i["tone"] > 0)
     n_grim = sum(1 for i in on_page if i["tone"] < 0)
     n_trump = sum(1 for i in on_page[:PAGE_STORIES + 1] if i["trump"])
-    print(f"Wrote index.html: 1 lead + {min(len(on_page) - 1, PAGE_STORIES)} stories "
+    print(f"Wrote index.html + feed.xml: 1 lead + "
+          f"{min(len(on_page) - 1, PAGE_STORIES)} stories "
           f"from {len(sources_ok)} sources "
           f"({len(on_page)} clusters: {n_grim} grim / {n_rosy} rosy; "
-          f"{n_trump}/{min(len(on_page), PAGE_STORIES + 1)} top stories are Trump).",
+          f"{n_trump}/{min(len(on_page), PAGE_STORIES + 1)} front-page stories are "
+          f"Trump; full wire {fw_dose}%).",
           file=sys.stderr)
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
