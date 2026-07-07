@@ -1,0 +1,41 @@
+name: Update front page
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # every 30 minutes
+  workflow_dispatch:          # manual refresh button
+  push:
+    branches: [main]
+    paths: [build.py]         # rebuild when the generator changes
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-front-page
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch headlines and rebuild index.html
+        run: python3 build.py
+
+      - name: Commit and push if the page changed
+        run: |
+          git config user.name "grudge-report-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No new news. How boring."
+            exit 0
+          fi
+          git commit -m "Fresh headlines $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push
