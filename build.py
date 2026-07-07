@@ -5,7 +5,13 @@ Fetches headlines from 25 news RSS feeds (stdlib only, no dependencies),
 scores each for drama AND judges its tone (grim vs. rosy), dedupes across
 outlets, picks a lead story, and renders a classic three-column, all-caps,
 Courier-font front page to index.html — topped by THE JUDGMENT, a slider
-that lets readers dial the mix of negative and positive news.
+that lets readers dial the mix of negative and positive news, and THE
+DOSAGE, a slider that dials how much Trump coverage the page carries.
+
+The editor never sleeps: state.json is the paper's memory between runs.
+Stories that are being picked up by more outlets get boosted and badged
+RISING; stories that have sat on the page too long decay and get pulled;
+a lead that stops growing loses the siren after a few hours.
 
 Run:  python3 build.py
 """
@@ -56,6 +62,19 @@ GOOD_SOURCES = {"GOOD NEWS NETWORK", "POSITIVE.NEWS", "REASONS TO BE CHEERFUL"}
 MAX_PER_SOURCE = 40   # stop one chatty feed from flooding the page
 POOL_SIZE = 150       # stories embedded for the client-side judgment mixer
 PAGE_STORIES = 60     # stories shown below the lead
+
+# ── The night editor's rulebook: when to put on, when to pull off ──────────
+STATE_FILE = "state.json"
+STATE_PRUNE_H = 72.0        # forget clusters not seen for this long
+TENURE_SOFT_H = 12.0        # a story starts bleeding score after this long on page
+TENURE_PENALTY = 0.75       # points lost per hour past the soft limit
+TENURE_HARD_H = 30.0        # pulled off the page after this long, unless rising
+RISING_BONUS = 6.0          # score bonus per outlet gained since the story's peak
+FRESH_BADGE_H = 3.0         # unseen stories younger than this get the NEW badge
+LEAD_FATIGUE_H = 4.0        # max hours a non-growing lead keeps the siren
+LEAD_MIN_OUTLETS = 2        # a lead must be confirmed by 2+ outlets...
+LEAD_SOLO_SCORE = 40.0      # ...or be scorching hot on its own
+LEAD_RIVAL_RATIO = 0.75     # a challenger this close (or better) can take a tired crown
 
 # Words that make a headline siren-worthy. Weight = drama.
 HOT_WORDS = {
@@ -126,6 +145,74 @@ ROSY_WORDS = {
     "anniversary": 1, "celebrate": 1, "welcomes": 1, "blooming": 1,
     "renewable": 1, "protects": 1, "protected": 1, "cleaner": 1,
 }
+
+# ── Topic desks: every story gets filed to exactly one ─────────────────────
+# Highest lexicon score wins the headline; below TOPIC_MIN it goes to the
+# catch-all desk (sports, celebs, weather, oddities, good news).
+TOPIC_CATCHALL = "LIFE & CULTURE"
+TOPIC_MIN = 2
+TOPICS = [
+    ("WASHINGTON", {
+        "trump": 3, "maga": 3, "white house": 3, "oval office": 3, "potus": 3,
+        "vance": 3, "congress": 3, "senate": 2, "supreme court": 3, "scotus": 3,
+        "executive order": 3, "impeach": 3, "impeachment": 3, "gop": 2,
+        "republicans": 2, "republican": 2, "democrats": 2, "democrat": 2,
+        "pentagon": 2, "doj": 2, "fbi": 2, "cia": 2, "irs": 2,
+        "deportation": 2, "deportations": 2, "immigration": 2,
+        "election": 1, "elections": 1, "campaign": 1, "governor": 1,
+        "senator": 2, "congressman": 1, "congresswoman": 1, "capitol": 2,
+        "federal judge": 2, "attorney general": 2, "biden": 2, "obama": 2,
+        "medicaid": 1, "medicare": 1, "national guard": 2, "border": 1,
+        "washington": 1, "filibuster": 3, "lawmakers": 2, "veto": 2,
+    }),
+    ("WORLD", {
+        "ukraine": 3, "russia": 3, "russian": 2, "putin": 3, "zelensky": 3,
+        "kyiv": 3, "moscow": 3, "gaza": 3, "israel": 3, "israeli": 2,
+        "netanyahu": 3, "hamas": 3, "hezbollah": 3, "iran": 3, "tehran": 3,
+        "china": 3, "chinese": 2, "beijing": 3, "taiwan": 3,
+        "north korea": 3, "south korea": 3, "korea": 2, "nato": 3,
+        "kremlin": 3, "united nations": 3, "europe": 2, "european": 2,
+        "britain": 2, "uk": 2, "brexit": 3, "parliament": 2, "mp": 2,
+        "le pen": 3, "macron": 3, "starmer": 3, "farage": 2,
+        "london": 2, "france": 2, "paris": 2, "germany": 2,
+        "berlin": 2, "india": 2, "pakistan": 2, "japan": 2, "tokyo": 2,
+        "australia": 2, "canada": 2, "mexico": 2, "brazil": 2,
+        "venezuela": 2, "cuba": 2, "syria": 2, "lebanon": 2, "yemen": 2,
+        "iraq": 2, "afghanistan": 2, "taliban": 3, "africa": 2,
+        "nigeria": 2, "kenya": 2, "south africa": 2, "ethiopia": 2,
+        "sudan": 2, "refugee": 2, "refugees": 2, "migrants": 2,
+        "minister": 1, "embassy": 2, "ambassador": 2,
+    }),
+    ("MONEY", {
+        "stocks": 3, "stock": 2, "stock market": 3, "dow": 3, "nasdaq": 3,
+        "wall street": 3, "fed": 3, "federal reserve": 3, "interest rates": 3,
+        "inflation": 3, "tariff": 3, "tariffs": 3, "economy": 3,
+        "economic": 2, "recession": 3, "jobs": 2, "jobless": 2,
+        "unemployment": 3, "layoffs": 2, "hiring": 1, "earnings": 2,
+        "profits": 2, "bitcoin": 3, "crypto": 3, "ethereum": 3, "oil": 2,
+        "opec": 3, "housing": 2, "mortgage": 2, "bank": 2, "banks": 2,
+        "banking": 2, "ipo": 2, "merger": 2, "dollar": 2, "treasury": 2,
+        "deficit": 2, "billion": 1, "trillion": 1, "ceo": 1, "retail": 1,
+        "consumer": 1, "prices": 1, "markets": 2, "investors": 2,
+        "trade deal": 2, "debt": 1,
+    }),
+    ("TECH & SCIENCE", {
+        "ai": 3, "artificial intelligence": 3, "openai": 3, "chatgpt": 3,
+        "anthropic": 3, "google": 2, "apple": 2, "meta": 2, "microsoft": 2,
+        "amazon": 2, "tesla": 2, "musk": 2, "spacex": 3, "nasa": 3,
+        "rocket": 2, "satellite": 2, "chip": 2, "chips": 2,
+        "semiconductor": 3, "nvidia": 3, "robot": 2, "robots": 2,
+        "robotics": 3, "cyberattack": 3, "hackers": 2, "hacked": 2,
+        "software": 2, "iphone": 2, "android": 2, "quantum": 3,
+        "scientists": 3, "science": 2, "study": 2, "researchers": 3,
+        "telescope": 3, "mars": 2, "moon": 2, "space": 2, "asteroid": 3,
+        "vaccine": 2, "fda": 2, "medical": 2, "climate": 2, "warming": 2,
+        "emissions": 2, "solar": 2, "crispr": 3, "dna": 2, "startup": 2,
+    }),
+]
+
+# THE DOSAGE: stories filed under the president, whatever the desk.
+TRUMP_RE = re.compile(r"\btrump\b|\bmaga\b|\bpotus\b|white house|oval office", re.I)
 
 USER_AGENT = "Mozilla/5.0 (compatible; GrudgeReport/1.0; +https://github.com/jlgreen11/drudge)"
 STOPWORDS = frozenset(
@@ -217,6 +304,16 @@ def judge(title):
     return lexicon_score(title, ROSY_WORDS) - lexicon_score(title, GRIM_WORDS)
 
 
+def classify(title):
+    """File the story to a desk: highest topic-lexicon score wins."""
+    best_topic, best = TOPIC_CATCHALL, 0
+    for topic, lexicon in TOPICS:
+        s = lexicon_score(title, lexicon)
+        if s > best:
+            best_topic, best = topic, s
+    return best_topic if best >= TOPIC_MIN else TOPIC_CATCHALL
+
+
 def score(item, cluster_size):
     s = float(lexicon_score(item["title"], HOT_WORDS))
     s += max(0.0, 12.0 - item["age_hours"])          # fresher is hotter
@@ -252,10 +349,154 @@ def dedupe_and_rank(items):
         best["score"] = score(best, n_sources)
         best["cluster"] = n_sources
         best["tone"] = judge(best["title"]) + (1 if best["source"] in GOOD_SOURCES else 0)
+        best["topic"] = classify(best["title"])
+        best["trump"] = bool(TRUMP_RE.search(best["title"]))
         ranked.append(best)
     ranked.sort(key=lambda i: i["score"], reverse=True)
     return ranked
 
+
+# ── Editorial memory: state.json survives between runs via the CI commit ───
+
+def load_state():
+    try:
+        with open(STATE_FILE, encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return {"clusters": [], "lead": None}
+
+
+def parse_iso(s, fallback):
+    try:
+        return datetime.fromisoformat(s)
+    except (TypeError, ValueError):
+        return fallback
+
+
+def jaccard(a, b):
+    union = len(a | b)
+    return len(a & b) / union if union else 0.0
+
+
+def match_state(toks, entries):
+    """Find the tracked cluster this headline continues, if any. Looser
+    threshold than intra-run clustering: headlines drift between runs."""
+    best, best_j = None, 0.4
+    for e in entries:
+        j = jaccard(toks, e["_toks"])
+        if j > best_j:
+            best, best_j = e, j
+    return best
+
+
+def apply_state(ranked, state, now):
+    """The night editor: boost what's rising, decay what's been sitting,
+    pull off what's gone stale. Returns (on_page, tracked) — tracked keeps
+    retired clusters so they can't sneak back on as 'new' next run."""
+    entries = state.get("clusters", [])
+    for e in entries:
+        e["_toks"] = frozenset(e.get("toks", []))
+
+    on_page, tracked, n_rising, n_retired = [], [], 0, 0
+    for item in ranked:
+        prev = match_state(item["toks"], entries)
+        if prev is None:
+            item["tenure_h"] = 0.0
+            item["rising"] = False
+            item["fresh"] = item["age_hours"] <= FRESH_BADGE_H
+            item["first_seen"] = now.isoformat()
+            item["peak_outlets"] = item["cluster"]
+        else:
+            prev["_claimed"] = True
+            first = parse_iso(prev.get("first_seen"), now)
+            item["tenure_h"] = max(0.0, (now - first).total_seconds() / 3600)
+            item["first_seen"] = prev.get("first_seen") or now.isoformat()
+            peak = int(prev.get("peak_outlets", 1))
+            item["rising"] = item["cluster"] > peak
+            item["fresh"] = False
+            item["peak_outlets"] = max(peak, item["cluster"])
+            if item["rising"]:
+                item["score"] += RISING_BONUS * (item["cluster"] - peak)
+                n_rising += 1
+        item["score"] -= max(0.0, item["tenure_h"] - TENURE_SOFT_H) * TENURE_PENALTY
+        tracked.append(item)
+        if item["tenure_h"] > TENURE_HARD_H and not item["rising"]:
+            n_retired += 1
+            continue  # pulled off: it had its run
+        on_page.append(item)
+
+    on_page.sort(key=lambda i: i["score"], reverse=True)
+    if n_rising or n_retired:
+        print(f"  [desk] {n_rising} rising, {n_retired} pulled off the page",
+              file=sys.stderr)
+    return on_page, tracked
+
+
+def choose_lead(ranked, state, now):
+    """Crown the lead. Rules: it must be confirmed by LEAD_MIN_OUTLETS
+    outlets (or be scorching), and a lead that has stopped growing loses
+    the siren after LEAD_FATIGUE_H hours to the best fresh challenger."""
+    if not ranked:
+        return ranked
+
+    def eligible(i):
+        return i["cluster"] >= LEAD_MIN_OUTLETS or i["score"] >= LEAD_SOLO_SCORE
+
+    order = [i for i in ranked if eligible(i)] or ranked
+    top = order[0]
+
+    prev = state.get("lead")
+    if prev:
+        ptoks = frozenset(prev.get("toks", []))
+        crowned_h = (now - parse_iso(prev.get("since"), now)).total_seconds() / 3600
+        same_story = jaccard(top["toks"], ptoks) >= 0.4
+        grown = top["score"] > float(prev.get("score", 0)) + 5
+        if same_story and crowned_h > LEAD_FATIGUE_H and not top.get("rising") and not grown:
+            for challenger in order[1:]:
+                if (challenger["score"] >= LEAD_RIVAL_RATIO * top["score"]
+                        and jaccard(challenger["toks"], ptoks) < 0.4):
+                    print(f"  [desk] lead fatigued after {crowned_h:.1f}h — rotating",
+                          file=sys.stderr)
+                    top = challenger
+                    break
+
+    return [top] + [i for i in ranked if i is not top]
+
+
+def save_state(state, tracked, lead, now):
+    """Persist the desk's memory. Carries over unclaimed recent clusters so
+    a one-run feed hiccup doesn't reset a story's tenure."""
+    entries = []
+    for item in tracked[:400]:
+        entries.append({
+            "toks": sorted(item["toks"]),
+            "first_seen": item.get("first_seen") or now.isoformat(),
+            "last_seen": now.isoformat(),
+            "peak_outlets": item.get("peak_outlets", item["cluster"]),
+        })
+    for e in state.get("clusters", []):
+        if e.get("_claimed"):
+            continue
+        last = parse_iso(e.get("last_seen"), now)
+        if (now - last).total_seconds() / 3600 <= STATE_PRUNE_H:
+            entries.append({k: v for k, v in e.items() if not k.startswith("_")})
+
+    lead_entry = None
+    if lead is not None:
+        lead_entry = {"toks": sorted(lead["toks"]), "since": now.isoformat(),
+                      "score": round(lead["score"], 1)}
+        prev = state.get("lead")
+        if prev and jaccard(frozenset(prev.get("toks", [])), lead["toks"]) >= 0.4:
+            # Same story keeps its original crowning time and score.
+            lead_entry["since"] = prev.get("since", lead_entry["since"])
+            lead_entry["score"] = prev.get("score", lead_entry["score"])
+
+    with open(STATE_FILE, "w", encoding="utf-8") as f:
+        json.dump({"clusters": entries[:500], "lead": lead_entry}, f,
+                  ensure_ascii=False, separators=(",", ":"))
+
+
+# ── Rendering ───────────────────────────────────────────────────────────────
 
 def headline_case(title):
     return html.escape(title.upper())
@@ -269,51 +510,87 @@ def tone_tag(tone):
     return ""
 
 
+def partition(stories):
+    """Group stories by desk (score order preserved within each), then
+    bin-pack the desks onto three columns so the page stays balanced.
+    Mirrored by the client-side mixer — keep the two in sync."""
+    by_topic, names = {}, []
+    for s in stories:
+        t = s["topic"]
+        if t not in by_topic:
+            by_topic[t] = []
+            names.append(t)
+        by_topic[t].append(s)
+    sections = sorted(by_topic.items(), key=lambda kv: (-len(kv[1]), kv[0]))
+    cols = [[], [], []]
+    counts = [0, 0, 0]
+    for name, items in sections:
+        c = counts.index(min(counts))
+        cols[c].append((name, items))
+        counts[c] += len(items) + 2  # a header costs about two rows
+    return cols
+
+
 def render(ranked, sources_ok, now):
     lead = ranked[0] if ranked else None
     rest = ranked[1:]
 
-    # Round-robin the remaining stories into three columns.
-    cols = [[], [], []]
-    for i, item in enumerate(rest[:PAGE_STORIES]):
-        cols[i % 3].append(item)
+    def badge_bits(item):
+        bits = []
+        if item.get("rising"):
+            bits.append('<span class="rise">RISING &#9650;</span>')
+        elif item.get("fresh"):
+            bits.append('<span class="fresh">NEW</span>')
+        if item["cluster"] >= 3:
+            bits.append(f'{item["cluster"]} OUTLETS')
+        return bits
 
     def link_html(item, cls=""):
         klass = f' class="{cls}"' if cls else ""
-        src = html.escape(item["source"])
+        src = " &middot; ".join([html.escape(item["source"])] + badge_bits(item))
         return (
             f'<div class="story"><a{klass} href="{html.escape(item["link"])}" '
             f'target="_blank" rel="noopener">{headline_case(item["title"])}</a>'
             f'<span class="src">{src}{tone_tag(item["tone"])}</span></div>'
         )
 
-    col_html = []
-    for col in cols:
-        rows = []
-        for i, item in enumerate(col):
+    def section_html(name, items):
+        rows = [f'<div class="schead">{html.escape(name)}</div>']
+        for i, item in enumerate(items):
             cls = "hot" if item["score"] >= 25 else ""
             rows.append(link_html(item, cls))
-            if (i + 1) % 6 == 0 and i + 1 < len(col):
+            if (i + 1) % 6 == 0 and i + 1 < len(items):
                 rows.append('<hr class="rule">')
-        col_html.append("\n".join(rows))
+        return '<div class="sec">' + "\n".join(rows) + "</div>"
+
+    col_html = []
+    for col in partition(rest[:PAGE_STORIES]):
+        col_html.append("\n".join(section_html(name, items) for name, items in col))
+    while len(col_html) < 3:
+        col_html.append("")
 
     lead_html = ""
     if lead:
         siren = '<div class="siren">🚨</div>' if lead["score"] >= 30 else ""
+        lead_bits = [html.escape(lead["source"])]
+        if lead["cluster"] > 1:
+            lead_bits.append(f'REPORTED BY {lead["cluster"]} OUTLETS')
+        if lead.get("rising"):
+            lead_bits.append('<span class="rise">RISING &#9650;</span>')
         lead_html = (
             f'{siren}<a class="lead" href="{html.escape(lead["link"])}" '
             f'target="_blank" rel="noopener">{headline_case(lead["title"])}</a>'
-            f'<div class="lead-src">{html.escape(lead["source"])}'
-            + (f' &middot; REPORTED BY {lead["cluster"]} OUTLETS' if lead["cluster"] > 1 else "")
-            + "</div>"
+            f'<div class="lead-src">{" &middot; ".join(lead_bits)}</div>'
         )
 
     # The natural news cycle's rosy share (of the tone-committed top stories)
-    # is the slider's default position.
+    # is the tone slider's default position; the wire's Trump share is the
+    # dosage slider's default.
     top = ranked[:PAGE_STORIES + 1]
     n_rosy = sum(1 for i in top if i["tone"] > 0)
     n_grim = sum(1 for i in top if i["tone"] < 0)
     natural = round(100 * n_rosy / (n_rosy + n_grim)) if (n_rosy + n_grim) else 50
+    nat_dose = round(100 * sum(1 for i in top if i["trump"]) / len(top)) if top else 0
 
     # Pool for the client-side mixer: top stories by rank, plus extra rosy
     # stories from further down so the sunshine end of the slider has
@@ -330,6 +607,10 @@ def render(ranked, sources_ok, now):
             "sc": round(item["score"], 1),
             "tn": item["tone"],
             "cl": item["cluster"],
+            "tp": item["topic"],
+            "tr": 1 if item["trump"] else 0,
+            "rs": 1 if item.get("rising") else 0,
+            "nw": 1 if item.get("fresh") else 0,
         }
         for item in pool_items
     ]
@@ -337,6 +618,10 @@ def render(ranked, sources_ok, now):
 
     stamp = now.strftime("%A %B %d, %Y").upper() + now.strftime(" &middot; %H:%M UTC")
     src_line = " &middot; ".join(html.escape(s) for s in sources_ok)
+    og_desc = html.escape(
+        (lead["title"].upper() + " — " if lead else "")
+        + "Auto-refreshing front page. Dial your doom with THE JUDGMENT; "
+          "dial your Trump with THE DOSAGE.", quote=True)
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -344,6 +629,10 @@ def render(ranked, sources_ok, now):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="refresh" content="1800">
+<meta name="description" content="{og_desc}">
+<meta property="og:title" content="THE GRUDGE REPORT">
+<meta property="og:description" content="{og_desc}">
+<meta property="og:type" content="website">
 <title>THE GRUDGE REPORT</title>
 <style>
   * {{ margin: 0; padding: 0; box-sizing: border-box; }}
@@ -367,6 +656,7 @@ def render(ranked, sources_ok, now):
   .judgment .jread {{ font-size: 11px; letter-spacing: 1px; margin: 4px 0 8px; }}
   .judgment .jread .grim {{ color: #c00; font-weight: bold; }}
   .judgment .jread .rosy {{ color: #070; font-weight: bold; }}
+  .judgment .jsplit {{ border-top: 1px solid #000; margin: 12px -18px 10px; }}
   .jrow {{ display: flex; align-items: center; gap: 10px; }}
   .jrow .jend {{ font-size: 14px; }}
   input[type=range] {{
@@ -392,6 +682,10 @@ def render(ranked, sources_ok, now):
   .lead-src {{ font-size: 11px; margin-top: 6px; letter-spacing: 1px; }}
   .columns {{ display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 26px;
               border-top: 1px solid #000; padding-top: 18px; }}
+  .sec {{ margin-bottom: 22px; }}
+  .schead {{ color: #c00; font-size: 11px; font-weight: bold;
+             letter-spacing: 3px; border-bottom: 1px solid #000;
+             margin: 2px 0 10px; padding-bottom: 2px; }}
   .story {{ margin-bottom: 13px; font-size: 14px; font-weight: bold;
             line-height: 1.35; }}
   .story a.hot {{ color: #c00; }}
@@ -400,6 +694,8 @@ def render(ranked, sources_ok, now):
           letter-spacing: 1px; margin-top: 1px; }}
   .src .grim {{ color: #c00; }}
   .src .rosy {{ color: #070; }}
+  .src .rise, .lead-src .rise {{ color: #c00; font-weight: bold; }}
+  .src .fresh {{ color: #070; font-weight: bold; }}
   hr.rule {{ border: none; border-top: 1px solid #000; margin: 16px 30%; }}
   .footer {{ border-top: 3px double #000; margin-top: 26px; padding-top: 8px;
              text-align: center; font-size: 10px; color: #333;
@@ -424,6 +720,15 @@ def render(ranked, sources_ok, now):
              aria-label="Percentage of positive news">
       <span class="jend" title="100% sunshine">😊</span>
     </div>
+    <div class="jsplit"></div>
+    <div class="jtitle">☢ THE DOSAGE ☢</div>
+    <div class="jread" id="dread">TODAY'S WIRE IS <span class="grim">{nat_dose}% TRUMP</span></div>
+    <div class="jrow">
+      <span class="jend" title="Trump-free">🚫</span>
+      <input type="range" id="dose" min="0" max="100" value="{nat_dose}"
+             aria-label="Percentage of Trump coverage">
+      <span class="jend" title="Full firehose">🍊</span>
+    </div>
   </div>
   <div class="leadbox" id="leadbox">{lead_html}</div>
   <div class="columns">
@@ -441,20 +746,44 @@ def render(ranked, sources_ok, now):
   (function () {{
     var POOL = JSON.parse(document.getElementById("pool").textContent);
     var NATURAL = {natural};
+    var NATDOSE = {nat_dose};
     var TOTAL = {PAGE_STORIES};
-    var slider = document.getElementById("mix");
+    var CATCHALL = "{TOPIC_CATCHALL}";
+    var mix = document.getElementById("mix");
+    var dose = document.getElementById("dose");
     var jread = document.getElementById("jread");
+    var dread = document.getElementById("dread");
 
-    function pick(p) {{
-      var pos = POOL.filter(function (x) {{ return x.tn > 0; }});
-      var neg = POOL.filter(function (x) {{ return x.tn < 0; }});
-      var neu = POOL.filter(function (x) {{ return x.tn === 0; }});
+    function toneMix(list, n, p) {{
+      if (n <= 0) return [];
+      var pos = [], neg = [], neu = [];
+      list.forEach(function (x) {{ (x.tn > 0 ? pos : x.tn < 0 ? neg : neu).push(x); }});
+      var nPos = Math.round(n * p / 100);
+      var take = pos.slice(0, nPos).concat(neg.slice(0, n - nPos));
+      if (take.length < n) take = take.concat(neu.slice(0, n - take.length));
+      if (take.length < n) {{
+        var got = {{}};
+        take.forEach(function (x) {{ got[x.u] = 1; }});
+        list.forEach(function (x) {{
+          if (take.length < n && !got[x.u]) take.push(x);
+        }});
+      }}
+      return take;
+    }}
+
+    function pick(p, t) {{
       var want = TOTAL + 1; // lead + columns
-      var nPos = Math.round(want * p / 100);
-      var nNeg = want - nPos;
-      var take = pos.slice(0, nPos).concat(neg.slice(0, nNeg));
-      var short_ = want - take.length;
-      if (short_ > 0) take = take.concat(neu.slice(0, short_));
+      var tr = POOL.filter(function (x) {{ return x.tr; }});
+      var non = POOL.filter(function (x) {{ return !x.tr; }});
+      var nT = Math.min(Math.round(want * t / 100), tr.length);
+      var take = toneMix(tr, nT, p).concat(toneMix(non, want - nT, p));
+      if (take.length < want) {{
+        var got = {{}};
+        take.forEach(function (x) {{ got[x.u] = 1; }});
+        POOL.forEach(function (x) {{
+          if (take.length < want && !got[x.u]) take.push(x);
+        }});
+      }}
       take.sort(function (a, b) {{ return b.sc - a.sc; }});
       return take;
     }}
@@ -463,6 +792,14 @@ def render(ranked, sources_ok, now):
       if (tn > 0) return ' \\u00b7 <span class="rosy">ROSY</span>';
       if (tn < 0) return ' \\u00b7 <span class="grim">GRIM</span>';
       return "";
+    }}
+
+    function srcLine(item) {{
+      var bits = item.s.replace(/[<>&]/g, "");
+      if (item.rs) bits += ' \\u00b7 <span class="rise">RISING \\u25b2</span>';
+      else if (item.nw) bits += ' \\u00b7 <span class="fresh">NEW</span>';
+      if (item.cl >= 3) bits += " \\u00b7 " + item.cl + " OUTLETS";
+      return bits + toneTag(item.tn);
     }}
 
     function storyNode(item) {{
@@ -476,14 +813,35 @@ def render(ranked, sources_ok, now):
       if (item.sc >= 25) a.className = "hot";
       var src = document.createElement("span");
       src.className = "src";
-      src.innerHTML = item.s.replace(/[<>&]/g, "") + toneTag(item.tn);
+      src.innerHTML = srcLine(item);
       div.appendChild(a);
       div.appendChild(src);
       return div;
     }}
 
-    function renderPage(p) {{
-      var chosen = pick(p);
+    // Mirror of build.py partition(): group by desk, bin-pack onto columns.
+    function partition(rest) {{
+      var by = {{}}, names = [];
+      rest.forEach(function (x) {{
+        var t = x.tp || CATCHALL;
+        if (!by[t]) {{ by[t] = []; names.push(t); }}
+        by[t].push(x);
+      }});
+      var secs = names.map(function (n) {{ return [n, by[n]]; }});
+      secs.sort(function (a, b) {{
+        return b[1].length - a[1].length || (a[0] < b[0] ? -1 : 1);
+      }});
+      var cols = [[], [], []], counts = [0, 0, 0];
+      secs.forEach(function (s) {{
+        var c = counts.indexOf(Math.min.apply(null, counts));
+        cols[c].push(s);
+        counts[c] += s[1].length + 2;
+      }});
+      return cols;
+    }}
+
+    function renderPage(p, t) {{
+      var chosen = pick(p, t);
       if (!chosen.length) return;
       var lead = chosen[0], rest = chosen.slice(1);
 
@@ -507,46 +865,79 @@ def render(ranked, sources_ok, now):
       ls.textContent = lead.s + (lead.cl > 1 ? " \\u00b7 REPORTED BY " + lead.cl + " OUTLETS" : "");
       box.appendChild(ls);
 
-      var cols = [[], [], []];
-      rest.forEach(function (item, i) {{ cols[i % 3].push(item); }});
-      cols.forEach(function (col, c) {{
+      partition(rest).forEach(function (col, c) {{
         var el = document.getElementById("col" + c);
         el.innerHTML = "";
-        col.forEach(function (item, i) {{
-          el.appendChild(storyNode(item));
-          if ((i + 1) % 6 === 0 && i + 1 < col.length) {{
-            var hr = document.createElement("hr");
-            hr.className = "rule";
-            el.appendChild(hr);
-          }}
+        col.forEach(function (sec) {{
+          var wrap = document.createElement("div");
+          wrap.className = "sec";
+          var head = document.createElement("div");
+          head.className = "schead";
+          head.textContent = sec[0];
+          wrap.appendChild(head);
+          sec[1].forEach(function (item, i) {{
+            wrap.appendChild(storyNode(item));
+            if ((i + 1) % 6 === 0 && i + 1 < sec[1].length) {{
+              var hr = document.createElement("hr");
+              hr.className = "rule";
+              wrap.appendChild(hr);
+            }}
+          }});
+          el.appendChild(wrap);
         }});
       }});
     }}
 
-    function readout(p) {{
-      var label = (p === NATURAL)
-        ? "TODAY'S NEWS CYCLE: "
-        : "YOUR VERDICT: ";
-      jread.innerHTML = label +
+    function readout(p, t) {{
+      var jlabel = (p === NATURAL) ? "TODAY'S NEWS CYCLE: " : "YOUR VERDICT: ";
+      jread.innerHTML = jlabel +
         '<span class="grim">' + (100 - p) + "% GRIM</span> / " +
         '<span class="rosy">' + p + "% ROSY</span>";
+      if (t === NATDOSE) {{
+        dread.innerHTML = 'TODAY\\'S WIRE IS <span class="grim">' + t + "% TRUMP</span>";
+      }} else {{
+        dread.innerHTML = 'YOUR DOSAGE: <span class="grim">' + t + "% TRUMP</span>" +
+          " (WIRE: " + NATDOSE + "%)";
+      }}
     }}
 
-    function apply(p, save) {{
-      readout(p);
-      renderPage(p);
-      if (save) try {{ localStorage.setItem("grudgeMix", String(p)); }} catch (e) {{}}
+    function apply(p, t, save) {{
+      readout(p, t);
+      renderPage(p, t);
+      if (save) {{
+        try {{
+          localStorage.setItem("grudgeMix", String(p));
+          localStorage.setItem("grudgeDose", String(t));
+        }} catch (e) {{}}
+      }}
     }}
 
-    slider.addEventListener("input", function () {{
-      apply(parseInt(slider.value, 10), true);
+    function current() {{
+      return [parseInt(mix.value, 10), parseInt(dose.value, 10)];
+    }}
+
+    mix.addEventListener("input", function () {{
+      var c = current();
+      apply(c[0], c[1], true);
+    }});
+    dose.addEventListener("input", function () {{
+      var c = current();
+      apply(c[0], c[1], true);
     }});
 
-    var saved = null;
-    try {{ saved = localStorage.getItem("grudgeMix"); }} catch (e) {{}}
-    if (saved !== null && parseInt(saved, 10) !== NATURAL) {{
-      slider.value = saved;
-      apply(parseInt(saved, 10), false);
+    var savedMix = null, savedDose = null;
+    try {{
+      savedMix = localStorage.getItem("grudgeMix");
+      savedDose = localStorage.getItem("grudgeDose");
+    }} catch (e) {{}}
+    var p = savedMix === null ? NATURAL : parseInt(savedMix, 10);
+    var t = savedDose === null ? NATDOSE : parseInt(savedDose, 10);
+    if (isNaN(p)) p = NATURAL;
+    if (isNaN(t)) t = NATDOSE;
+    if (p !== NATURAL || t !== NATDOSE) {{
+      mix.value = p;
+      dose.value = t;
+      apply(p, t, false);
     }}
   }})();
   </script>
@@ -576,16 +967,25 @@ def main():
         print("Not enough news fetched; keeping existing page.", file=sys.stderr)
         sys.exit(1)
 
+    now = datetime.now(timezone.utc)
+    state = load_state()
     ranked = dedupe_and_rank(all_items)
+    on_page, tracked = apply_state(ranked, state, now)
+    on_page = choose_lead(on_page, state, now)
+
     sources_ok.sort()
-    page = render(ranked, sources_ok, datetime.now(timezone.utc))
+    page = render(on_page, sources_ok, now)
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(page)
-    n_rosy = sum(1 for i in ranked if i["tone"] > 0)
-    n_grim = sum(1 for i in ranked if i["tone"] < 0)
-    print(f"Wrote index.html: 1 lead + {min(len(ranked) - 1, PAGE_STORIES)} stories "
+    save_state(state, tracked, on_page[0] if on_page else None, now)
+
+    n_rosy = sum(1 for i in on_page if i["tone"] > 0)
+    n_grim = sum(1 for i in on_page if i["tone"] < 0)
+    n_trump = sum(1 for i in on_page[:PAGE_STORIES + 1] if i["trump"])
+    print(f"Wrote index.html: 1 lead + {min(len(on_page) - 1, PAGE_STORIES)} stories "
           f"from {len(sources_ok)} sources "
-          f"({len(ranked)} clusters: {n_grim} grim / {n_rosy} rosy).",
+          f"({len(on_page)} clusters: {n_grim} grim / {n_rosy} rosy; "
+          f"{n_trump}/{min(len(on_page), PAGE_STORIES + 1)} top stories are Trump).",
           file=sys.stderr)
 
 
