@@ -102,6 +102,8 @@ GRIM_WORDS = {
     "custody": 1, "chaos": 1, "struggling": 1, "shortage": 1, "blackout": 1,
     "fighting": 2, "displaced": 2, "fraudsters": 2, "scam": 2,
     "hospitalized": 1, "lose": 1, "divided": 1, "concerns": 1,
+    "ruined": 2, "ruins": 2, "wrecked": 2, "slammed": 1, "mocks": 1,
+    "criticism": 1, "tensions": 1,
 }
 ROSY_WORDS = {
     "breakthrough": 3, "cure": 3, "cured": 3, "rescue": 3, "rescued": 3,
@@ -206,7 +208,7 @@ def tokens(title):
 
 
 def lexicon_score(title, lexicon):
-    padded = " " + re.sub(r"[^a-z0-9' ]", " ", title.lower()) + " "
+    padded = " " + re.sub(r"[^a-z0-9 ]", " ", title.lower()) + " "
     return sum(w for word, w in lexicon.items() if f" {word} " in padded)
 
 
