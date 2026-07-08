@@ -4,25 +4,43 @@
     <title>THE GRUDGE REPORT</title>
     <link>https://jlgreen11.github.io/drudge/</link>
     <description>The only front page you can tune. Holding a grudge against slow news.</description>
-    <lastBuildDate>Wed, 08 Jul 2026 10:28:02 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 08 Jul 2026 12:05:45 +0000</lastBuildDate>
     <atom:link href="https://jlgreen11.github.io/drudge/feed.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>TODAY'S WIRE: 75% GRIM / 25% ROSY — 21% TRUMP ON THE FRONT PAGE, 14% ON THE FULL WIRE</title>
+      <title>TODAY'S WIRE: 74% GRIM / 26% ROSY — 23% TRUMP ON THE FRONT PAGE, 15% ON THE FULL WIRE</title>
       <link>https://jlgreen11.github.io/drudge/</link>
       <guid isPermaLink="false">stat-2026-07-08</guid>
       <pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
     </item>
     <item>
-      <title>Trains and emergency calls affected after major outage at Australia's largest telecoms company (BBC)</title>
-      <link>https://www.bbc.co.uk/news/articles/cgevw0d95pdo?at_medium=RSS&amp;at_campaign=rss</link>
-      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cgevw0d95pdo?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Wed, 08 Jul 2026 07:53:38 +0000</pubDate>
+      <title>Trump says ceasefire is 'over' after US and Iran trade strikes (BBC)</title>
+      <link>https://www.bbc.co.uk/news/articles/clyw8w1g409o?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/clyw8w1g409o?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Wed, 08 Jul 2026 11:18:29 +0000</pubDate>
+    </item>
+    <item>
+      <title>German car industry warns of job collapse unless ‘bold decisions’ made to address Chinese threat (GUARDIAN)</title>
+      <link>https://www.theguardian.com/business/2026/jul/08/german-car-industry-job-collapse-bold-decisions-address-chinese-threat</link>
+      <guid isPermaLink="false">https://www.theguardian.com/business/2026/jul/08/german-car-industry-job-collapse-bold-decisions-address-chinese-threat</guid>
+      <pubDate>Wed, 08 Jul 2026 11:45:33 +0000</pubDate>
+    </item>
+    <item>
+      <title>Oil Prices Jump After Trump Says Deal With Iran Is ‘Over’ (NYT)</title>
+      <link>https://www.nytimes.com/2026/07/08/business/oil-gas-markets-iran-shipping-hormuz.html</link>
+      <guid isPermaLink="false">https://www.nytimes.com/2026/07/08/business/oil-gas-markets-iran-shipping-hormuz.html</guid>
+      <pubDate>Wed, 08 Jul 2026 10:55:49 +0000</pubDate>
     </item>
     <item>
       <title>Trump says Iran ceasefire is 'over' after latest round of strikes (CNBC)</title>
       <link>https://www.cnbc.com/2026/07/08/trump-says-iran-ceasefire-is-over-after-latest-round-of-strikes.html</link>
       <guid isPermaLink="false">https://www.cnbc.com/2026/07/08/trump-says-iran-ceasefire-is-over-after-latest-round-of-strikes.html</guid>
-      <pubDate>Wed, 08 Jul 2026 09:45:10 +0000</pubDate>
+      <pubDate>Wed, 08 Jul 2026 10:30:34 +0000</pubDate>
+    </item>
+    <item>
+      <title>Firefighter, 22, dies in French wildfire as European temperatures soar again (SKY)</title>
+      <link>https://news.sky.com/story/french-firefighter-22-dies-battling-savoie-wildfire-as-european-temperatures-soar-again-13561607</link>
+      <guid isPermaLink="false">https://news.sky.com/story/french-firefighter-22-dies-battling-savoie-wildfire-as-european-temperatures-soar-again-13561607</guid>
+      <pubDate>Wed, 08 Jul 2026 10:15:00 +0000</pubDate>
     </item>
     <item>
       <title>Iran targets Bahrain and Kuwait after US launches strikes (FRANCE 24)</title>
@@ -31,16 +49,34 @@
       <pubDate>Wed, 08 Jul 2026 09:04:32 +0000</pubDate>
     </item>
     <item>
-      <title>U.S. strikes Iran after attacks on vessels in Strait of Hormuz (AXIOS)</title>
-      <link>https://www.axios.com/2026/07/07/us-strikes-iran-hormuz-ship-attacks</link>
-      <guid isPermaLink="false">https://www.axios.com/2026/07/07/us-strikes-iran-hormuz-ship-attacks</guid>
-      <pubDate>Wed, 08 Jul 2026 03:16:15 +0000</pubDate>
+      <title>Nato chief defends Trump’s strikes on Iran as ‘absolutely necessary’ despite threat to ceasefire (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/world/middle-east/nato-rutte-trump-us-stikes-iran-b3010930.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/world/middle-east/nato-rutte-trump-us-stikes-iran-b3010930.html</guid>
+      <pubDate>Wed, 08 Jul 2026 11:10:03 +0000</pubDate>
+    </item>
+    <item>
+      <title>Trains and emergency calls affected after major outage at Australia's largest telecoms company (BBC US)</title>
+      <link>https://www.bbc.co.uk/news/articles/cgevw0d95pdo?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cgevw0d95pdo?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Wed, 08 Jul 2026 07:53:38 +0000</pubDate>
     </item>
     <item>
       <title>Firefighter killed ​while battling wildfire in the French Alps amid deadly heatwave (INDEPENDENT)</title>
       <link>https://www.independent.co.uk/news/world/europe/france-savoie-firefighter-killed-dead-b3010995.html</link>
       <guid isPermaLink="false">https://www.independent.co.uk/news/world/europe/france-savoie-firefighter-killed-dead-b3010995.html</guid>
       <pubDate>Wed, 08 Jul 2026 08:48:46 +0000</pubDate>
+    </item>
+    <item>
+      <title>U.S. strikes Iran after attacks on vessels in Strait of Hormuz (AXIOS)</title>
+      <link>https://www.axios.com/2026/07/07/us-strikes-iran-hormuz-ship-attacks</link>
+      <guid isPermaLink="false">https://www.axios.com/2026/07/07/us-strikes-iran-hormuz-ship-attacks</guid>
+      <pubDate>Wed, 08 Jul 2026 03:16:15 +0000</pubDate>
+    </item>
+    <item>
+      <title>Live updates: Trump warns Iran ceasefire may be 'over' as sides trade strikes (THE HILL)</title>
+      <link>https://thehill.com/homenews/administration/5957364-live-updates-trump-nato-summit-iran-maine-platner/</link>
+      <guid isPermaLink="false">https://thehill.com/homenews/administration/5957364-live-updates-trump-nato-summit-iran-maine-platner/</guid>
+      <pubDate>Wed, 08 Jul 2026 11:31:59 +0000</pubDate>
     </item>
     <item>
       <title>Trump opposes Carroll getting $5 million damages verdict, cites last-ditch Supreme Court bid (CNBC)</title>
@@ -55,16 +91,34 @@
       <pubDate>Wed, 08 Jul 2026 06:16:13 +0000</pubDate>
     </item>
     <item>
-      <title>Nato chief defends Trump’s strikes on Iran as ‘absolutely necessary’ despite threat to ceasefire (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/middle-east/nato-rutte-trump-us-stikes-iran-b3010930.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/middle-east/nato-rutte-trump-us-stikes-iran-b3010930.html</guid>
-      <pubDate>Wed, 08 Jul 2026 09:14:06 +0000</pubDate>
-    </item>
-    <item>
-      <title>Russian fuel shortages bite – but will Putin change tack in Ukraine war? (BBC)</title>
+      <title>Russian fuel shortages bite – but will Putin change tack in Ukraine war? (BBC US)</title>
       <link>https://www.bbc.co.uk/news/articles/cr7xk8j0j2do?at_medium=RSS&amp;at_campaign=rss</link>
       <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cr7xk8j0j2do?at_medium=RSS&amp;at_campaign=rss</guid>
       <pubDate>Wed, 08 Jul 2026 05:05:32 +0000</pubDate>
+    </item>
+    <item>
+      <title>Trump says ceasefire with Iran over, calls negotiations "waste of time" (CBS)</title>
+      <link>https://www.cbsnews.com/live-updates/us-iran-war-trump-says-ceasefire-over/</link>
+      <guid isPermaLink="false">https://www.cbsnews.com/live-updates/us-iran-war-trump-says-ceasefire-over/</guid>
+      <pubDate>Wed, 08 Jul 2026 11:55:47 +0000</pubDate>
+    </item>
+    <item>
+      <title>International manhunt after mother and two children found dead at home (BBC US)</title>
+      <link>https://www.bbc.co.uk/news/articles/c8e2njxnn7jo?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/c8e2njxnn7jo?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Wed, 08 Jul 2026 11:32:38 +0000</pubDate>
+    </item>
+    <item>
+      <title>Toddler declared dead in pool accident found alive in hospital morgue (CBS)</title>
+      <link>https://www.cbsnews.com/news/toddler-declared-dead-pool-accident-found-alive-hospital-morgue-arizona/</link>
+      <guid isPermaLink="false">https://www.cbsnews.com/news/toddler-declared-dead-pool-accident-found-alive-hospital-morgue-arizona/</guid>
+      <pubDate>Wed, 08 Jul 2026 11:32:10 +0000</pubDate>
+    </item>
+    <item>
+      <title>Syria says one killed, 36 wounded after Damascus blasts during Macron visit (AL JAZEERA)</title>
+      <link>https://www.aljazeera.com/news/2026/7/8/syria-says-one-killed-36-wounded-after-damascus-blasts-during-macron-visit?traffic_source=rss</link>
+      <guid isPermaLink="false">https://www.aljazeera.com/news/2026/7/8/syria-says-one-killed-36-wounded-after-damascus-blasts-during-macron-visit?traffic_source=rss</guid>
+      <pubDate>Wed, 08 Jul 2026 11:22:23 +0000</pubDate>
     </item>
     <item>
       <title>Woman suspected of Monaco bomb attack found dead in Ukraine (BBC)</title>
@@ -73,16 +127,16 @@
       <pubDate>Tue, 07 Jul 2026 17:58:49 +0000</pubDate>
     </item>
     <item>
-      <title>Trump says ceasefire with Iran over, calls negotiations "waste of time" (CBS)</title>
-      <link>https://www.cbsnews.com/live-updates/us-iran-war-trump-says-ceasefire-over/</link>
-      <guid isPermaLink="false">https://www.cbsnews.com/live-updates/us-iran-war-trump-says-ceasefire-over/</guid>
-      <pubDate>Wed, 08 Jul 2026 10:06:45 +0000</pubDate>
+      <title>'I feel forgiveness': Daniel Gwynn on life after 30 years on death row (FRANCE 24)</title>
+      <link>https://www.france24.com/en/tv-shows/t%C3%AAte-%C3%A0-t%C3%AAte/20260708-i-feel-forgiveness-daniel-gwynn-on-life-after-30-years-on-death-row</link>
+      <guid isPermaLink="false">https://www.france24.com/en/tv-shows/t%C3%AAte-%C3%A0-t%C3%AAte/20260708-i-feel-forgiveness-daniel-gwynn-on-life-after-30-years-on-death-row</guid>
+      <pubDate>Wed, 08 Jul 2026 11:15:07 +0000</pubDate>
     </item>
     <item>
-      <title>Trump says ceasefire ‘over’ after US, Iran trade attacks (AL JAZEERA)</title>
-      <link>https://www.aljazeera.com/news/2026/7/8/trump-says-ceasefire-over-after-us-iran-trade-attacks?traffic_source=rss</link>
-      <guid isPermaLink="false">https://www.aljazeera.com/news/2026/7/8/trump-says-ceasefire-over-after-us-iran-trade-attacks?traffic_source=rss</guid>
-      <pubDate>Wed, 08 Jul 2026 10:06:30 +0000</pubDate>
+      <title>China warns of "security backdoor" in Anthropic AI coding tool (CBS)</title>
+      <link>https://www.cbsnews.com/news/china-security-backdoor-anthropic-ai-coding-tool/</link>
+      <guid isPermaLink="false">https://www.cbsnews.com/news/china-security-backdoor-anthropic-ai-coding-tool/</guid>
+      <pubDate>Wed, 08 Jul 2026 11:10:15 +0000</pubDate>
     </item>
     <item>
       <title>Ben Crump joins heartbroken family’s fight for answers after teen found dead (INDEPENDENT)</title>
@@ -91,10 +145,22 @@
       <pubDate>Wed, 08 Jul 2026 09:19:39 +0000</pubDate>
     </item>
     <item>
-      <title>Man fatally shot by ICE officer during Houston traffic stop (THE HILL)</title>
-      <link>https://thehill.com/homenews/administration/5958236-ice-kills-man-texas/</link>
-      <guid isPermaLink="false">https://thehill.com/homenews/administration/5958236-ice-kills-man-texas/</guid>
-      <pubDate>Wed, 08 Jul 2026 02:15:07 +0000</pubDate>
+      <title>11-year-old ‘Wasn’t Going to Let a Man Die’ When He Alone Dove in to Rescue Drowning Man (GOOD NEWS NETWORK)</title>
+      <link>https://www.goodnewsnetwork.org/11-year-old-wasnt-going-to-let-a-man-die-when-he-alone-dove-in-to-rescue-drowning-man/</link>
+      <guid isPermaLink="false">https://www.goodnewsnetwork.org/11-year-old-wasnt-going-to-let-a-man-die-when-he-alone-dove-in-to-rescue-drowning-man/</guid>
+      <pubDate>Wed, 08 Jul 2026 11:00:21 +0000</pubDate>
+    </item>
+    <item>
+      <title>Trump says interim deal with Iran 'over' after strikes (THE HILL)</title>
+      <link>https://thehill.com/homenews/administration/5958471-donald-trump-iran-interim-deal-over/</link>
+      <guid isPermaLink="false">https://thehill.com/homenews/administration/5958471-donald-trump-iran-interim-deal-over/</guid>
+      <pubDate>Wed, 08 Jul 2026 10:42:58 +0000</pubDate>
+    </item>
+    <item>
+      <title>Chris Mason: It's far from certain whether by-election will strengthen Farage (BBC US)</title>
+      <link>https://www.bbc.co.uk/news/articles/c9d2882jj3yo?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/c9d2882jj3yo?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Wed, 08 Jul 2026 11:33:14 +0000</pubDate>
     </item>
     <item>
       <title>Ukraine-Russia war latest: Kyiv targets dozens of Moscow’s ‘shadow fleet’ ships with drone attacks (INDEPENDENT)</title>
@@ -103,16 +169,16 @@
       <pubDate>Wed, 08 Jul 2026 09:12:03 +0000</pubDate>
     </item>
     <item>
+      <title>Fury v Joshua could be held overnight at Wembley (BBC US)</title>
+      <link>https://www.bbc.co.uk/sport/boxing/articles/c20yddexznzo?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/sport/boxing/articles/c20yddexznzo?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Wed, 08 Jul 2026 11:09:37 +0000</pubDate>
+    </item>
+    <item>
       <title>Russia strikes Kyiv as Zelensky, Trump set to meet (FRANCE 24)</title>
       <link>https://www.france24.com/en/video/20260708-russia-strikes-kyiv-as-zelensky-trump-set-to-meet</link>
       <guid isPermaLink="false">https://www.france24.com/en/video/20260708-russia-strikes-kyiv-as-zelensky-trump-set-to-meet</guid>
       <pubDate>Wed, 08 Jul 2026 10:08:43 +0000</pubDate>
-    </item>
-    <item>
-      <title>International manhunt after mother and two children found dead at home (BBC US)</title>
-      <link>https://www.bbc.co.uk/news/articles/c8e2njxnn7jo?at_medium=RSS&amp;at_campaign=rss</link>
-      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/c8e2njxnn7jo?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Wed, 08 Jul 2026 08:07:15 +0000</pubDate>
     </item>
     <item>
       <title>Oil Prices Jump as U.S. and Iran Resume Strikes, and Big Tobacco Makes a Big New Bet (NYT)</title>
@@ -125,72 +191,6 @@
       <link>https://thehill.com/regulation/court-battles/5957682-supreme-court-trump-independent-commissions/</link>
       <guid isPermaLink="false">https://thehill.com/regulation/court-battles/5957682-supreme-court-trump-independent-commissions/</guid>
       <pubDate>Wed, 08 Jul 2026 10:00:01 +0000</pubDate>
-    </item>
-    <item>
-      <title>🔴Live: Trump says 'very upset with NATO' over Iran war, Greenland (FRANCE 24)</title>
-      <link>https://www.france24.com/en/europe/20260708-ukraine-live-russia-launches-deadly-strikes-kyiv-nato-leaders-prepare-meet-in-ankara</link>
-      <guid isPermaLink="false">https://www.france24.com/en/europe/20260708-ukraine-live-russia-launches-deadly-strikes-kyiv-nato-leaders-prepare-meet-in-ankara</guid>
-      <pubDate>Wed, 08 Jul 2026 08:45:15 +0000</pubDate>
-    </item>
-    <item>
-      <title>Israeli strike kills Palestinian aid official organising World Cup screenings in Gaza (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/middle-east/israeli-strike-palestinian-official-dead-gaza-world-cup-b3011038.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/middle-east/israeli-strike-palestinian-official-dead-gaza-world-cup-b3011038.html</guid>
-      <pubDate>Wed, 08 Jul 2026 09:43:37 +0000</pubDate>
-    </item>
-    <item>
-      <title>Why have US-Iran strikes resumed and what does it mean for peace? (AL JAZEERA)</title>
-      <link>https://www.aljazeera.com/news/2026/7/8/why-have-us-iran-strikes-resumed-and-what-does-it-mean-for-peace-talks?traffic_source=rss</link>
-      <guid isPermaLink="false">https://www.aljazeera.com/news/2026/7/8/why-have-us-iran-strikes-resumed-and-what-does-it-mean-for-peace-talks?traffic_source=rss</guid>
-      <pubDate>Wed, 08 Jul 2026 09:42:41 +0000</pubDate>
-    </item>
-    <item>
-      <title>Why have half a million Russians gone bankrupt amid Ukraine war? (AL JAZEERA)</title>
-      <link>https://www.aljazeera.com/economy/2026/7/8/why-have-half-a-million-russians-gone-bankrupt-amid-ukraine-war?traffic_source=rss</link>
-      <guid isPermaLink="false">https://www.aljazeera.com/economy/2026/7/8/why-have-half-a-million-russians-gone-bankrupt-amid-ukraine-war?traffic_source=rss</guid>
-      <pubDate>Wed, 08 Jul 2026 08:41:01 +0000</pubDate>
-    </item>
-    <item>
-      <title>Singapore's Temasek hits record portfolio value, eyes more investment in AI, infrastructure and private credit (CNBC)</title>
-      <link>https://www.cnbc.com/2026/07/08/singapores-temasek-eyes-ai-private-credit-with-portfolio-at-record.html</link>
-      <guid isPermaLink="false">https://www.cnbc.com/2026/07/08/singapores-temasek-eyes-ai-private-credit-with-portfolio-at-record.html</guid>
-      <pubDate>Wed, 08 Jul 2026 08:37:53 +0000</pubDate>
-    </item>
-    <item>
-      <title>Dem civil war hits primary debate stage in fiery battleground showdown: 'What are you hiding?' (FOX)</title>
-      <link>https://www.foxnews.com/politics/dem-civil-war-hits-primary-debate-stage-el-sayed-stevens-clash</link>
-      <guid isPermaLink="false">https://www.foxnews.com/politics/dem-civil-war-hits-primary-debate-stage-el-sayed-stevens-clash</guid>
-      <pubDate>Wed, 08 Jul 2026 08:30:19 +0000</pubDate>
-    </item>
-    <item>
-      <title>Farage's rivals rule out standing in Clacton by-election (BBC US)</title>
-      <link>https://www.bbc.co.uk/news/articles/cjdg4y3g0z7o?at_medium=RSS&amp;at_campaign=rss</link>
-      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cjdg4y3g0z7o?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Wed, 08 Jul 2026 10:27:11 +0000</pubDate>
-    </item>
-    <item>
-      <title>Watch: Gaza football fans watch World Cup from rubble (BBC)</title>
-      <link>https://www.bbc.co.uk/news/videos/c8r2nmm7xeeo?at_medium=RSS&amp;at_campaign=rss</link>
-      <guid isPermaLink="false">https://www.bbc.co.uk/news/videos/c8r2nmm7xeeo?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Wed, 08 Jul 2026 07:26:50 +0000</pubDate>
-    </item>
-    <item>
-      <title>China warns about AI risks with Anthropic's Claude Code (CNBC)</title>
-      <link>https://www.cnbc.com/2026/07/08/china-anthropic-ai-claude-code-backdoor-security-threat.html</link>
-      <guid isPermaLink="false">https://www.cnbc.com/2026/07/08/china-anthropic-ai-claude-code-backdoor-security-threat.html</guid>
-      <pubDate>Wed, 08 Jul 2026 08:14:29 +0000</pubDate>
-    </item>
-    <item>
-      <title>Another deadly ICE shooting renews questions about Trump’s immigration crackdown (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/americas/ice-houston-shooting-lorenzo-salgado-araujo-b3010965.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/ice-houston-shooting-lorenzo-salgado-araujo-b3010965.html</guid>
-      <pubDate>Wed, 08 Jul 2026 08:07:10 +0000</pubDate>
-    </item>
-    <item>
-      <title>Oil Prices Jump After U.S. and Iran Trade Strikes in Persian Gulf (NYT)</title>
-      <link>https://www.nytimes.com/2026/07/08/business/oil-gas-markets-shipping-hormuz.html</link>
-      <guid isPermaLink="false">https://www.nytimes.com/2026/07/08/business/oil-gas-markets-shipping-hormuz.html</guid>
-      <pubDate>Wed, 08 Jul 2026 09:05:14 +0000</pubDate>
     </item>
   </channel>
 </rss>
