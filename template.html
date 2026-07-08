@@ -154,6 +154,11 @@ ${spark_html}  </div>
   /*GRUDGE-APP*/
   (function () {
     var POOL = JSON.parse(document.getElementById("pool").textContent);
+    // Inventory counts: the dials promise a mix the wire may not stock.
+    // When the ask exceeds supply, the readout says so instead of lying.
+    var TRINV = POOL.filter(function (x) { return x.tr; }).length;
+    var ROSYINV = POOL.filter(function (x) { return x.tn > 0; }).length;
+    var GRIMINV = POOL.filter(function (x) { return x.tn < 0; }).length;
     var NATURAL = ${natural};
     var NATDOSE = ${nat_dose};
     var YDAY = ${yday_js};
@@ -321,14 +326,26 @@ ${spark_html}  </div>
     }
 
     function readout(p, t) {
+      var want = TOTAL + 1;
       var jlabel = (p === NATURAL) ? "TODAY'S NEWS CYCLE: " : "YOUR VERDICT: ";
+      var jnote = "";
+      if (p !== NATURAL) {
+        if (Math.round(want * p / 100) > ROSYINV) {
+          jnote = " — ONLY " + ROSYINV + " ROSY STORIES ON TODAY'S WIRE";
+        } else if (Math.round(want * (100 - p) / 100) > GRIMINV) {
+          jnote = " — ONLY " + GRIMINV + " GRIM STORIES ON TODAY'S WIRE";
+        }
+      }
       jread.innerHTML = jlabel +
         '<span class="grim">' + (100 - p) + "% GRIM</span> / " +
-        '<span class="rosy">' + p + "% ROSY</span>";
+        '<span class="rosy">' + p + "% ROSY</span>" + jnote;
       if (t === NATDOSE) {
         dread.innerHTML = "TODAY'S WIRE IS <b>" + t + "% TRUMP</b>" + YDAY;
       } else {
-        dread.innerHTML = "YOUR MIX: <b>" + t + "% TRUMP</b> (WIRE: " + NATDOSE + "%)";
+        var dnote = (Math.round(want * t / 100) > TRINV)
+          ? " — THE WIRE ONLY HAS " + TRINV : "";
+        dread.innerHTML = "YOUR MIX: <b>" + t + "% TRUMP</b>" + dnote +
+          " (WIRE: " + NATDOSE + "%)";
       }
     }
 
