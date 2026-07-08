@@ -151,7 +151,9 @@ ${gc_head}<style>
   .src { display: block; font-family: var(--font-wire); font-size: 11px;
           font-weight: 400; color: var(--muted); letter-spacing: 1px;
           margin-top: 4px; line-height: 1.5; }
-  .src .grim { color: var(--red); }
+  /* GRIM is the default verdict — it doesn't get to shout. ROSY is the
+     exception worth color. */
+  .src .grim { color: var(--muted); }
   .src .rosy { color: var(--green); }
   .src .rise, .lead-src .rise { color: var(--red); font-weight: bold; }
   .src .fresh { color: var(--green); font-weight: bold; }
@@ -338,7 +340,7 @@ ${spark_html}  </div>
       a.rel = "noopener";
       a.textContent = item.t.toUpperCase();
       if (item.k) a.setAttribute("data-k", item.k);
-      if (item.sc >= 25) a.className = "hot";
+      if (item.sc >= 35) a.className = "hot";
       var src = document.createElement("span");
       src.className = "src";
       src.innerHTML = srcLine(item);

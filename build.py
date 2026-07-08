@@ -911,7 +911,7 @@ def render(ranked, sources_ok, now, natural, nat_dose, prev_dose, history):
                 rows.append(f'<img class="secphoto" src="{html.escape(item["img"])}" '
                             'alt="" loading="lazy" referrerpolicy="no-referrer" '
                             'onerror="this.style.display=&#39;none&#39;">')
-            cls = "hot" if item["score"] >= 25 else ""
+            cls = "hot" if item["score"] >= 35 else ""
             rows.append(link_html(item, cls))
             if (i + 1) % 6 == 0 and i + 1 < len(items):
                 rows.append('<hr class="rule">')
