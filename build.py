@@ -658,9 +658,11 @@ def partition(stories):
     return cols
 
 
-def sparkline_svg(series, color, width=220, height=28):
+def sparkline_svg(series, klass, width=220, height=28):
     """Inline SVG polyline for a 0-100 percentage series. Empty below two
-    points — a one-entry polyline is a division by zero, not a chart."""
+    points — a one-entry polyline is a division by zero, not a chart.
+    Color comes from a CSS class (.sl-*) so the theme tokens apply — a
+    hardcoded stroke would be wrong in dark mode."""
     if len(series) < 2:
         return ""
     step = width / (len(series) - 1)
@@ -668,7 +670,7 @@ def sparkline_svg(series, color, width=220, height=28):
                    for i, v in enumerate(series))
     return (f'<svg width="{width}" height="{height}" '
             f'viewBox="0 0 {width} {height}" role="img" aria-label="daily history">'
-            f'<polyline points="{pts}" fill="none" stroke="{color}" '
+            f'<polyline class="{klass}" points="{pts}" fill="none" '
             f'stroke-width="1.5"/></svg>')
 
 
@@ -679,8 +681,8 @@ def spark_html(history):
                if isinstance(h.get("trump"), (int, float))][-HISTORY_DAYS:]
     rosy_w = [h["rosy"] for h in history
               if isinstance(h.get("rosy"), (int, float))][-HISTORY_DAYS:]
-    trump = sparkline_svg(trump_w, "#c00")
-    rosy = sparkline_svg(rosy_w, "#070")
+    trump = sparkline_svg(trump_w, "sl-trump")
+    rosy = sparkline_svg(rosy_w, "sl-rosy")
     if not trump and not rosy:
         return ('    <div class="spark"><div class="accruing">'
                 'STAT HISTORY ACCRUING &middot; CHECK BACK TOMORROW</div></div>\n')
