@@ -590,6 +590,54 @@ class TestWireStats(unittest.TestCase):
 
 # ── 10. sparklines ──────────────────────────────────────────────────────────
 
+class TestFindImage(unittest.TestCase):
+
+    def _img(self, extra, desc=""):
+        raw = ('<?xml version="1.0"?><rss version="2.0" '
+               'xmlns:media="http://search.yahoo.com/mrss/"><channel>'
+               '<item><title>Pic story alpha</title>'
+               '<link>http://example.com/a</link>'
+               f'<pubDate>{rfc(hours_ago(2))}</pubDate>'
+               f'{extra}'
+               + (f'<description>{desc}</description>' if desc else '')
+               + '</item></channel></rss>').encode()
+        items = build.parse_feed("BBC", raw)
+        return items[0]["img"]
+
+    def test_media_content_largest_width_wins(self):
+        img = self._img('<media:content url="http://c/s.jpg" width="140"/>'
+                        '<media:content url="http://c/l.jpg" width="1024"/>')
+        self.assertEqual(img, "http://c/l.jpg")
+
+    def test_media_thumbnail(self):
+        self.assertEqual(self._img('<media:thumbnail url="http://c/t.jpg"/>'),
+                         "http://c/t.jpg")
+
+    def test_enclosure_images_only(self):
+        self.assertEqual(
+            self._img('<enclosure url="http://c/a.mp3" type="audio/mpeg"/>'), "")
+        self.assertEqual(
+            self._img('<enclosure url="http://c/p.jpg" type="image/jpeg"/>'),
+            "http://c/p.jpg")
+
+    def test_description_img_fallback(self):
+        img = self._img("", desc="&lt;img src='http://c/d.png'&gt; hello there")
+        self.assertEqual(img, "http://c/d.png")
+
+    def test_no_art_is_empty(self):
+        self.assertEqual(self._img(""), "")
+
+    def test_cluster_falls_back_across_members(self):
+        a = wire_item("Shared banner headline one")
+        a["img"] = ""
+        b = wire_item("Shared banner headline one", source="CNN",
+                      link="http://example.com/b")
+        b["img"] = "http://c/b.jpg"
+        ranked = build.dedupe_and_rank([a, b])
+        self.assertEqual(len(ranked), 1)
+        self.assertEqual(ranked[0]["img"], "http://c/b.jpg")
+
+
 class TestSparkline(unittest.TestCase):
 
     def test_svg_empty_series_is_empty(self):
@@ -598,22 +646,49 @@ class TestSparkline(unittest.TestCase):
     def test_svg_single_point_is_empty_no_zero_division(self):
         self.assertEqual(build.sparkline_svg([50], "#c00"), "")
 
-    def test_svg_two_and_thirty_points(self):
-        two = build.sparkline_svg([10, 90], "#c00")
-        self.assertIn("<svg", two)
-        self.assertIn("<polyline", two)
-        thirty = build.sparkline_svg([(i * 7) % 101 for i in range(30)], "#070")
+    def test_svg_below_min_days_is_empty(self):
+        # A two-point "trend" is a flat line pretending to be data.
+        self.assertEqual(build.sparkline_svg([10, 90], "sl-trump"), "")
+        six = [10, 12, 11, 14, 13, 15]
+        self.assertEqual(build.sparkline_svg(six, "sl-trump"), "")
+
+    def test_svg_week_and_month_autoscaled(self):
+        week = build.sparkline_svg([8, 10, 7, 12, 9, 11, 14], "sl-trump")
+        self.assertIn("<polyline", week)
+        thirty = build.sparkline_svg([(i * 7) % 101 for i in range(30)], "sl-rosy")
         self.assertIn("<polyline", thirty)
+        # Auto-scale: a narrow-band series must use the full height, not
+        # hug the floor of a fixed 0-100 axis. min -> y near bottom (26),
+        # max -> y near top (2).
+        ys = [float(p.split(",")[1]) for p in
+              re.search(r'points="([^"]+)"', week).group(1).split()]
+        self.assertAlmostEqual(max(ys), 26.0, delta=0.5)
+        self.assertAlmostEqual(min(ys), 2.0, delta=0.5)
 
-    def test_spark_html_accruing_below_two_entries(self):
-        self.assertIn("ACCRUING", build.spark_html([]))
-        self.assertIn("ACCRUING", build.spark_html([hist_entry(0)]))
+    def test_svg_flat_series_padded_not_zero_division(self):
+        flat = build.sparkline_svg([10] * 7, "sl-trump")
+        self.assertIn("<polyline", flat)
 
-    def test_spark_html_skips_malformed_entries(self):
-        history = [hist_entry(2), {"d": "malformed"}, hist_entry(1)]
+    def test_spark_html_absent_below_week(self):
+        self.assertEqual(build.spark_html([]), "")
+        self.assertEqual(build.spark_html([hist_entry(0)]), "")
+        self.assertEqual(
+            build.spark_html([hist_entry(i) for i in range(6)]), "")
+
+    def test_spark_html_week_with_range_labels(self):
+        history = [hist_entry(i, rosy=10 + i, trump=20 + i) for i in range(7)]
         out = build.spark_html(history)
         self.assertIn("<svg", out)
-        self.assertIn("LAST 2 DAYS", out)  # the malformed entry was skipped
+        self.assertIn("LAST 7 DAYS", out)
+        self.assertIn("20&#8211;26%", out)   # trump min-max label
+        self.assertIn("10&#8211;16%", out)   # rosy min-max label
+
+    def test_spark_html_skips_malformed_entries(self):
+        history = ([hist_entry(9), {"d": "malformed"}]
+                   + [hist_entry(i) for i in range(7)])
+        out = build.spark_html(history)
+        self.assertIn("<svg", out)
+        self.assertIn("LAST 8 DAYS", out)  # the malformed entry was skipped
 
 
 # ── 11. render output contract ──────────────────────────────────────────────
@@ -633,10 +708,12 @@ def render_fixture():
 
 class TestRenderContract(unittest.TestCase):
 
-    def render(self, prev_dose=42, history=None, natural=60, nat_dose=35):
-        ranked = render_fixture()
+    def render(self, prev_dose=42, history=None, natural=60, nat_dose=35,
+               ranked=None):
+        if ranked is None:
+            ranked = render_fixture()
         if history is None:
-            history = [hist_entry(2), hist_entry(1), hist_entry(0)]
+            history = [hist_entry(i) for i in range(8)]
         return ranked, build.render(ranked, ["BBC", "CNN"], utcnow(),
                                     natural, nat_dose, prev_dose, history)
 
@@ -652,7 +729,25 @@ class TestRenderContract(unittest.TestCase):
         self.assertIn('type="application/rss+xml"', page)
         self.assertIn(f'{build.SITE_URL}feed.xml', page)
         self.assertIn("NOT AFFILIATED WITH THE DAILY MAIL", page)
-        self.assertIn("<svg", page)  # history has >= 2 entries
+        self.assertIn("<svg", page)  # history has >= SPARK_MIN_DAYS entries
+        self.assertIn("TYPESET BY A CRON JOB", page)
+
+    def test_lead_photo_toggles_on_image(self):
+        ranked = render_fixture()
+        ranked[0]["img"] = "https://cdn.example.com/pic.jpg?w=1024&h=576"
+        _, page = self.render(ranked=ranked)
+        self.assertIn('class="leadphoto"', page)
+        self.assertIn('src="https://cdn.example.com/pic.jpg?w=1024&amp;h=576"', page)
+        self.assertIn('referrerpolicy="no-referrer"', page)
+        self.assertIn('"im": "https://cdn.example.com/pic.jpg?w=1024&h=576"', page)
+        # No image on the lead -> no photo element at all.
+        ranked2 = render_fixture()
+        for it in ranked2:
+            it["img"] = ""
+        _, page = self.render(ranked=ranked2)
+        # (the JS always carries ph.className = "leadphoto"; only the
+        # server-rendered <img class="leadphoto"> must be absent)
+        self.assertNotIn('class="leadphoto"', page)
 
     def test_goatcounter_only_when_configured(self):
         with mock.patch.object(build, "GOATCOUNTER_CODE", "testcode"):
@@ -671,10 +766,10 @@ class TestRenderContract(unittest.TestCase):
         _, page = self.render(prev_dose=None)
         self.assertNotIn("YESTERDAY", page)
 
-    def test_accruing_when_history_short(self):
-        _, page = self.render(history=[hist_entry(0)])
-        self.assertIn("ACCRUING", page)
+    def test_no_sparkline_when_history_short(self):
+        _, page = self.render(history=[hist_entry(1), hist_entry(0)])
         self.assertNotIn("<svg", page.split("</style>")[1])  # no sparkline
+        self.assertNotIn("ACCRUING", page)  # and no placeholder clutter
 
 
 # ── 12. write_feed ──────────────────────────────────────────────────────────
@@ -843,6 +938,26 @@ for (const v of ["0", "50", natdose, "100"]) {
 if (!global.__malaise || typeof global.__malaise.partition !== "function") {
   console.error("FAIL: __malaise test hooks missing"); process.exit(1);
 }
+
+// Dial-consistency: hard dial edges must hold for EVERY story, lead included,
+// even through the backfill path (the historical hole: backfill could
+// re-admit Trump stories at dose=0 — and one could take the lead).
+const pk = global.__malaise.pick;
+const atDoseZero = pk(50, 0);
+if (atDoseZero.some(x => x.tr)) {
+  console.error("FAIL: Trump story present (or leading) at dose=0"); process.exit(1);
+}
+const atFullRosy = pk(100, 35);
+if (atFullRosy.some(x => x.tn <= 0)) {
+  console.error("FAIL: grim story present at mix=100"); process.exit(1);
+}
+if (atFullRosy.length && !(atFullRosy[0].tn > 0)) {
+  console.error("FAIL: lead not rosy at mix=100"); process.exit(1);
+}
+const atFullGrim = pk(0, 35);
+if (atFullGrim.some(x => x.tn > 0)) {
+  console.error("FAIL: rosy story present at mix=0"); process.exit(1);
+}
 if (process.argv[3]) {
   const fixture = JSON.parse(fs.readFileSync(process.argv[3], "utf-8"));
   const cols = global.__malaise.partition(fixture);
@@ -882,6 +997,9 @@ class TestNodeApp(unittest.TestCase):
         cls._td = tempfile.TemporaryDirectory()
         d = cls._td.name
         ranked = render_fixture()
+        # Give the pool some rosy inventory so the mix=100 lead check bites.
+        ranked[-1]["tone"] = 2
+        ranked[-2]["tone"] = 3
         history = [hist_entry(2), hist_entry(1), hist_entry(0)]
         page = build.render(ranked, ["BBC", "CNN"], utcnow(), 60, 35, 42, history)
         cls.page_path = os.path.join(d, "page.html")

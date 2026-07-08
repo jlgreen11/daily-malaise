@@ -324,6 +324,44 @@ def find_date(node):
     return ""
 
 
+IMG_SRC_RE = re.compile(r'<img[^>]+src=["\']([^"\']+)["\']', re.I)
+
+
+def find_image(node, desc_html=""):
+    """Best image an item ships, as (url, declared_width): Media RSS
+    content/thumbnail (largest width wins), image enclosures, else the first
+    <img> in the description HTML (NPR's habit). ("", 0) when the wire sends
+    no art — only the lead ever displays a photo, so misses are cheap."""
+    best, best_w = "", -1
+    for child in node.iter():
+        tag = child.tag.rsplit("}", 1)[-1].lower()
+        if tag in ("content", "thumbnail"):
+            url = child.get("url", "")
+            if not url.startswith("http"):
+                continue
+            medium = child.get("medium", "")
+            ctype = child.get("type", "")
+            if medium and medium != "image":
+                continue
+            if ctype and not ctype.startswith("image"):
+                continue
+            try:
+                w = int(child.get("width", 0))
+            except (TypeError, ValueError):
+                w = 0
+            if w > best_w:
+                best, best_w = url, w
+        elif tag == "enclosure" and best_w < 0:
+            url = child.get("url", "")
+            if url.startswith("http") and child.get("type", "").startswith("image"):
+                best, best_w = url, 0
+    if not best and desc_html:
+        m = IMG_SRC_RE.search(desc_html)
+        if m and m.group(1).startswith("http"):
+            best = m.group(1)
+    return best, max(best_w, 0)
+
+
 def parse_feed(source, raw):
     """Parse RSS 2.0, RSS 1.0/RDF, or Atom into a list of item dicts."""
     # Strip default-namespace so RSS 1.0 / Atom tags are addressable plainly.
@@ -335,16 +373,18 @@ def parse_feed(source, raw):
     for node in root.iter("item"):  # RSS 2.0 and RSS 1.0/RDF
         title = text_of(node.find("title"))
         link = text_of(node.find("link"))
-        items.append((title, link, find_date(node)))
+        img, img_w = find_image(node, text_of(node.find("description")))
+        items.append((title, link, find_date(node), img, img_w))
     if not items:
         for node in root.iter("entry"):  # Atom
             title = text_of(node.find("title"))
             link_el = node.find("link")
             link = link_el.get("href", "") if link_el is not None else ""
-            items.append((title, link, find_date(node)))
+            img, img_w = find_image(node, text_of(node.find("summary")))
+            items.append((title, link, find_date(node), img, img_w))
 
     out = []
-    for title, link, pub in items[:MAX_PER_SOURCE]:
+    for title, link, pub, img, img_w in items[:MAX_PER_SOURCE]:
         title = re.sub(r"\s+", " ", html.unescape(title)).strip()
         if not title or not link.startswith("http"):
             continue
@@ -373,6 +413,8 @@ def parse_feed(source, raw):
             "title": title,
             "link": link,
             "age_hours": max(age_hours, 0.0),
+            "img": img,
+            "img_w": img_w,
         })
     return out
 
@@ -447,6 +489,11 @@ def dedupe_and_rank(items):
         # Per-link key for the optional click beacons. Computed here because
         # browser JS has no synchronous SHA-1; the pool ships it ready-made.
         best["k"] = hashlib.sha1(best["link"].encode("utf-8")).hexdigest()[:10]
+        # Lead photo: take the cluster's LARGEST art — BBC ships 240px
+        # thumbnails while Guardian/NYT ship 1000px+ for the same story.
+        arts = [i for i in cluster if i.get("img")]
+        best["img"] = (max(arts, key=lambda i: i.get("img_w", 0))["img"]
+                       if arts else "")
         ranked.append(best)
     ranked.sort(key=lambda i: i["score"], reverse=True)
     return ranked
@@ -693,16 +740,26 @@ def partition(stories):
     return cols
 
 
+SPARK_MIN_DAYS = 7   # a two-point "trend" is a flat line pretending to be data
+
+
 def sparkline_svg(series, klass, width=220, height=28):
-    """Inline SVG polyline for a 0-100 percentage series. Empty below two
-    points — a one-entry polyline is a division by zero, not a chart.
-    Color comes from a CSS class (.sl-*) so the theme tokens apply — a
-    hardcoded stroke would be wrong in dark mode."""
-    if len(series) < 2:
+    """Inline SVG polyline, AUTO-SCALED to the series range — the values
+    live in a narrow band (5-15%), so a fixed 0-100 axis renders every real
+    series as a floor-hugging flatline. Renders nothing below SPARK_MIN_DAYS;
+    the full series accrues in state.json regardless. Color comes from a CSS
+    class (.sl-*) so the theme tokens apply in dark mode too."""
+    if len(series) < SPARK_MIN_DAYS:
         return ""
+    lo, hi = min(series), max(series)
+    if hi - lo < 4:  # pad near-constant series so the line can breathe
+        mid = (hi + lo) / 2
+        lo, hi = mid - 2, mid + 2
+    span = hi - lo
     step = width / (len(series) - 1)
-    pts = " ".join(f"{i * step:.1f},{height - 2 - (height - 4) * v / 100:.1f}"
-                   for i, v in enumerate(series))
+    pts = " ".join(
+        f"{i * step:.1f},{height - 2 - (height - 4) * (v - lo) / span:.1f}"
+        for i, v in enumerate(series))
     return (f'<svg width="{width}" height="{height}" '
             f'viewBox="0 0 {width} {height}" role="img" aria-label="daily history">'
             f'<polyline class="{klass}" points="{pts}" fill="none" '
@@ -710,8 +767,9 @@ def sparkline_svg(series, klass, width=220, height=28):
 
 
 def spark_html(history):
-    """The stat-history block inside THE JUDGMENT box. HISTORY_DAYS is only
-    the display window; the underlying series in state.json is uncapped."""
+    """The stat-history block inside THE JUDGMENT box. Appears only once a
+    week of daily history exists (SPARK_MIN_DAYS); labels carry the series'
+    actual min-max since the y-axis is auto-scaled, not 0-100."""
     trump_w = [h["trump"] for h in history
                if isinstance(h.get("trump"), (int, float))][-HISTORY_DAYS:]
     rosy_w = [h["rosy"] for h in history
@@ -719,14 +777,14 @@ def spark_html(history):
     trump = sparkline_svg(trump_w, "sl-trump")
     rosy = sparkline_svg(rosy_w, "sl-rosy")
     if not trump and not rosy:
-        return ('    <div class="spark"><div class="accruing">'
-                'STAT HISTORY ACCRUING &middot; CHECK BACK TOMORROW</div></div>\n')
+        return ""
     out = ['    <div class="spark">']
     if trump:
-        out.append(f'<div class="slabel">TRUMP SHARE OF THE FRONT PAGE, '
-                   f'LAST {len(trump_w)} DAYS</div>{trump}')
+        out.append(f'<div class="slabel">TRUMP SHARE, LAST {len(trump_w)} DAYS '
+                   f'({min(trump_w)}&#8211;{max(trump_w)}%)</div>{trump}')
     if rosy:
-        out.append(f'<div class="slabel">ROSY SHARE, LAST {len(rosy_w)} DAYS</div>{rosy}')
+        out.append(f'<div class="slabel">ROSY SHARE, LAST {len(rosy_w)} DAYS '
+                   f'({min(rosy_w)}&#8211;{max(rosy_w)}%)</div>{rosy}')
     out.append('</div>\n')
     return "".join(out)
 
@@ -796,8 +854,16 @@ def render(ranked, sources_ok, now, natural, nat_dose, prev_dose, history):
             lead_bits.append(f'REPORTED BY {lead["cluster"]} OUTLETS')
         if lead.get("rising"):
             lead_bits.append('<span class="rise">RISING &#9650;</span>')
+        # The one photo on the page, as tradition demands. Hotlinked from the
+        # publisher (no-referrer dodges referer-based hotlink blocks); if it
+        # 404s or is blocked, the lead degrades to text.
+        photo = ""
+        if lead.get("img"):
+            photo = (f'<img class="leadphoto" src="{html.escape(lead["img"])}" '
+                     'alt="" loading="eager" referrerpolicy="no-referrer" '
+                     'onerror="this.style.display=&#39;none&#39;">')
         lead_html = (
-            f'{siren}<a class="lead" href="{html.escape(lead["link"])}" '
+            f'{siren}{photo}<a class="lead" href="{html.escape(lead["link"])}" '
             f'data-k="{lead.get("k", "")}" '
             f'target="_blank" rel="noopener">{headline_case(lead["title"])}</a>'
             f'<div class="lead-src">{" &middot; ".join(lead_bits)}</div>'
@@ -817,6 +883,7 @@ def render(ranked, sources_ok, now, natural, nat_dose, prev_dose, history):
             "t": item["title"],
             "u": item["link"],
             "k": item.get("k", ""),
+            "im": item.get("img", ""),
             "s": item["source"],
             "sc": round(item["score"], 1),
             "tn": item["tone"],
