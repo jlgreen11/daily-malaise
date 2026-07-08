@@ -106,6 +106,10 @@ ${gc_head}<style>
   .spark .sl-trump { stroke: var(--red); }
   .spark .sl-rosy { stroke: var(--green); }
   .spark .accruing { font-size: 10px; letter-spacing: 1.5px; color: var(--muted); }
+  .sponsor { font-size: 10px; letter-spacing: 1.5px; color: var(--muted);
+             margin: 12px -18px 0; padding-top: 9px;
+             border-top: 1px solid var(--hairline); }
+  .sponsor a { color: var(--muted); font-weight: bold; }
   input[type=range] {
     flex: 1; appearance: none; -webkit-appearance: none; height: 4px;
     background: var(--ink); outline: none; cursor: pointer;
@@ -191,7 +195,7 @@ ${gc_head}<style>
              aria-label="Percentage of Trump coverage">
       <span class="jend jpct">100%</span>
     </div>
-${spark_html}  </div>
+${spark_html}${sponsor}  </div>
   <div class="leadbox" id="leadbox">${lead_html}</div>
   <div class="columns">
     <div class="col" id="col0">${col0}</div>

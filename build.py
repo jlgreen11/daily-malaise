@@ -90,6 +90,12 @@ SITE_URL = "https://jlgreen11.github.io/daily-malaise/"   # canonical; swap on c
 # scripts — the page stays fully self-contained. See README.
 GOATCOUNTER_CODE = ""
 
+# The direct-sold sponsorship slot — the only ad unit this paper will ever
+# run: one muted line under the dials. Empty name = no sponsor, no trace.
+# Current sponsor: goats.
+SPONSOR_NAME = "GOATS"
+SPONSOR_URL = "https://en.wikipedia.org/wiki/Goat"
+
 # The page template lives next to this script so build.py can run from any
 # working directory (tests run it from a temp dir).
 TEMPLATE_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "template.html")
@@ -991,6 +997,13 @@ def render(ranked, sources_ok, now, natural, nat_dose, prev_dose, history):
         disclosure = (' &middot; ANONYMOUS, COOKIELESS USAGE COUNTS BY '
                       '<a href="https://www.goatcounter.com">GOATCOUNTER</a>')
 
+    sponsor = ""
+    if SPONSOR_NAME:
+        sponsor = ('    <div class="sponsor">THE MALAISE INDEX &middot; '
+                   f'PRESENTED BY <a href="{html.escape(SPONSOR_URL)}" '
+                   'target="_blank" rel="noopener sponsored">'
+                   f'{html.escape(SPONSOR_NAME)}</a></div>\n')
+
     with open(TEMPLATE_PATH, encoding="utf-8") as f:
         tpl = string.Template(f.read())
     return tpl.substitute(
@@ -1013,6 +1026,7 @@ def render(ranked, sources_ok, now, natural, nat_dose, prev_dose, history):
         page_stories=PAGE_STORIES,
         catchall=TOPIC_CATCHALL,
         spark_html=spark_html(history),
+        sponsor=sponsor,
         gc_head=gc_head,
         gc_js=gc_js,
         disclosure=disclosure,

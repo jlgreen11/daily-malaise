@@ -761,6 +761,16 @@ class TestRenderContract(unittest.TestCase):
         # server-rendered <img class="leadphoto"> must be absent)
         self.assertNotIn('class="leadphoto"', page)
 
+    def test_sponsor_line_toggles(self):
+        _, page = self.render()
+        self.assertIn("PRESENTED BY", page)
+        self.assertIn('href="https://en.wikipedia.org/wiki/Goat"', page)
+        self.assertIn('rel="noopener sponsored"', page)
+        with mock.patch.object(build, "SPONSOR_NAME", ""):
+            _, page = self.render()
+        self.assertNotIn("PRESENTED BY", page)
+        self.assertNotIn("sponsor", page.split("</style>")[1])
+
     def test_goatcounter_only_when_configured(self):
         with mock.patch.object(build, "GOATCOUNTER_CODE", "testcode"):
             _, page = self.render()
