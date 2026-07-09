@@ -488,6 +488,11 @@ NEGATORS = {"no", "not", "never", "without", "zero",
             "aren't", "wasn't", "didn't", "doesn't", "halts", "halted"}
 
 VADER_WEIGHT = 0.6   # general-English sentiment defers to the news lexicon
+GRIM_TAG_MAX = -1.0   # tag calibration from the 2026-07-09 blind eval:
+                      # GRIM must be earned (tone <= -1.0); the weak-negative
+                      # and zero middle is MALAISE -- the paper's namesake and
+                      # its median story. Slider buckets stay binary
+                      # (rosy = tone > 0 vs everything else); tags are 3-way.
 VADER_ROSY_MIN = 1.8  # a rosy verdict built ONLY from general-English words
                       # needs real evidence — blind eval showed weak VADER
                       # positives produce "MASS FUNERAL - ROSY" class errors
@@ -780,6 +785,18 @@ def wire_stats(ranked):
     return natural, nat_dose
 
 
+def cycle_split(ranked):
+    """The three-part cycle stat over the front-page window: GRIM (earned),
+    MALAISE (the default shrug), ROSY (earned). Display only -- the slider
+    buckets and the persisted rosy series stay binary/unchanged."""
+    top = [i for i in ranked[:PAGE_STORIES + 1] if i["topic"] != "SATIRICAL"]
+    if not top:
+        return 33, 34, 33
+    rosy = round(100 * sum(1 for i in top if i["tone"] > 0) / len(top))
+    grim = round(100 * sum(1 for i in top if i["tone"] <= GRIM_TAG_MAX) / len(top))
+    return grim, 100 - grim - rosy, rosy
+
+
 def full_wire_dose(clusters):
     """FULL WIRE stat: Trump share of every unique story cluster fetched this
     run (post-dedup — pre-dedup would double-weight multi-outlet stories)."""
@@ -852,10 +869,13 @@ def headline_case(title):
 
 
 def tone_tag(tone):
-    # Grim until proven rosy: every story carries a verdict.
+    # Malaise until proven anything: every story carries a verdict, and
+    # GRIM has to be earned just like ROSY does.
     if tone > 0:
         return ' &middot; <span class="rosy">ROSY</span>'
-    return ' &middot; <span class="grim">GRIM</span>'
+    if tone <= GRIM_TAG_MAX:
+        return ' &middot; <span class="grim">GRIM</span>'
+    return ' &middot; <span class="mal">MALAISE</span>'
 
 
 # The paper's fixed layout: desks appear in their assigned column, in this
@@ -1087,6 +1107,8 @@ def render(ranked, sources_ok, now, natural, nat_dose, prev_dose, history):
         + "The only front page you can tune: dial the doom with THE JUDGMENT. "
           "Rebuilt from 27 wires every 30 minutes.", quote=True)
 
+    cycle = cycle_split(ranked)
+
     gc_head = ""
     gc_js = ""
     disclosure = ""
@@ -1113,7 +1135,8 @@ def render(ranked, sources_ok, now, natural, nat_dose, prev_dose, history):
         stamp=stamp,
         year=now.year,
         natural=natural,
-        grim_pct=100 - natural,
+        cycle_grim=cycle[0],
+        cycle_mal=cycle[1],
         nat_dose=nat_dose,
         yday=yday,
         yday_js=json.dumps(yday),

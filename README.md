@@ -19,9 +19,10 @@ well-being.)
 ## ⚖ THE JUDGMENT
 
 Every story on the wire gets a verdict: **ROSY or GRIM, no neutral.** The
-rule is editorial policy, stated proudly: *a story is grim until it proves
-otherwise.* The rosy lexicon grants pardons; everything else stands
-convicted. (This is a doom aggregator. Innocence must be demonstrated.)
+rule is editorial policy, stated proudly: *a story is MALAISE until it
+proves otherwise.* ROSY must be earned. GRIM must be earned. The middle —
+procedural votes, earnings calls, awards logistics — wears the paper's own
+name. (This is a malaise aggregator. Feeling anything must be demonstrated.)
 
 The slider at the top is an inclusion dial running from **😱 all doom** to
 **😊 all sunshine**:
@@ -124,7 +125,13 @@ professional standards.
   is rosy — and a *denial* deliberately negates nothing). Binary by
   editorial rule: a headline with a positive rosy-minus-grim score
   is ROSY; everything else — including headlines the lexicons don't reach —
-  is GRIM by default. The rosy share is computed over ALL top stories.
+  defaults to the paper's namesake: MALAISE. Tags are three-way and
+  calibrated against a blind 120-headline human eval — ROSY is earned
+  (score > 0), GRIM is earned (score <= -1.0), and the middle is MALAISE:
+  not good news, not bad news, just news. The slider's two buckets are
+  unchanged (rosy vs everything else), and the persisted rosy share is
+  still computed over ALL top stories — the daily series did not change
+  definition for this.
   (Methodology notes: before 2026-07-08 the stat excluded zero-signal
   headlines from the denominator; on 2026-07-09 the scorer gained the
   VADER layer and negation, lifting rosy detection — the daily series

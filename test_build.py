@@ -647,6 +647,21 @@ class TestJudgeGolden(unittest.TestCase):
                 misses.append(f"{title!r}: got {got} ({tone:+.2f}), want {want}")
         self.assertEqual(misses, [])
 
+    def test_tone_tags_three_way_calibrated(self):
+        self.assertIn("ROSY", build.tone_tag(2.0))
+        self.assertIn("MALAISE", build.tone_tag(0.0))
+        self.assertIn("MALAISE", build.tone_tag(-0.5))
+        self.assertIn("GRIM", build.tone_tag(-1.0))
+        self.assertIn("GRIM", build.tone_tag(-4.0))
+
+    def test_cycle_split_sums_to_hundred_and_excludes_satire(self):
+        ranked = [{"tone": 2, "topic": "WORLD"}, {"tone": 0, "topic": "US"},
+                  {"tone": -0.5, "topic": "MONEY"}, {"tone": -3, "topic": "WORLD"},
+                  {"tone": -9, "topic": "SATIRICAL"}]
+        g, m, r = build.cycle_split(ranked)
+        self.assertEqual((g, m, r), (25, 50, 25))
+        self.assertEqual(g + m + r, 100)
+
     def test_negation_flips_forward_and_backward(self):
         self.assertLess(build.judge("no survivors"), 0)
         self.assertGreater(build.judge("survivors found"), 0)
