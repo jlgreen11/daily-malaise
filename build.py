@@ -37,6 +37,8 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 from email.utils import format_datetime, parsedate_to_datetime
 
+from tone_vader import VADER
+
 FEEDS = [
     ("BBC", "https://feeds.bbci.co.uk/news/world/rss.xml"),
     ("BBC US", "https://feeds.bbci.co.uk/news/rss.xml"),
@@ -194,6 +196,9 @@ GRIM_WORDS = {
     "evicted": 1, "evictions": 1, "foreclosure": 1, "overdoses": 1,
     "fentanyl": 1, "contaminated": 1, "contamination": 1, "radioactive": 1,
     "hospitalization": 1, "tumor": 1,
+    "strike": 2, "strikes": 2, "murdering": 3, "murdered": 3, "murders": 3,
+    "killing": 3, "killings": 3, "shootings": 2, "dying": 2, "died": 3,
+    "deaths": 3, "kidnapping": 2, "stabbings": 2,
 }
 ROSY_WORDS = {
     "breakthrough": 3, "cure": 3, "cured": 3, "rescue": 3, "rescued": 3,
@@ -201,7 +206,8 @@ ROSY_WORDS = {
     "triumph": 3, "miracle": 3,
     "wins": 2, "win": 2, "won": 2, "victory": 2, "celebrates": 2,
     "celebration": 2, "joy": 2, "hope": 2, "hopeful": 2, "recovery": 2,
-    "recovers": 2, "survives": 2, "survivor": 2, "success": 2,
+    "recovers": 2, "survives": 2, "survivor": 2, "survivors": 2,
+    "success": 2,
     "successful": 2, "award": 2, "awarded": 2, "prize": 2, "honored": 2,
     "milestone": 2, "discovery": 2, "donates": 2, "donation": 2,
     "kindness": 2, "inspiring": 2, "uplifting": 2, "beloved": 2,
@@ -459,14 +465,81 @@ def lexicon_score(title, lexicon):
     return sum(w for word, w in lexicon.items() if f" {word} " in padded)
 
 
+def _split_lexicon(lex):
+    """Domain lexicons carry both single words and phrases; the token walk
+    scores words (with negation), phrases score by substring as before."""
+    words = {w: v for w, v in lex.items() if " " not in w}
+    phrases = {w: v for w, v in lex.items() if " " in w}
+    return words, phrases
+
+
+GRIM_TOKENS, GRIM_PHRASES = _split_lexicon(GRIM_WORDS)
+ROSY_TOKENS, ROSY_PHRASES = _split_lexicon(ROSY_WORDS)
+
+# A negator flips scored words around it: forward ("NO SURVIVORS" is grim,
+# "ENDS WAR" is rosy) and one step backward ("WAR ENDS" is rosy too).
+# Deliberately NOT negators: denies/denied — in headlines a denial does not
+# negate the event ("MAN DENIES MURDER" is still a murder story).
+NEGATORS = {"no", "not", "never", "without",
+            "end", "ends", "ended", "averts", "averted", "avoids", "avoided",
+            "cancels", "cancelled", "canceled", "won't", "can't", "isn't",
+            "aren't", "wasn't", "didn't", "doesn't", "halts", "halted"}
+
+VADER_WEIGHT = 0.6  # general-English sentiment defers to the news lexicon
+
+TOKEN_RE = re.compile(r"[a-z0-9']+")
+
+
 def judge(title):
-    """THE JUDGMENT: tone score of a headline (rosy hits minus grim hits).
-    Classification rule, applied everywhere downstream: tone > 0 is ROSY,
-    everything else is GRIM. There is no neutral — this is a doom
-    aggregator, and a story is grim until it proves otherwise. The rule is
-    declared in the README methodology; the binary is editorial policy,
-    not a measurement claim."""
-    return lexicon_score(title, ROSY_WORDS) - lexicon_score(title, GRIM_WORDS)
+    """THE JUDGMENT: tone score of a headline. Three layers: the news-tuned
+    domain lexicon (authoritative), the vendored VADER general-sentiment
+    lexicon (fallback for words the domain list doesn't know), and forward
+    negation (a negator flips the next two scored words). Classification
+    rule, applied everywhere downstream: tone > 0 is ROSY, everything else
+    is GRIM — no neutral; a story is grim until it proves otherwise (the
+    README methodology declares this as editorial policy)."""
+    def _raw(w):
+        if w in ROSY_TOKENS:
+            return float(ROSY_TOKENS[w])
+        if w in GRIM_TOKENS:
+            return -float(GRIM_TOKENS[w])
+        return VADER.get(w, 0.0) * VADER_WEIGHT
+
+    lowered = title.lower()
+    toks = TOKEN_RE.findall(lowered)
+    score = 0.0
+    negate = 0
+    prev_val = 0.0  # last scored word's contribution, for backward flips
+    for i, w in enumerate(toks):
+        if w in NEGATORS:
+            # A negator binds ONCE. Forward when the very next word is a
+            # scorable non-adverb ("NO SURVIVORS", "ENDS CEASEFIRE");
+            # otherwise backward ("WAR ENDS", "CRISIS ENDS PEACEFULLY" —
+            # the -ly adverb says how it ended and keeps its own sign).
+            nxt = toks[i + 1] if i + 1 < len(toks) else ""
+            if _raw(nxt) and not nxt.endswith("ly"):
+                negate = 2
+            elif prev_val:
+                score += -1.75 * prev_val
+                prev_val = 0.0
+            continue
+        val = _raw(w)
+        if val and negate:
+            val = -0.75 * val
+        if negate:
+            negate -= 1
+        prev_val = val
+        score += val
+    # Multiword domain phrases (no negation pass — "no war crimes" is rare
+    # enough in headlines to accept the miss).
+    padded = " " + re.sub(r"[^a-z0-9 ]", " ", lowered) + " "
+    for phrase, v in ROSY_PHRASES.items():
+        if f" {phrase} " in padded:
+            score += v
+    for phrase, v in GRIM_PHRASES.items():
+        if f" {phrase} " in padded:
+            score -= v
+    return round(score, 2)
 
 
 def classify(title):
@@ -968,7 +1041,7 @@ def render(ranked, sources_ok, now, natural, nat_dose, prev_dose, history):
             "im": item.get("img", ""),
             "s": item["source"],
             "sc": round(item["score"], 1),
-            "tn": item["tone"],
+            "tn": round(item["tone"], 2),
             "cl": item["cluster"],
             "tp": item["topic"],
             "tr": 1 if item["trump"] else 0,

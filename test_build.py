@@ -602,6 +602,55 @@ class TestWireStats(unittest.TestCase):
 
 # ── 10. sparklines ──────────────────────────────────────────────────────────
 
+GOLDEN_TONE = [
+    # (headline, expected) — the tester-facing contract for THE JUDGMENT.
+    # Negation, both directions:
+    ("No survivors found after plane crash", "GRIM"),
+    ("War ends as ceasefire deal signed", "ROSY"),
+    ("Crisis averted as workers reach deal", "ROSY"),
+    ("Strikes end ceasefire in the strait", "GRIM"),
+    # Denial is NOT negation in news:
+    ("Man denies murdering wife near Bedford", "GRIM"),
+    # VADER fallback coverage beyond the domain lexicon:
+    ("Toddler found alive in hospital morgue", "ROSY"),
+    ("Beloved zoo panda celebrates birthday with crowd", "ROSY"),
+    ("Officials warn of horrific conditions in camps", "GRIM"),
+    ("Stunning comeback seals championship victory", "ROSY"),
+    # Domain lexicon staples:
+    ("Stocks soar to record high on tariff pause", "ROSY"),
+    ("Wildfire evacuation orders expand overnight", "GRIM"),
+    ("Hundreds died in ferry disaster, officials say", "GRIM"),
+    ("Hostage crisis ends peacefully after negotiations", "ROSY"),
+    ("Recession fears deepen as layoffs spread", "GRIM"),
+    # Zero-signal headlines stay GRIM by editorial rule:
+    ("Emmy nominations announced: see the full list", "GRIM"),
+    ("Committee schedules procedural vote for Thursday", "GRIM"),
+]
+
+
+class TestJudgeGolden(unittest.TestCase):
+
+    def test_golden_headlines(self):
+        misses = []
+        for title, want in GOLDEN_TONE:
+            tone = build.judge(title)
+            got = "ROSY" if tone > 0 else "GRIM"
+            if got != want:
+                misses.append(f"{title!r}: got {got} ({tone:+.2f}), want {want}")
+        self.assertEqual(misses, [])
+
+    def test_negation_flips_forward_and_backward(self):
+        self.assertLess(build.judge("no survivors"), 0)
+        self.assertGreater(build.judge("survivors found"), 0)
+        self.assertGreater(build.judge("war ends"), 0)
+        self.assertLess(build.judge("war begins"), 0)
+
+    def test_judge_returns_float_and_vader_defers_to_domain(self):
+        self.assertIsInstance(build.judge("anything at all"), float)
+        # "rescue" is domain (3); VADER must not double-count it.
+        self.assertEqual(build.judge("rescue"), 3.0)
+
+
 class TestFindImage(unittest.TestCase):
 
     def _img(self, extra, desc=""):

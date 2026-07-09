@@ -117,12 +117,18 @@ professional standards.
   office`) — strictly speaking it measures *administration* coverage density.
 - **FULL WIRE n%** — the same share across every unique story cluster fetched
   that run (typically 500+). Satire is excluded from both numbers.
-- **ROSY / GRIM** — word-lexicon tone judgment (`GRIM_WORDS` / `ROSY_WORDS`),
-  binary by editorial rule: a headline with a positive rosy-minus-grim score
+- **ROSY / GRIM** — three-layer tone judgment: a news-tuned domain lexicon
+  (`GRIM_WORDS` / `ROSY_WORDS`), a vendored general-sentiment lexicon
+  derived from VADER (MIT, ~3,900 words, `tone_vader.py`) as fallback, and
+  negation handling in both directions ("NO SURVIVORS" is grim, "WAR ENDS"
+  is rosy — and a *denial* deliberately negates nothing). Binary by
+  editorial rule: a headline with a positive rosy-minus-grim score
   is ROSY; everything else — including headlines the lexicons don't reach —
   is GRIM by default. The rosy share is computed over ALL top stories.
-  (Methodology note: before 2026-07-08 the stat excluded zero-signal
-  headlines from the denominator; the daily series changed definition then.)
+  (Methodology notes: before 2026-07-08 the stat excluded zero-signal
+  headlines from the denominator; on 2026-07-09 the scorer gained the
+  VADER layer and negation, lifting rosy detection — the daily series
+  shifted definition on both dates.)
 
 Both formulas are ~10 lines each (`wire_stats()`, `full_wire_dose()` in
 `build.py`); the feed list is right at the top of the same file. Academics
