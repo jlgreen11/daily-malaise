@@ -90,7 +90,7 @@ SITE_URL = "https://jlgreen11.github.io/daily-malaise/"   # canonical; swap on c
 # Analytics (optional): create a free GoatCounter account and put its site
 # code here (e.g. "dailymalaise"). Empty string = no analytics, no external
 # scripts — the page stays fully self-contained. See README.
-GOATCOUNTER_CODE = ""
+GOATCOUNTER_CODE = "malaise"
 
 # The direct-sold sponsorship slot — the only ad unit this paper will ever
 # run: one muted line under the dials. Empty name = no sponsor, no trace.

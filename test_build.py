@@ -849,8 +849,9 @@ class TestRenderContract(unittest.TestCase):
         self.assertIn('data-goatcounter="https://testcode.goatcounter.com/count"', page)
         self.assertIn("gc.zgo.at/count.js", page)
         self.assertIn("GOATCOUNTER", page)  # footer disclosure
-        # Default (empty code): no analytics anywhere on the page.
-        _, page = self.render()
+        # Empty code: no analytics anywhere on the page.
+        with mock.patch.object(build, "GOATCOUNTER_CODE", ""):
+            _, page = self.render()
         self.assertNotIn("goatcounter", page.lower())
         self.assertNotIn("gc.zgo.at", page)
 
