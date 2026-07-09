@@ -142,6 +142,17 @@ ${gc_head}<style>
   a.lead.sunny:hover { background: var(--green); color: var(--paper-inv); }
   .lead-src { font-size: 11px; margin-top: 8px; letter-spacing: 1.5px;
               color: var(--muted); }
+  .grudgebox { text-align: center; font-size: 11px; letter-spacing: 1px;
+               color: var(--muted); margin: -8px auto 24px; max-width: 760px; }
+  .grudgebox a { font-family: var(--font-head); font-size: 15px;
+                 letter-spacing: 0.2px; color: var(--ink); }
+  .gsrc { letter-spacing: 1px; }
+  body.gc-on .story .src .rosy, body.gc-on .story .src .grim,
+  body.gc-on .story .src .mal {
+    cursor: pointer; text-decoration: underline dotted;
+    text-underline-offset: 2px;
+  }
+  .src .appeal { color: var(--red); font-weight: bold; }
   .columns { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px;
               border-top: 1px solid var(--hairline); padding-top: 20px; }
   .sec { margin-bottom: 26px; }
@@ -199,6 +210,7 @@ ${gc_head}<style>
     </div>
 ${spark_html}${sponsor}  </div>
   <div class="leadbox" id="leadbox">${lead_html}</div>
+${grudge_html}
   <div class="columns">
     <div class="col" id="col0">${col0}</div>
     <div class="col" id="col1">${col1}</div>

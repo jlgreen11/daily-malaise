@@ -843,6 +843,30 @@ class TestRenderContract(unittest.TestCase):
         self.assertNotIn("PRESENTED BY", page)
         self.assertNotIn("sponsor", page.split("</style>")[1])
 
+    def test_grudge_box_toggles_on_tenure(self):
+        ranked = render_fixture()
+        ranked[3]["tenure_h"] = 20.5
+        _, page = self.render(ranked=ranked)
+        self.assertIn("LONGEST-HELD GRUDGE", page)
+        self.assertIn("ON THE PAGE 20 HOURS", page)
+        ranked2 = render_fixture()  # all fresh -> no box
+        _, page = self.render(ranked=ranked2)
+        self.assertNotIn("LONGEST-HELD GRUDGE", page)
+
+    def test_grudge_box_day_formatting(self):
+        ranked = render_fixture()
+        ranked[0]["tenure_h"] = 30.2
+        _, page = self.render(ranked=ranked)
+        self.assertIn("1 DAY, 6 HOURS", page)
+
+    def test_objections_ride_the_goatcounter_gate(self):
+        _, page = self.render()  # default code is set
+        self.assertIn("objection/", page)
+        self.assertIn("CONSIDERED WITHOUT ENTHUSIASM", page)
+        with mock.patch.object(build, "GOATCOUNTER_CODE", ""):
+            _, page = self.render()
+        self.assertNotIn("objection/", page)
+
     def test_goatcounter_only_when_configured(self):
         with mock.patch.object(build, "GOATCOUNTER_CODE", "testcode"):
             _, page = self.render()

@@ -1002,7 +1002,64 @@ GC_JS = """
     });
     mix.addEventListener("change", function () { gcount("dial/mix/" + mix.value); });
     dose.addEventListener("change", function () { gcount("dial/dose/" + dose.value); });
+    // The appeals desk: tap a story's tone tag to file an objection.
+    // Objections are beacons (objection/<claim>/<story-key>) — training
+    // data for the judge, considered without enthusiasm.
+    if (document.body && document.body.classList) {
+      document.body.classList.add("gc-on");
+    }
+    document.addEventListener("click", function (e) {
+      var tag = e.target;
+      if (!tag || !tag.classList || !tag.closest) return;
+      var isTag = tag.classList.contains("rosy") ||
+                  tag.classList.contains("grim") ||
+                  tag.classList.contains("mal");
+      var story = isTag && tag.closest(".story");
+      if (!story || tag.getAttribute("data-appealed")) return;
+      var a = story.querySelector("a[data-k]");
+      var key = a ? a.getAttribute("data-k") : "unknown";
+      var current = tag.classList.contains("rosy") ? "ROSY"
+        : tag.classList.contains("grim") ? "GRIM" : "MALAISE";
+      tag.setAttribute("data-appealed", "1");
+      tag.innerHTML = "OBJECTION &middot; CALL IT: ";
+      ["ROSY", "GRIM", "MALAISE"].filter(function (c) { return c !== current; })
+        .forEach(function (c, i) {
+          if (i > 0) tag.appendChild(document.createTextNode(" / "));
+          var b = document.createElement("a");
+          b.href = "#";
+          b.className = "appeal";
+          b.textContent = c;
+          b.addEventListener("click", function (ev) {
+            ev.preventDefault();
+            gcount("objection/" + c.toLowerCase() + "/" + key);
+            tag.textContent = "NOTED \u00b7 WILL BE CONSIDERED WITHOUT ENTHUSIASM";
+          });
+          tag.appendChild(b);
+        });
+    });
 """
+
+
+def grudge_html(ranked):
+    """The edition's LONGEST-HELD GRUDGE: the story that has survived on the
+    page longest, from the tenure clock in state.json — a stat only a paper
+    with a night editor can print. Shown once something has actually
+    endured (>= 6h); a fresh memory shows nothing."""
+    if not ranked:
+        return ""
+    top = max(ranked, key=lambda i: i.get("tenure_h", 0.0))
+    hours = int(top.get("tenure_h", 0.0))
+    if hours < 6:
+        return ""
+    if hours >= 24:
+        span = f"{hours // 24} DAY{'S' if hours >= 48 else ''}, {hours % 24} HOURS"
+    else:
+        span = f"{hours} HOURS"
+    return ('  <div class="grudgebox">LONGEST-HELD GRUDGE &middot; ON THE PAGE '
+            f'{span}: <a href="{html.escape(top["link"])}" '
+            f'data-k="{top.get("k", "")}" target="_blank" rel="noopener">'
+            f'{headline_case(top["title"])}</a> '
+            f'<span class="gsrc">({html.escape(top["source"])})</span></div>\n')
 
 
 def render(ranked, sources_ok, now, natural, nat_dose, prev_dose, history):
@@ -1151,6 +1208,7 @@ def render(ranked, sources_ok, now, natural, nat_dose, prev_dose, history):
         catchall=TOPIC_CATCHALL,
         spark_html=spark_html(history),
         sponsor=sponsor,
+        grudge_html=grudge_html(ranked),
         gc_head=gc_head,
         gc_js=gc_js,
         disclosure=disclosure,
