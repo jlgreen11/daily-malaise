@@ -253,8 +253,10 @@ ${grudge_html}
       var stale = document.createElement("div");
       stale.className = "stale";
       stale.textContent = "WIRE SILENT SINCE " +
-        new Date(BUILT * 1000).toUTCString().replace(" GMT", " UTC") +
-        " — SHOWING LAST KNOWN NEWS";
+        new Date(BUILT * 1000).toLocaleString("en-US", {
+          timeZone: "America/Chicago", weekday: "short", month: "short",
+          day: "numeric", hour: "numeric", minute: "2-digit",
+        }).toUpperCase() + " CT — SHOWING LAST KNOWN NEWS";
       document.body.insertBefore(stale, document.body.firstChild);
     }
 

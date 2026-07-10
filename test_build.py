@@ -136,7 +136,7 @@ def mk_state_entry(title, first_seen, peak_outlets=1, last_seen=None):
 
 
 def hist_entry(days_back, rosy=55, trump=30, fw=25):
-    d = (utcnow() - timedelta(days=days_back)).strftime("%Y-%m-%d")
+    d = build.editorial_date(utcnow() - timedelta(days=days_back))
     return {"d": d, "rosy": rosy, "trump": trump, "fw": fw}
 
 
@@ -339,9 +339,9 @@ class TestBailoutGate(TempDirCase, MainRunnerMixin):
         self.assert_no_rebuild()
 
     def test_ten_items_five_sources_rebuilds(self):
-        day_before = utcnow().strftime("%Y-%m-%d")
+        day_before = build.editorial_date(utcnow())
         rc = self.run_main(gate_feeds([2, 2, 2, 2, 2]))
-        day_after = utcnow().strftime("%Y-%m-%d")
+        day_after = build.editorial_date(utcnow())
         self.assertEqual(rc, 0)
         self.assertTrue(os.path.exists("index.html"))
         self.assertTrue(os.path.exists("feed.xml"))
@@ -415,7 +415,7 @@ class TestSaveLoadRoundTrip(TempDirCase):
 
     def test_round_trip_uncapped_atomic_same_day_replaced(self):
         now = utcnow()
-        today = now.strftime("%Y-%m-%d")
+        today = build.editorial_date(now)
         old_days = [hist_entry(i) for i in range(400, 0, -1)]
         stale_today = {"d": today, "rosy": 1, "trump": 2, "fw": 3}
         state = {"clusters": [], "lead": None,
@@ -557,7 +557,7 @@ class TestYesterdayDose(unittest.TestCase):
         self.assertIsNone(build.yesterday_dose(state, utcnow()))
 
     def test_missing_trump_key_returns_none(self):
-        y = (utcnow() - timedelta(days=1)).strftime("%Y-%m-%d")
+        y = build.editorial_date(utcnow() - timedelta(days=1))
         state = {"history": [{"d": y, "rosy": 50, "fw": 20}]}
         self.assertIsNone(build.yesterday_dose(state, utcnow()))
 
@@ -959,7 +959,7 @@ class TestWriteFeed(TempDirCase):
         self.assertEqual(len(items), 1 + len(self.ranked))
 
         stat = items[0]
-        self.assertEqual(stat.find("guid").text, f"stat-{now:%Y-%m-%d}")
+        self.assertEqual(stat.find("guid").text, f"stat-{build.editorial_date(now)}")
         self.assertEqual(stat.find("guid").get("isPermaLink"), "false")
         stat_when = parsedate_to_datetime(stat.find("pubDate").text)
         self.assertIsNotNone(stat_when.tzinfo)
@@ -978,8 +978,10 @@ class TestWriteFeed(TempDirCase):
 
     def test_stat_guid_stable_across_same_day_runs(self):
         now = utcnow()
-        t1 = now.replace(hour=3, minute=0, second=0, microsecond=0)
-        t2 = now.replace(hour=21, minute=45, second=0, microsecond=0)
+        # Both inside the SAME Central editorial day (12:00 and 23:00 UTC
+        # are 7am and 6pm CT regardless of DST).
+        t1 = now.replace(hour=12, minute=0, second=0, microsecond=0)
+        t2 = now.replace(hour=23, minute=0, second=0, microsecond=0)
 
         def stat_guid():
             ch = ET.parse("feed.xml").getroot().find("channel")
@@ -1034,7 +1036,7 @@ class TestTwoRunYesterday(TempDirCase, MainRunnerMixin):
         # Overnight: hand-roll the history entry back to yesterday's date.
         with open("state.json", encoding="utf-8") as f:
             state = json.load(f)
-        yesterday = (utcnow() - timedelta(days=1)).strftime("%Y-%m-%d")
+        yesterday = build.editorial_date(utcnow() - timedelta(days=1))
         for h in state["history"]:
             h["d"] = yesterday
         with open("state.json", "w", encoding="utf-8") as f:

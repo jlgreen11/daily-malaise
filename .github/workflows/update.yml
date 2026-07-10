@@ -63,6 +63,17 @@ jobs:
           done
           exit 1
 
+      # Self-healing alert: a successful publish closes any open wire-down
+      # issue — the alarm turns itself off when the presses resume.
+      - name: Close wire-down alert on recovery
+        if: github.event_name != 'pull_request' && success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for n in $(gh issue list --label wire-down --state open --json number --jq '.[].number'); do
+            gh issue close "$n" --comment "The presses resumed. Malaise continues on schedule."
+          done
+
       # A green bail-out run (feeds down -> keep last page) must not be
       # silent on the owner side. Probe what READERS see, not what git has:
       # the commit can be fresh while the Pages deployment is broken. The

@@ -36,6 +36,7 @@ import urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 from email.utils import format_datetime, parsedate_to_datetime
+from zoneinfo import ZoneInfo
 
 from tone_vader import VADER
 
@@ -86,6 +87,15 @@ POOL_SIZE = 150       # stories embedded for the client-side judgment mixer
 PAGE_STORIES = 60     # stories shown below the lead
 
 SITE_URL = "https://jlgreen11.github.io/daily-malaise/"   # canonical; swap on custom domain
+
+# The paper is anchored to US Central Time: displayed clocks and the
+# editorial day (history keys, YESTERDAY, the daily stat item) all roll at
+# Central midnight. Internals stay UTC.
+CENTRAL = ZoneInfo("America/Chicago")
+
+
+def editorial_date(now):
+    return now.astimezone(CENTRAL).strftime("%Y-%m-%d")
 
 # Analytics (optional): create a free GoatCounter account and put its site
 # code here (e.g. "dailymalaise"). Empty string = no analytics, no external
@@ -810,7 +820,7 @@ def yesterday_dose(state, now):
     """Yesterday's published front-page Trump share — only from a history
     entry dated EXACTLY yesterday. After an outage gap the stat is omitted
     rather than mislabeling a week-old number 'YESTERDAY'."""
-    want = (now - timedelta(days=1)).strftime("%Y-%m-%d")
+    want = editorial_date(now - timedelta(days=1))
     for h in reversed(state.get("history", [])):
         if h.get("d") == want:
             v = h.get("trump")
@@ -847,7 +857,7 @@ def save_state(state, tracked, lead, now, natural, nat_dose, fw_dose):
             lead_entry["since"] = prev.get("since", lead_entry["since"])
             lead_entry["score"] = prev.get("score", lead_entry["score"])
 
-    today = now.strftime("%Y-%m-%d")
+    today = editorial_date(now)
     history = [h for h in state.get("history", []) if h.get("d") != today]
     history.append({"d": today, "rosy": natural, "trump": nat_dose, "fw": fw_dose})
     # Uncapped on purpose (~15KB/yr): HISTORY_DAYS only windows the sparkline.
@@ -1157,7 +1167,9 @@ def render(ranked, sources_ok, now, natural, nat_dose, prev_dose, history):
     ]
     pool_json = json.dumps(pool, ensure_ascii=False).replace("</", "<\\/")
 
-    stamp = now.strftime("%A %B %d, %Y").upper() + now.strftime(" &middot; %H:%M UTC")
+    ct = now.astimezone(CENTRAL)
+    clock = ct.strftime("%I:%M %p").lstrip("0")
+    stamp = ct.strftime("%A %B %d, %Y").upper() + f" &middot; {clock} CT"
     src_line = " &middot; ".join(html.escape(s) for s in sources_ok)
     og_desc = html.escape(
         (lead["title"].upper() + " — " if lead else "")
@@ -1234,7 +1246,7 @@ def write_feed(ranked, now, natural, nat_dose, fw_dose):
     self_link.set("rel", "self")
     self_link.set("type", "application/rss+xml")
 
-    day = now.strftime("%Y-%m-%d")
+    day = editorial_date(now)
     stat = ET.SubElement(ch, "item")
     ET.SubElement(stat, "title").text = (
         f"TODAY'S WIRE: {100 - natural}% GRIM / {natural}% ROSY &#8212; "
@@ -1244,7 +1256,8 @@ def write_feed(ranked, now, natural, nat_dose, fw_dose):
     guid = ET.SubElement(stat, "guid", isPermaLink="false")
     guid.text = f"stat-{day}"
     ET.SubElement(stat, "pubDate").text = format_datetime(
-        now.replace(hour=0, minute=0, second=0, microsecond=0))
+        now.astimezone(CENTRAL).replace(hour=0, minute=0, second=0,
+                                        microsecond=0))
 
     for item in ranked[:FEED_ITEMS]:
         it = ET.SubElement(ch, "item")
@@ -1310,7 +1323,7 @@ def main():
     natural, nat_dose = wire_stats(on_page)
     prev_dose = yesterday_dose(state, now)
 
-    today = now.strftime("%Y-%m-%d")
+    today = editorial_date(now)
     history = ([h for h in state.get("history", []) if h.get("d") != today]
                + [{"d": today, "rosy": natural, "trump": nat_dose, "fw": fw_dose}])
 
