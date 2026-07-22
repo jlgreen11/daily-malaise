@@ -4,19 +4,25 @@
     <title>THE DAILY MALAISE</title>
     <link>https://jlgreen11.github.io/daily-malaise/</link>
     <description>The only front page you can tune. A crisis of confidence, every thirty minutes.</description>
-    <lastBuildDate>Wed, 22 Jul 2026 21:39:05 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 22 Jul 2026 23:10:57 +0000</lastBuildDate>
     <atom:link href="https://jlgreen11.github.io/daily-malaise/feed.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>TODAY'S WIRE: 95% GRIM / 5% ROSY — 26% TRUMP ON THE FRONT PAGE, 15% ON THE FULL WIRE</title>
+      <title>TODAY'S WIRE: 95% GRIM / 5% ROSY — 18% TRUMP ON THE FRONT PAGE, 14% ON THE FULL WIRE</title>
       <link>https://jlgreen11.github.io/daily-malaise/</link>
       <guid isPermaLink="false">stat-2026-07-22</guid>
       <pubDate>Wed, 22 Jul 2026 00:00:00 -0500</pubDate>
     </item>
     <item>
-      <title>US signs landmark nuclear deal with Saudi Arabia (BBC)</title>
-      <link>https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&amp;at_campaign=rss</link>
-      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Wed, 22 Jul 2026 21:31:25 +0000</pubDate>
+      <title>The U.S. Signs a Nuclear Pact With Saudi Arabia (NYT)</title>
+      <link>https://www.nytimes.com/2026/07/22/briefing/the-us-signs-a-nuclear-pact-with-saudi-arabia.html</link>
+      <guid isPermaLink="false">https://www.nytimes.com/2026/07/22/briefing/the-us-signs-a-nuclear-pact-with-saudi-arabia.html</guid>
+      <pubDate>Wed, 22 Jul 2026 22:20:30 +0000</pubDate>
+    </item>
+    <item>
+      <title>The Latest: House adopts $95 billion budget proposal to fund Iran war and other Trump priorities (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/world/europe/republicans-trump-white-house-iran-democrats-b3019878.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/world/europe/republicans-trump-white-house-iran-democrats-b3019878.html</guid>
+      <pubDate>Wed, 22 Jul 2026 23:03:10 +0000</pubDate>
     </item>
     <item>
       <title>Modelling scout linked to Epstein found dead in Paris (BBC)</title>
@@ -25,10 +31,34 @@
       <pubDate>Wed, 22 Jul 2026 18:21:55 +0000</pubDate>
     </item>
     <item>
+      <title>Trump claims without proof that soldiers killed in Iran war shared his view that Tehran can’t have a nuclear weapon (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/world/americas/us-politics/trump-soldiers-iran-nuclear-weapon-b3019741.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/us-politics/trump-soldiers-iran-nuclear-weapon-b3019741.html</guid>
+      <pubDate>Wed, 22 Jul 2026 18:58:24 +0000</pubDate>
+    </item>
+    <item>
+      <title>France records more than 5,700 excess deaths during historic early summer heat wave (FOX)</title>
+      <link>https://www.foxnews.com/world/france-records-5700-excess-deaths-historic-early-summer-heat-wave</link>
+      <guid isPermaLink="false">https://www.foxnews.com/world/france-records-5700-excess-deaths-historic-early-summer-heat-wave</guid>
+      <pubDate>Wed, 22 Jul 2026 20:30:46 +0000</pubDate>
+    </item>
+    <item>
+      <title>Minor drops lawsuit against Meta alleging social media harm of trial (THE HILL)</title>
+      <link>https://thehill.com/regulation/court-battles/5984501-minor-drops-lawsuit-against-meta-alleging-social-media-harm-of-trial/</link>
+      <guid isPermaLink="false">https://thehill.com/regulation/court-battles/5984501-minor-drops-lawsuit-against-meta-alleging-social-media-harm-of-trial/</guid>
+      <pubDate>Wed, 22 Jul 2026 21:54:11 +0000</pubDate>
+    </item>
+    <item>
       <title>Tropical Storm Bertha makes landfall east of New Orleans (ABC)</title>
       <link>https://abcnews.com/US/tropical-storm-bertha-begins-weakening-churns-off-gulf/story?id=134975115</link>
       <guid isPermaLink="false">https://abcnews.com/US/tropical-storm-bertha-begins-weakening-churns-off-gulf/story?id=134975115</guid>
       <pubDate>Wed, 22 Jul 2026 21:15:30 +0000</pubDate>
+    </item>
+    <item>
+      <title>US and Saudi Arabia announce nuclear cooperation deal (AL JAZEERA)</title>
+      <link>https://www.aljazeera.com/news/2026/7/22/us-and-saudi-arabia-announce-nuclear-cooperation-deal?traffic_source=rss</link>
+      <guid isPermaLink="false">https://www.aljazeera.com/news/2026/7/22/us-and-saudi-arabia-announce-nuclear-cooperation-deal?traffic_source=rss</guid>
+      <pubDate>Wed, 22 Jul 2026 21:30:25 +0000</pubDate>
     </item>
     <item>
       <title>Trump administration signs commercial nuclear deal with Saudi Arabia (NPR)</title>
@@ -37,34 +67,16 @@
       <pubDate>Wed, 22 Jul 2026 21:17:24 +0000</pubDate>
     </item>
     <item>
-      <title>France recorded 5,700 more deaths than usual during its historic June heat wave (FRANCE 24)</title>
-      <link>https://www.france24.com/en/france-recorded-5-700-more-deaths-than-usual-during-its-historic-june-heat-wave</link>
-      <guid isPermaLink="false">https://www.france24.com/en/france-recorded-5-700-more-deaths-than-usual-during-its-historic-june-heat-wave</guid>
-      <pubDate>Wed, 22 Jul 2026 21:20:55 +0000</pubDate>
+      <title>A year after deadly jet crash at Bangladesh school, families demand answers (BBC)</title>
+      <link>https://www.bbc.co.uk/news/articles/cx2j7jgg1z1o?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cx2j7jgg1z1o?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Wed, 22 Jul 2026 22:04:07 +0000</pubDate>
     </item>
     <item>
-      <title>Trump claims without proof that soldiers killed in Iran war shared his view that Tehran can’t have a nuclear weapon (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/americas/us-politics/trump-soldiers-iran-nuclear-weapon-b3019741.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/us-politics/trump-soldiers-iran-nuclear-weapon-b3019741.html</guid>
-      <pubDate>Wed, 22 Jul 2026 18:58:24 +0000</pubDate>
-    </item>
-    <item>
-      <title>OpenAI says model hacked another AI company (THE HILL)</title>
-      <link>https://thehill.com/newsletters/technology/5984397-openai-internal-testing-security-breach/</link>
-      <guid isPermaLink="false">https://thehill.com/newsletters/technology/5984397-openai-internal-testing-security-breach/</guid>
-      <pubDate>Wed, 22 Jul 2026 21:23:33 +0000</pubDate>
-    </item>
-    <item>
-      <title>Trump threatens Iranian infrastructure over Strait of Hormuz attacks (FRANCE 24)</title>
-      <link>https://www.france24.com/en/middle-east/20260722-trump-threatens-iranian-infrastructure-over-strait-of-hormuz-attacks</link>
-      <guid isPermaLink="false">https://www.france24.com/en/middle-east/20260722-trump-threatens-iranian-infrastructure-over-strait-of-hormuz-attacks</guid>
-      <pubDate>Wed, 22 Jul 2026 21:23:37 +0000</pubDate>
-    </item>
-    <item>
-      <title>Louvre Gallery Reopens After Brazen Jewel Heist (NYT)</title>
-      <link>https://www.nytimes.com/2026/07/22/france-louvre-reopening-jewels.html</link>
-      <guid isPermaLink="false">https://www.nytimes.com/2026/07/22/france-louvre-reopening-jewels.html</guid>
-      <pubDate>Wed, 22 Jul 2026 21:18:11 +0000</pubDate>
+      <title>Yemen’s Houthis claim attacks on Red Sea tankers as US launches 12th night of strikes on Iran – Middle East crisis live (GUARDIAN)</title>
+      <link>https://www.theguardian.com/world/live/2026/jul/23/us-iran-war-live-updates-strikes-houthis-red-sea-saudi-nuclear-deal-middle-east-crisis-latest-news</link>
+      <guid isPermaLink="false">https://www.theguardian.com/world/live/2026/jul/23/us-iran-war-live-updates-strikes-houthis-red-sea-saudi-nuclear-deal-middle-east-crisis-latest-news</guid>
+      <pubDate>Wed, 22 Jul 2026 22:57:10 +0000</pubDate>
     </item>
     <item>
       <title>Congo's Ebola outbreak has killed over 1,000 people (FRANCE 24)</title>
@@ -79,6 +91,12 @@
       <pubDate>Wed, 22 Jul 2026 21:34:26 +0000</pubDate>
     </item>
     <item>
+      <title>Trump and Iran trade threats to attack energy infrastructure as U.S. completes 11th night of strikes (CBS)</title>
+      <link>https://www.cbsnews.com/video/trump-iran-trade-threats-attack-energy-infrastructure/</link>
+      <guid isPermaLink="false">https://www.cbsnews.com/video/trump-iran-trade-threats-attack-energy-infrastructure/</guid>
+      <pubDate>Wed, 22 Jul 2026 21:28:26 +0000</pubDate>
+    </item>
+    <item>
       <title>Police formally investigate woman after Brit stabbed to death in French village (BBC)</title>
       <link>https://www.bbc.co.uk/news/articles/cwye7lv2endo?at_medium=RSS&amp;at_campaign=rss</link>
       <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cwye7lv2endo?at_medium=RSS&amp;at_campaign=rss</guid>
@@ -91,22 +109,40 @@
       <pubDate>Wed, 22 Jul 2026 20:54:26 +0000</pubDate>
     </item>
     <item>
+      <title>US and Saudi Arabia reach historic nuclear energy deal (DW)</title>
+      <link>https://www.dw.com/en/us-and-saudi-arabia-reach-historic-nuclear-energy-deal/a-78077629?maca=en-rss-en-all-1573-rdf</link>
+      <guid isPermaLink="false">https://www.dw.com/en/us-and-saudi-arabia-reach-historic-nuclear-energy-deal/a-78077629?maca=en-rss-en-all-1573-rdf</guid>
+      <pubDate>Wed, 22 Jul 2026 22:21:00 +0000</pubDate>
+    </item>
+    <item>
       <title>ChatGPT's medical advice nearly killed a man, lawsuit claims (CBS)</title>
       <link>https://www.cbsnews.com/news/chatgpt-dangerous-medical-advice-openai-lawsuit/</link>
       <guid isPermaLink="false">https://www.cbsnews.com/news/chatgpt-dangerous-medical-advice-openai-lawsuit/</guid>
       <pubDate>Wed, 22 Jul 2026 20:45:33 +0000</pubDate>
     </item>
     <item>
-      <title>Iran-US war latest: Tehran warns of ‘eye for an eye’ response if Trump attacks bridges and power plants (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/middle-east/iran-us-war-live-trump-pickaxe-mountain-hegseth-hormuz-b3019215.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/middle-east/iran-us-war-live-trump-pickaxe-mountain-hegseth-hormuz-b3019215.html</guid>
-      <pubDate>Wed, 22 Jul 2026 21:01:36 +0000</pubDate>
+      <title>OpenAI says model hacked another AI company (THE HILL)</title>
+      <link>https://thehill.com/newsletters/technology/5984397-openai-internal-testing-security-breach/</link>
+      <guid isPermaLink="false">https://thehill.com/newsletters/technology/5984397-openai-internal-testing-security-breach/</guid>
+      <pubDate>Wed, 22 Jul 2026 21:23:33 +0000</pubDate>
     </item>
     <item>
-      <title>US and Saudi Arabia reach historic nuclear energy deal (DW)</title>
-      <link>https://www.dw.com/en/us-and-saudi-arabia-reach-historic-nuclear-energy-deal/a-78077629?maca=en-rss-en-all-1573-rdf</link>
-      <guid isPermaLink="false">https://www.dw.com/en/us-and-saudi-arabia-reach-historic-nuclear-energy-deal/a-78077629?maca=en-rss-en-all-1573-rdf</guid>
-      <pubDate>Wed, 22 Jul 2026 20:51:00 +0000</pubDate>
+      <title>US launches new strikes as Iran warns of regional turmoil (AL JAZEERA)</title>
+      <link>https://www.aljazeera.com/news/2026/7/22/iran-warns-of-regional-turmoil-if-us-threats-and-attacks-do-not?traffic_source=rss</link>
+      <guid isPermaLink="false">https://www.aljazeera.com/news/2026/7/22/iran-warns-of-regional-turmoil-if-us-threats-and-attacks-do-not?traffic_source=rss</guid>
+      <pubDate>Wed, 22 Jul 2026 21:41:32 +0000</pubDate>
+    </item>
+    <item>
+      <title>'Godzilla vs. Kong' actress Kaylee Hottle cause of death revealed (FOX)</title>
+      <link>https://www.foxnews.com/entertainment/godzilla-vs-kong-actress-kaylee-hottle-cause-death-revealed</link>
+      <guid isPermaLink="false">https://www.foxnews.com/entertainment/godzilla-vs-kong-actress-kaylee-hottle-cause-death-revealed</guid>
+      <pubDate>Wed, 22 Jul 2026 21:34:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>Secret Service warns of high threat levels before White House Correspondents' Dinner (CBS)</title>
+      <link>https://www.cbsnews.com/news/secret-service-threat-levels-rescheduled-white-house-correspondents-dinner/</link>
+      <guid isPermaLink="false">https://www.cbsnews.com/news/secret-service-threat-levels-rescheduled-white-house-correspondents-dinner/</guid>
+      <pubDate>Wed, 22 Jul 2026 22:34:40 +0000</pubDate>
     </item>
     <item>
       <title>House GOP advances $95 billion plan to fund Iran war and SAVE America Act (CBS)</title>
@@ -115,28 +151,22 @@
       <pubDate>Wed, 22 Jul 2026 21:23:04 +0000</pubDate>
     </item>
     <item>
-      <title>Who is Mikhailo Drapaty, Ukraine's new commander-in-chief? (FRANCE 24)</title>
-      <link>https://www.france24.com/en/who-is-mikhailo-drapaty-ukraine-s-new-commander-in-chief</link>
-      <guid isPermaLink="false">https://www.france24.com/en/who-is-mikhailo-drapaty-ukraine-s-new-commander-in-chief</guid>
-      <pubDate>Wed, 22 Jul 2026 15:21:46 +0000</pubDate>
-    </item>
-    <item>
-      <title>Iran warns of ‘eye for an eye’ response if US follows through on Trump’s threats to destroy infrastructure – Middle East crisis live (GUARDIAN)</title>
-      <link>https://www.theguardian.com/world/live/2026/jul/22/middle-east-us-iran-war-trump-houthis-strait-of-hormuz-nuclear-pickaxe-mountain-latest-news-updates</link>
-      <guid isPermaLink="false">https://www.theguardian.com/world/live/2026/jul/22/middle-east-us-iran-war-trump-houthis-strait-of-hormuz-nuclear-pickaxe-mountain-latest-news-updates</guid>
-      <pubDate>Wed, 22 Jul 2026 21:12:22 +0000</pubDate>
-    </item>
-    <item>
-      <title>House Adopts $95 Billion G.O.P. Budget for Iran War (NYT)</title>
-      <link>https://www.nytimes.com/2026/07/22/us/politics/house-republicans-iran-budget-pentagon.html</link>
-      <guid isPermaLink="false">https://www.nytimes.com/2026/07/22/us/politics/house-republicans-iran-budget-pentagon.html</guid>
-      <pubDate>Wed, 22 Jul 2026 21:10:49 +0000</pubDate>
-    </item>
-    <item>
       <title>Mapped: Spain braces for 47C heatwave as tourist hotspots warned over record-breaking weather (INDEPENDENT)</title>
       <link>https://www.independent.co.uk/news/world/europe/spain-heatwave-wildfires-weather-b3019393.html</link>
       <guid isPermaLink="false">https://www.independent.co.uk/news/world/europe/spain-heatwave-wildfires-weather-b3019393.html</guid>
       <pubDate>Wed, 22 Jul 2026 17:07:46 +0000</pubDate>
+    </item>
+    <item>
+      <title>Machine learning professor breaks down OpenAI model's hack of another AI company (CBS)</title>
+      <link>https://www.cbsnews.com/video/machine-learning-professor-breaks-down-openai-unprecedented-cyber-incident/</link>
+      <guid isPermaLink="false">https://www.cbsnews.com/video/machine-learning-professor-breaks-down-openai-unprecedented-cyber-incident/</guid>
+      <pubDate>Wed, 22 Jul 2026 22:48:19 +0000</pubDate>
+    </item>
+    <item>
+      <title>Trump threatens to target Iran's bridges and power plants if Hormuz attacks persist (BBC)</title>
+      <link>https://www.bbc.co.uk/news/articles/cdrv0p37k8jo?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cdrv0p37k8jo?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Wed, 22 Jul 2026 22:17:54 +0000</pubDate>
     </item>
     <item>
       <title>British woman jailed for blackmail after accusing banker of rape in Hong Kong (BBC)</title>
@@ -145,52 +175,22 @@
       <pubDate>Wed, 22 Jul 2026 14:14:16 +0000</pubDate>
     </item>
     <item>
-      <title>Trump threatens to bomb a bridge or power plant for every ship Iran attacks (CBS)</title>
-      <link>https://www.cbsnews.com/live-updates/iran-war-us-trump-strait-hormuz-oil-prices-red-sea-houthis/</link>
-      <guid isPermaLink="false">https://www.cbsnews.com/live-updates/iran-war-us-trump-strait-hormuz-oil-prices-red-sea-houthis/</guid>
-      <pubDate>Wed, 22 Jul 2026 21:31:06 +0000</pubDate>
+      <title>Indian police cracked down on 'cockroach' protesters. They went home and made memes about it (BBC)</title>
+      <link>https://www.bbc.co.uk/news/articles/c3ek3l9gp7go?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/c3ek3l9gp7go?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Wed, 22 Jul 2026 22:13:24 +0000</pubDate>
     </item>
     <item>
-      <title>U.S. signs nuclear power agreement with Saudi Arabia (CNBC)</title>
-      <link>https://www.cnbc.com/2026/07/22/trump-saudi-arabia-nuclear-power.html</link>
-      <guid isPermaLink="false">https://www.cnbc.com/2026/07/22/trump-saudi-arabia-nuclear-power.html</guid>
-      <pubDate>Wed, 22 Jul 2026 21:33:53 +0000</pubDate>
+      <title>Doreen Broadnax, Famous (as Sparky D) for ’80s Rap Battle, Dies at 61 (NYT)</title>
+      <link>https://www.nytimes.com/2026/07/22/arts/music/sparky-d-dead.html</link>
+      <guid isPermaLink="false">https://www.nytimes.com/2026/07/22/arts/music/sparky-d-dead.html</guid>
+      <pubDate>Wed, 22 Jul 2026 22:08:33 +0000</pubDate>
     </item>
     <item>
-      <title>House Passes Defense Bill Amid Iran War Divide (NYT)</title>
-      <link>https://www.nytimes.com/2026/07/22/us/politics/house-defense-bill-iran-war.html</link>
-      <guid isPermaLink="false">https://www.nytimes.com/2026/07/22/us/politics/house-defense-bill-iran-war.html</guid>
-      <pubDate>Wed, 22 Jul 2026 21:29:47 +0000</pubDate>
-    </item>
-    <item>
-      <title>US and Saudi Arabia sign new nuclear agreement that could pave way for kingdom to enrich uranium (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/americas/saudi-arabia-donald-trump-marco-rubio-washington-energy-department-b3019858.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/saudi-arabia-donald-trump-marco-rubio-washington-energy-department-b3019858.html</guid>
-      <pubDate>Wed, 22 Jul 2026 21:24:57 +0000</pubDate>
-    </item>
-    <item>
-      <title>Support for Iran war among MAGA Trump voters plummets: Poll (THE HILL)</title>
-      <link>https://thehill.com/homenews/campaign/5984255-trump-voters-iran-war-poll/</link>
-      <guid isPermaLink="false">https://thehill.com/homenews/campaign/5984255-trump-voters-iran-war-poll/</guid>
-      <pubDate>Wed, 22 Jul 2026 21:04:19 +0000</pubDate>
-    </item>
-    <item>
-      <title>Gaza man returns home after family believed he was dead (AL JAZEERA)</title>
-      <link>https://www.aljazeera.com/video/newsfeed/2026/7/22/gaza-man-returns-home-after-family-believed-he-was-dead?traffic_source=rss</link>
-      <guid isPermaLink="false">https://www.aljazeera.com/video/newsfeed/2026/7/22/gaza-man-returns-home-after-family-believed-he-was-dead?traffic_source=rss</guid>
-      <pubDate>Wed, 22 Jul 2026 19:59:42 +0000</pubDate>
-    </item>
-    <item>
-      <title>What Trump's generic drug tariffs could mean, according to experts (CBS)</title>
-      <link>https://www.cbsnews.com/news/trump-generic-drug-tariffs-manufacturing/</link>
-      <guid isPermaLink="false">https://www.cbsnews.com/news/trump-generic-drug-tariffs-manufacturing/</guid>
-      <pubDate>Wed, 22 Jul 2026 19:58:59 +0000</pubDate>
-    </item>
-    <item>
-      <title>Coveted U.S. Nuclear Deal Is a Coup for Saudi Crown Prince (NYT)</title>
-      <link>https://www.nytimes.com/2026/07/22/world/middleeast/us-saudi-arabia-nuclear-deal.html</link>
-      <guid isPermaLink="false">https://www.nytimes.com/2026/07/22/world/middleeast/us-saudi-arabia-nuclear-deal.html</guid>
-      <pubDate>Wed, 22 Jul 2026 20:54:10 +0000</pubDate>
+      <title>Blocked by censors, China's animal lovers take fight against abuse offline and overseas (BBC)</title>
+      <link>https://www.bbc.co.uk/news/articles/cqx7wd3x420o?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cqx7wd3x420o?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Wed, 22 Jul 2026 22:03:43 +0000</pubDate>
     </item>
   </channel>
 </rss>
