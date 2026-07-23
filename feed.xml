@@ -4,19 +4,37 @@
     <title>THE DAILY MALAISE</title>
     <link>https://jlgreen11.github.io/daily-malaise/</link>
     <description>The only front page you can tune. A crisis of confidence, every thirty minutes.</description>
-    <lastBuildDate>Thu, 23 Jul 2026 10:01:45 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 23 Jul 2026 11:55:55 +0000</lastBuildDate>
     <atom:link href="https://jlgreen11.github.io/daily-malaise/feed.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>TODAY'S WIRE: 89% GRIM / 11% ROSY — 3% TRUMP ON THE FRONT PAGE, 11% ON THE FULL WIRE</title>
+      <title>TODAY'S WIRE: 89% GRIM / 11% ROSY — 8% TRUMP ON THE FRONT PAGE, 9% ON THE FULL WIRE</title>
       <link>https://jlgreen11.github.io/daily-malaise/</link>
       <guid isPermaLink="false">stat-2026-07-23</guid>
       <pubDate>Thu, 23 Jul 2026 00:00:00 -0500</pubDate>
     </item>
     <item>
-      <title>US signs landmark nuclear deal with Saudi Arabia (BBC)</title>
-      <link>https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&amp;at_campaign=rss</link>
-      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cj03r59z73po?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Thu, 23 Jul 2026 09:17:51 +0000</pubDate>
+      <title>U.S. Reaches Landmark Nuclear Deal With Saudi Arabia (TIME)</title>
+      <link>https://time.com/article/2026/07/23/us-saudi-arabia-nuclear-deal-explainer/</link>
+      <guid isPermaLink="false">https://time.com/article/2026/07/23/us-saudi-arabia-nuclear-deal-explainer/</guid>
+      <pubDate>Thu, 23 Jul 2026 11:00:19 +0000</pubDate>
+    </item>
+    <item>
+      <title>Trump's nuclear deal with Saudis jettisons longstanding US demands (BBC)</title>
+      <link>https://www.bbc.co.uk/news/articles/cz05lx0xpero?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cz05lx0xpero?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Thu, 23 Jul 2026 11:13:14 +0000</pubDate>
+    </item>
+    <item>
+      <title>Thailand: 5 soldiers killed in attack on security checkpoint (DW)</title>
+      <link>https://www.dw.com/en/thailand-5-soldiers-killed-in-attack-on-security-checkpoint/a-78082955?maca=en-rss-en-all-1573-rdf</link>
+      <guid isPermaLink="false">https://www.dw.com/en/thailand-5-soldiers-killed-in-attack-on-security-checkpoint/a-78082955?maca=en-rss-en-all-1573-rdf</guid>
+      <pubDate>Thu, 23 Jul 2026 10:32:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Houthis claim strikes on Saudi oil tankers as Rubio says Iran not ready to make a deal (CNBC)</title>
+      <link>https://www.cnbc.com/2026/07/23/iran-war-us-trump-houthis-red-sea-oil.html</link>
+      <guid isPermaLink="false">https://www.cnbc.com/2026/07/23/iran-war-us-trump-houthis-red-sea-oil.html</guid>
+      <pubDate>Thu, 23 Jul 2026 11:25:41 +0000</pubDate>
     </item>
     <item>
       <title>Houthis claim attack on oil tankers as US launches more strikes on Iran (BBC)</title>
@@ -25,172 +43,154 @@
       <pubDate>Thu, 23 Jul 2026 03:48:28 +0000</pubDate>
     </item>
     <item>
+      <title>More than 20,000 evacuated after intense wildfire in France (GUARDIAN)</title>
+      <link>https://www.theguardian.com/world/2026/jul/23/people-evacuated-intense-wildfire-saumos-france</link>
+      <guid isPermaLink="false">https://www.theguardian.com/world/2026/jul/23/people-evacuated-intense-wildfire-saumos-france</guid>
+      <pubDate>Thu, 23 Jul 2026 11:46:02 +0000</pubDate>
+    </item>
+    <item>
+      <title>EU agrees on new round of sanctions against Russia (DW)</title>
+      <link>https://www.dw.com/en/eu-agrees-on-new-round-of-sanctions-against-russia/a-78081102?maca=en-rss-en-all-1573-rdf</link>
+      <guid isPermaLink="false">https://www.dw.com/en/eu-agrees-on-new-round-of-sanctions-against-russia/a-78081102?maca=en-rss-en-all-1573-rdf</guid>
+      <pubDate>Thu, 23 Jul 2026 10:14:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Iran-US war latest: Rubio claims Tehran is ‘begging for a deal’ as Houthis strike Saudi tankers in Red Sea (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/world/middle-east/iran-us-war-live-trump-nuclear-sites-houthis-oil-tankers-b3019958.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/world/middle-east/iran-us-war-live-trump-nuclear-sites-houthis-oil-tankers-b3019958.html</guid>
+      <pubDate>Thu, 23 Jul 2026 10:29:49 +0000</pubDate>
+    </item>
+    <item>
+      <title>A new threat by Yemen's Houthis could widen the Iran war and put another trade chokepoint at risk (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/world/europe/saudi-arabia-yemen-red-sea-iran-cairo-b3020201.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/world/europe/saudi-arabia-yemen-red-sea-iran-cairo-b3020201.html</guid>
+      <pubDate>Thu, 23 Jul 2026 11:28:58 +0000</pubDate>
+    </item>
+    <item>
       <title>Yemen’s Houthis claim attacks on Red Sea tankers as US launches 12th night of strikes on Iran – Middle East crisis live (GUARDIAN)</title>
       <link>https://www.theguardian.com/world/live/2026/jul/23/us-iran-war-live-updates-strikes-houthis-red-sea-saudi-nuclear-deal-middle-east-crisis-latest-news</link>
       <guid isPermaLink="false">https://www.theguardian.com/world/live/2026/jul/23/us-iran-war-live-updates-strikes-houthis-red-sea-saudi-nuclear-deal-middle-east-crisis-latest-news</guid>
-      <pubDate>Thu, 23 Jul 2026 09:32:50 +0000</pubDate>
+      <pubDate>Thu, 23 Jul 2026 11:49:11 +0000</pubDate>
     </item>
     <item>
-      <title>Scottish police officer was rapist who attacked women over 14 years (GUARDIAN)</title>
-      <link>https://www.theguardian.com/society/2026/jul/23/scottish-police-officer-alan-greer-rapist-over-14-years</link>
-      <guid isPermaLink="false">https://www.theguardian.com/society/2026/jul/23/scottish-police-officer-alan-greer-rapist-over-14-years</guid>
-      <pubDate>Thu, 23 Jul 2026 07:29:18 +0000</pubDate>
+      <title>Google fined $1 billion by EU over its Play app store and search engine (CBS)</title>
+      <link>https://www.cbsnews.com/news/google-fine-1-billion-eu-play-app-store-search-engine-antitrust/</link>
+      <guid isPermaLink="false">https://www.cbsnews.com/news/google-fine-1-billion-eu-play-app-store-search-engine-antitrust/</guid>
+      <pubDate>Thu, 23 Jul 2026 10:44:29 +0000</pubDate>
     </item>
     <item>
-      <title>Iran-US war latest: UK withdraws embassy staff from Tehran as conflict widens with Houthi strikes in Red Sea (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/middle-east/iran-us-war-live-trump-nuclear-sites-houthis-oil-tankers-b3019958.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/middle-east/iran-us-war-live-trump-nuclear-sites-houthis-oil-tankers-b3019958.html</guid>
-      <pubDate>Thu, 23 Jul 2026 08:17:05 +0000</pubDate>
+      <title>More than 1,000 people killed in Ebola outbreak (SKY)</title>
+      <link>https://news.sky.com/story/ebola-more-than-1000-people-killed-in-dr-congo-outbreak-13566201</link>
+      <guid isPermaLink="false">https://news.sky.com/story/ebola-more-than-1000-people-killed-in-dr-congo-outbreak-13566201</guid>
+      <pubDate>Thu, 23 Jul 2026 08:27:01 +0000</pubDate>
     </item>
     <item>
-      <title>EasyJet profits plunge 70% as fuel costs soar amid Iran war (GUARDIAN)</title>
-      <link>https://www.theguardian.com/business/2026/jul/23/easyjet-profits-plunge-fuel-costs-soar-iran-war</link>
-      <guid isPermaLink="false">https://www.theguardian.com/business/2026/jul/23/easyjet-profits-plunge-fuel-costs-soar-iran-war</guid>
-      <pubDate>Thu, 23 Jul 2026 08:24:50 +0000</pubDate>
+      <title>Several killed as Ukraine, Russia trade attacks deep behind the front line (AL JAZEERA)</title>
+      <link>https://www.aljazeera.com/news/2026/7/23/several-killed-as-ukraine-russia-trade-attacks-deep-behind-the-front-line?traffic_source=rss</link>
+      <guid isPermaLink="false">https://www.aljazeera.com/news/2026/7/23/several-killed-as-ukraine-russia-trade-attacks-deep-behind-the-front-line?traffic_source=rss</guid>
+      <pubDate>Thu, 23 Jul 2026 11:36:32 +0000</pubDate>
     </item>
     <item>
-      <title>Five soldiers killed in southern Thailand checkpoint attack (AL JAZEERA)</title>
-      <link>https://www.aljazeera.com/news/2026/7/23/five-soldiers-killed-in-southern-thailand-checkpoint-attack?traffic_source=rss</link>
-      <guid isPermaLink="false">https://www.aljazeera.com/news/2026/7/23/five-soldiers-killed-in-southern-thailand-checkpoint-attack?traffic_source=rss</guid>
-      <pubDate>Thu, 23 Jul 2026 03:53:06 +0000</pubDate>
+      <title>Secret Service warns threat level ‘off the charts’ as US government officials targeted in 10,000 cases (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/world/americas/us-politics/secret-service-threat-level-trump-b3020104.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/us-politics/secret-service-threat-level-trump-b3020104.html</guid>
+      <pubDate>Thu, 23 Jul 2026 09:58:37 +0000</pubDate>
     </item>
     <item>
-      <title>BBC visits Iran school where strike killed 120 children (BBC US)</title>
+      <title>Thousands evacuated in France fires (BBC)</title>
+      <link>https://www.bbc.co.uk/news/articles/cy4kmr82n44o?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cy4kmr82n44o?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Thu, 23 Jul 2026 10:53:44 +0000</pubDate>
+    </item>
+    <item>
+      <title>Former CIA chief James Woolsey dies after wife says Havana syndrome took its toll (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/world/americas/us-politics/james-woolsey-cia-havana-syndrome-aldrich-ames-b3020165.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/us-politics/james-woolsey-cia-havana-syndrome-aldrich-ames-b3020165.html</guid>
+      <pubDate>Thu, 23 Jul 2026 10:53:42 +0000</pubDate>
+    </item>
+    <item>
+      <title>Open AI models go rogue, ecape and and hack online AI sharing hub (FRANCE 24)</title>
+      <link>https://www.france24.com/en/open-ai-models-go-rogue-ecape-and-and-hack-online-ai-sharing-hub</link>
+      <guid isPermaLink="false">https://www.france24.com/en/open-ai-models-go-rogue-ecape-and-and-hack-online-ai-sharing-hub</guid>
+      <pubDate>Thu, 23 Jul 2026 10:52:43 +0000</pubDate>
+    </item>
+    <item>
+      <title>'What was their crime?': BBC visits Iran school where strike killed 120 children (BBC US)</title>
       <link>https://www.bbc.co.uk/news/articles/cewrx0ldlkko?at_medium=RSS&amp;at_campaign=rss</link>
       <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cewrx0ldlkko?at_medium=RSS&amp;at_campaign=rss</guid>
       <pubDate>Thu, 23 Jul 2026 04:49:25 +0000</pubDate>
     </item>
     <item>
-      <title>‘Back from the dead’: The continuing agony over Gaza’s 9,500 missing people (AL JAZEERA)</title>
-      <link>https://www.aljazeera.com/features/2026/7/23/back-from-the-dead-the-continuing-agony-of-gazas-9500-missing-persons?traffic_source=rss</link>
-      <guid isPermaLink="false">https://www.aljazeera.com/features/2026/7/23/back-from-the-dead-the-continuing-agony-of-gazas-9500-missing-persons?traffic_source=rss</guid>
-      <pubDate>Thu, 23 Jul 2026 08:57:19 +0000</pubDate>
+      <title>Gate of Tears: How key shipping route Bab al-Mandab became next front in the US-Iran war (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/world/middle-east/iran-bab-al-mandab-strait-yemen-saudi-houthis-b3020001.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/world/middle-east/iran-bab-al-mandab-strait-yemen-saudi-houthis-b3020001.html</guid>
+      <pubDate>Thu, 23 Jul 2026 11:35:12 +0000</pubDate>
     </item>
     <item>
-      <title>Around 12,000 people evacuated in France fires (BBC)</title>
-      <link>https://www.bbc.co.uk/news/articles/cy4kmr82n44o?at_medium=RSS&amp;at_campaign=rss</link>
-      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cy4kmr82n44o?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Thu, 23 Jul 2026 08:56:37 +0000</pubDate>
+      <title>Dubai offers tourists benefits worth £610 as numbers plummet amid Iran war (GUARDIAN)</title>
+      <link>https://www.theguardian.com/world/2026/jul/23/dubai-offers-tourists-benefits</link>
+      <guid isPermaLink="false">https://www.theguardian.com/world/2026/jul/23/dubai-offers-tourists-benefits</guid>
+      <pubDate>Thu, 23 Jul 2026 11:28:24 +0000</pubDate>
     </item>
     <item>
-      <title>OpenAI's Hugging Face breach exposes AI's next safety challenge (AXIOS)</title>
-      <link>https://www.axios.com/2026/07/23/openai-hugging-face-cyber-hacks-testing</link>
-      <guid isPermaLink="false">https://www.axios.com/2026/07/23/openai-hugging-face-cyber-hacks-testing</guid>
-      <pubDate>Thu, 23 Jul 2026 08:55:06 +0000</pubDate>
+      <title>Trump reignites tariff war despite legal losses, GOP jitters (THE HILL)</title>
+      <link>https://thehill.com/newsletters/morning-report/5985079-donald-trump-tariff-war/</link>
+      <guid isPermaLink="false">https://thehill.com/newsletters/morning-report/5985079-donald-trump-tariff-war/</guid>
+      <pubDate>Thu, 23 Jul 2026 11:23:06 +0000</pubDate>
     </item>
     <item>
-      <title>The mystery surrounding Nolan Wells’ death just took another chilling turn (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/americas/nolan-wells-death-autopsy-result-ben-crump-b3020093.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/nolan-wells-death-autopsy-result-ben-crump-b3020093.html</guid>
-      <pubDate>Thu, 23 Jul 2026 09:15:56 +0000</pubDate>
+      <title>AI stocks are echoing a 1990s market split. JPMorgan warns the next few weeks are critical. (MARKETWATCH)</title>
+      <link>https://www.marketwatch.com/story/ai-stocks-are-echoing-a-1990s-market-split-jpmorgan-warns-the-next-few-weeks-are-critical-408ed725?mod=mw_rss_topstories</link>
+      <guid isPermaLink="false">https://www.marketwatch.com/story/ai-stocks-are-echoing-a-1990s-market-split-jpmorgan-warns-the-next-few-weeks-are-critical-408ed725?mod=mw_rss_topstories</guid>
+      <pubDate>Thu, 23 Jul 2026 11:01:01 +0000</pubDate>
     </item>
     <item>
-      <title>Marco Rubio says ‘new ideas’ needed to end war in Ukraine after meeting Russia’s Lavrov – Europe live (GUARDIAN)</title>
-      <link>https://www.theguardian.com/world/live/2026/jul/23/eu-sanctions-russia-ukraine-marcio-rubio-sergei-lavrov-kallas-google-latest-news-updates</link>
-      <guid isPermaLink="false">https://www.theguardian.com/world/live/2026/jul/23/eu-sanctions-russia-ukraine-marcio-rubio-sergei-lavrov-kallas-google-latest-news-updates</guid>
-      <pubDate>Thu, 23 Jul 2026 09:09:42 +0000</pubDate>
+      <title>Ukraine may already be winning World War III for an oblivious West (THE HILL)</title>
+      <link>https://thehill.com/opinion/national-security/5983182-ukraine-wins-wwiii/</link>
+      <guid isPermaLink="false">https://thehill.com/opinion/national-security/5983182-ukraine-wins-wwiii/</guid>
+      <pubDate>Thu, 23 Jul 2026 11:00:01 +0000</pubDate>
     </item>
     <item>
-      <title>Donald Trump’s Saudi deal risks nuclear proliferation (ECONOMIST)</title>
-      <link>https://www.economist.com/leaders/2026/07/23/donald-trumps-saudi-deal-risks-nuclear-proliferation</link>
-      <guid isPermaLink="false">https://www.economist.com/leaders/2026/07/23/donald-trumps-saudi-deal-risks-nuclear-proliferation</guid>
-      <pubDate>Thu, 23 Jul 2026 08:55:43 +0000</pubDate>
+      <title>U.S. nuclear power deal with Saudi Arabia faces criticism in Israel (NPR)</title>
+      <link>https://www.npr.org/2026/07/23/nx-s1-5904327/us-saudi-arabia-iran</link>
+      <guid isPermaLink="false">https://www.npr.org/2026/07/23/nx-s1-5904327/us-saudi-arabia-iran</guid>
+      <pubDate>Thu, 23 Jul 2026 10:55:45 +0000</pubDate>
     </item>
     <item>
-      <title>U.S. carries out 12th straight night of strikes as threats to oil trade deepen (CBS)</title>
-      <link>https://www.cbsnews.com/live-updates/iran-war-us-trump-strait-hormuz-oil-prices-red-sea-houthis/</link>
-      <guid isPermaLink="false">https://www.cbsnews.com/live-updates/iran-war-us-trump-strait-hormuz-oil-prices-red-sea-houthis/</guid>
-      <pubDate>Thu, 23 Jul 2026 09:39:33 +0000</pubDate>
+      <title>Police admit ‘missed opportunity’ before Manchester synagogue attack (GUARDIAN)</title>
+      <link>https://www.theguardian.com/uk-news/2026/jul/23/police-admit-missed-opportunity-before-manchester-synagogue-attack</link>
+      <guid isPermaLink="false">https://www.theguardian.com/uk-news/2026/jul/23/police-admit-missed-opportunity-before-manchester-synagogue-attack</guid>
+      <pubDate>Thu, 23 Jul 2026 10:30:05 +0000</pubDate>
     </item>
     <item>
-      <title>Ukraine-Russia war latest: Zelensky claims there is ‘toxic atmosphere’ in Putin’s inner circle after battlefield failures (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/europe/ukraine-russia-war-live-putin-zelensky-drone-raids-wildberries-b3019965.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/europe/ukraine-russia-war-live-putin-zelensky-drone-raids-wildberries-b3019965.html</guid>
-      <pubDate>Thu, 23 Jul 2026 09:47:17 +0000</pubDate>
+      <title>Why health officials do not have a good handle on the current Ebola outbreak (NPR)</title>
+      <link>https://www.npr.org/2026/07/23/g-s1-134959/ebola-outbreak-democratic-republic-congo</link>
+      <guid isPermaLink="false">https://www.npr.org/2026/07/23/g-s1-134959/ebola-outbreak-democratic-republic-congo</guid>
+      <pubDate>Thu, 23 Jul 2026 11:23:44 +0000</pubDate>
     </item>
     <item>
-      <title>Iran, Houthis strike tankers as US bombing continues: What’s the latest? (AL JAZEERA)</title>
-      <link>https://www.aljazeera.com/news/2026/7/23/iran-houthis-strike-tankers-as-us-bombing-continues-whats-the-latest?traffic_source=rss</link>
-      <guid isPermaLink="false">https://www.aljazeera.com/news/2026/7/23/iran-houthis-strike-tankers-as-us-bombing-continues-whats-the-latest?traffic_source=rss</guid>
-      <pubDate>Thu, 23 Jul 2026 09:20:47 +0000</pubDate>
+      <title>US and Saudi Arabia reach a multi-billion dollar civilian nuclear deal (FRANCE 24)</title>
+      <link>https://www.france24.com/en/us-and-saudi-arabia-reach-a-multi-billion-dollar-civilian-nuclear-deal</link>
+      <guid isPermaLink="false">https://www.france24.com/en/us-and-saudi-arabia-reach-a-multi-billion-dollar-civilian-nuclear-deal</guid>
+      <pubDate>Thu, 23 Jul 2026 09:04:15 +0000</pubDate>
     </item>
     <item>
-      <title>Arkansas cop tragically dies saving fiancée's life just hours after proposing (FOX)</title>
-      <link>https://www.foxnews.com/us/arkansas-cop-tragically-dies-saving-fiancees-life-hours-after-proposing</link>
-      <guid isPermaLink="false">https://www.foxnews.com/us/arkansas-cop-tragically-dies-saving-fiancees-life-hours-after-proposing</guid>
-      <pubDate>Thu, 23 Jul 2026 06:48:46 +0000</pubDate>
+      <title>Could Iran become America's next 'forever war'? (DW)</title>
+      <link>https://www.dw.com/en/could-iran-become-america-s-next-forever-war/a-78081276?maca=en-rss-en-all-1573-rdf</link>
+      <guid isPermaLink="false">https://www.dw.com/en/could-iran-become-america-s-next-forever-war/a-78081276?maca=en-rss-en-all-1573-rdf</guid>
+      <pubDate>Thu, 23 Jul 2026 10:16:00 +0000</pubDate>
     </item>
     <item>
-      <title>Great Barrier Reef faces mass bleaching and collapse as El Nino builds record strength, scientists warn (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/climate-change/news/super-el-nino-great-barrier-reef-bleaching-b3019420.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/climate-change/news/super-el-nino-great-barrier-reef-bleaching-b3019420.html</guid>
-      <pubDate>Thu, 23 Jul 2026 04:31:09 +0000</pubDate>
+      <title>Nolan Wells' hometown officials rally behind sheriff after 'derelict in their duties' attack (FOX)</title>
+      <link>https://www.foxnews.com/us/nolan-wells-hometown-officials-rally-behind-sheriff-derelict-duties-attack</link>
+      <guid isPermaLink="false">https://www.foxnews.com/us/nolan-wells-hometown-officials-rally-behind-sheriff-derelict-duties-attack</guid>
+      <pubDate>Thu, 23 Jul 2026 10:00:21 +0000</pubDate>
     </item>
     <item>
-      <title>Deadly police shooting of Black man sends angry crowds marching on Wisconsin Capitol (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/americas/madison-police-shooting-protests-patterson-b3020002.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/madison-police-shooting-protests-patterson-b3020002.html</guid>
-      <pubDate>Thu, 23 Jul 2026 07:24:52 +0000</pubDate>
-    </item>
-    <item>
-      <title>Indian activist Wangchuk sets conditions to end hunger strike (AL JAZEERA)</title>
-      <link>https://www.aljazeera.com/video/newsfeed/2026/7/23/indian-activist-wangchuk-sets-conditions-to-end-hunger-strike?traffic_source=rss</link>
-      <guid isPermaLink="false">https://www.aljazeera.com/video/newsfeed/2026/7/23/indian-activist-wangchuk-sets-conditions-to-end-hunger-strike?traffic_source=rss</guid>
-      <pubDate>Thu, 23 Jul 2026 08:19:23 +0000</pubDate>
-    </item>
-    <item>
-      <title>Top US and Russian diplomats discuss Ukraine war in Manila (AL JAZEERA)</title>
-      <link>https://www.aljazeera.com/news/2026/7/23/top-us-and-russian-diplomats-discuss-ukraine-war-in-manila?traffic_source=rss</link>
-      <guid isPermaLink="false">https://www.aljazeera.com/news/2026/7/23/top-us-and-russian-diplomats-discuss-ukraine-war-in-manila?traffic_source=rss</guid>
-      <pubDate>Thu, 23 Jul 2026 07:18:22 +0000</pubDate>
-    </item>
-    <item>
-      <title>Houthis claim strikes on Saudi Arabian oil tankers as Rubio says Iran not ready to make a deal (CNBC)</title>
-      <link>https://www.cnbc.com/2026/07/23/iran-war-us-trump-houthis-red-sea-oil.html</link>
-      <guid isPermaLink="false">https://www.cnbc.com/2026/07/23/iran-war-us-trump-houthis-red-sea-oil.html</guid>
-      <pubDate>Thu, 23 Jul 2026 08:15:43 +0000</pubDate>
-    </item>
-    <item>
-      <title>Russia's businesses under strain from Ukraine's attacks on Wildberries (BBC)</title>
-      <link>https://www.bbc.co.uk/news/articles/cvg9n2y61w6o?at_medium=RSS&amp;at_campaign=rss</link>
-      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cvg9n2y61w6o?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Thu, 23 Jul 2026 06:15:36 +0000</pubDate>
-    </item>
-    <item>
-      <title>Rubio meets Russia’s Lavrov as US bid to help end war in Ukraine (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/europe/rubio-lavrov-ukraine-russia-war-b3020003.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/europe/rubio-lavrov-ukraine-russia-war-b3020003.html</guid>
-      <pubDate>Thu, 23 Jul 2026 07:13:51 +0000</pubDate>
-    </item>
-    <item>
-      <title>Photos: Gaza’s shelter crisis (AL JAZEERA)</title>
-      <link>https://www.aljazeera.com/gallery/2026/7/23/photos-gazas-shelter-crisis?traffic_source=rss</link>
-      <guid isPermaLink="false">https://www.aljazeera.com/gallery/2026/7/23/photos-gazas-shelter-crisis?traffic_source=rss</guid>
-      <pubDate>Thu, 23 Jul 2026 08:12:47 +0000</pubDate>
-    </item>
-    <item>
-      <title>Nicaragua’s President Daniel Ortega scraps elections (ECONOMIST)</title>
-      <link>https://www.economist.com/the-americas/2026/07/23/nicaraguas-president-daniel-ortega-scraps-elections</link>
-      <guid isPermaLink="false">https://www.economist.com/the-americas/2026/07/23/nicaraguas-president-daniel-ortega-scraps-elections</guid>
-      <pubDate>Thu, 23 Jul 2026 09:33:39 +0000</pubDate>
-    </item>
-    <item>
-      <title>Peru: 10 killed in housefire in capital Lima (DW)</title>
-      <link>https://www.dw.com/en/peru-10-killed-in-housefire-in-capital-lima/a-78078367?maca=en-rss-en-all-1573-rdf</link>
-      <guid isPermaLink="false">https://www.dw.com/en/peru-10-killed-in-housefire-in-capital-lima/a-78078367?maca=en-rss-en-all-1573-rdf</guid>
-      <pubDate>Thu, 23 Jul 2026 05:27:01 +0000</pubDate>
-    </item>
-    <item>
-      <title>Women arrested by immigration agents for honking their horn sue government for $2.5m (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/americas/immgiration-agents-lawsuit-charlotte-north-carolina-b3019283.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/immgiration-agents-lawsuit-charlotte-north-carolina-b3019283.html</guid>
-      <pubDate>Thu, 23 Jul 2026 07:13:25 +0000</pubDate>
-    </item>
-    <item>
-      <title>Xbox gamer hits Microsoft with lawsuit saying it should refund tariff hike after claiming refund from the government (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/americas/xbox-microsoft-tariff-refund-lawsuit-b3019807.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/xbox-microsoft-tariff-refund-lawsuit-b3019807.html</guid>
-      <pubDate>Thu, 23 Jul 2026 09:19:17 +0000</pubDate>
+      <title>US-Saudi nuclear deal faces swift backlash on multiple fronts (THE HILL)</title>
+      <link>https://thehill.com/homenews/administration/5984553-us-saudi-nuclear-deal-faces-swift-backlash-on-multiple-fronts/</link>
+      <guid isPermaLink="false">https://thehill.com/homenews/administration/5984553-us-saudi-nuclear-deal-faces-swift-backlash-on-multiple-fronts/</guid>
+      <pubDate>Thu, 23 Jul 2026 10:00:01 +0000</pubDate>
     </item>
   </channel>
 </rss>
