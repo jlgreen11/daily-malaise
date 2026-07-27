@@ -4,13 +4,19 @@
     <title>THE DAILY MALAISE</title>
     <link>https://jlgreen11.github.io/daily-malaise/</link>
     <description>The only front page you can tune. A crisis of confidence, every thirty minutes.</description>
-    <lastBuildDate>Mon, 27 Jul 2026 05:28:22 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 27 Jul 2026 08:56:20 +0000</lastBuildDate>
     <atom:link href="https://jlgreen11.github.io/daily-malaise/feed.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>TODAY'S WIRE: 97% GRIM / 3% ROSY — 10% TRUMP ON THE FRONT PAGE, 11% ON THE FULL WIRE</title>
+      <title>TODAY'S WIRE: 95% GRIM / 5% ROSY — 3% TRUMP ON THE FRONT PAGE, 9% ON THE FULL WIRE</title>
       <link>https://jlgreen11.github.io/daily-malaise/</link>
       <guid isPermaLink="false">stat-2026-07-27</guid>
       <pubDate>Mon, 27 Jul 2026 00:00:00 -0500</pubDate>
+    </item>
+    <item>
+      <title>At Least 3 Killed in Shooting at Food Festival in Seattle (NYT)</title>
+      <link>https://www.nytimes.com/2026/07/26/us/bite-of-seattle-shooting-center.html</link>
+      <guid isPermaLink="false">https://www.nytimes.com/2026/07/26/us/bite-of-seattle-shooting-center.html</guid>
+      <pubDate>Mon, 27 Jul 2026 08:09:05 +0000</pubDate>
     </item>
     <item>
       <title>What to know about the Berlin Pride attack and the suspect killed by police (CBS)</title>
@@ -19,40 +25,52 @@
       <pubDate>Mon, 27 Jul 2026 01:19:51 +0000</pubDate>
     </item>
     <item>
-      <title>Berlin Pride attack latest: Car ramming suspect shot dead by police after manhunt (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/europe/berlin-pride-attack-parade-suspect-abdul-b-car-latest-news-b3021647.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/europe/berlin-pride-attack-parade-suspect-abdul-b-car-latest-news-b3021647.html</guid>
-      <pubDate>Sun, 26 Jul 2026 18:51:41 +0000</pubDate>
+      <title>Iran-US war latest: Tehran threatens retaliation after accusing Ukraine of missile strike on tanker in Caspian Sea (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/world/middle-east/iran-us-war-live-trump-iranian-strikes-pause-ceasefire-hormuz-b3021934.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/world/middle-east/iran-us-war-live-trump-iranian-strikes-pause-ceasefire-hormuz-b3021934.html</guid>
+      <pubDate>Mon, 27 Jul 2026 08:18:41 +0000</pubDate>
     </item>
     <item>
-      <title>Pentagon's official Iran war death toll no longer lists 4 troops killed during renewed fighting (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/americas/pentagon-donald-trump-iran-american-washington-b3021845.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/pentagon-donald-trump-iran-american-washington-b3021845.html</guid>
-      <pubDate>Sun, 26 Jul 2026 19:13:52 +0000</pubDate>
-    </item>
-    <item>
-      <title>Seattle Center shooting latest: At least two dead and others wounded in gunfire at popular food festival (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/americas/crime/seattle-center-shooting-police-b3021918.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/crime/seattle-center-shooting-police-b3021918.html</guid>
-      <pubDate>Mon, 27 Jul 2026 05:13:01 +0000</pubDate>
-    </item>
-    <item>
-      <title>2 killed, 5 wounded in shooting near Seattle's Space Needle, authorities say (CBS)</title>
-      <link>https://www.cbsnews.com/news/seattle-shooting-bite-of-seattle/</link>
-      <guid isPermaLink="false">https://www.cbsnews.com/news/seattle-shooting-bite-of-seattle/</guid>
-      <pubDate>Mon, 27 Jul 2026 05:07:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>At Least 2 Killed in Shooting at Food Festival in Seattle (NYT)</title>
-      <link>https://www.nytimes.com/2026/07/26/us/bite-of-seattle-shooting-center.html</link>
-      <guid isPermaLink="false">https://www.nytimes.com/2026/07/26/us/bite-of-seattle-shooting-center.html</guid>
-      <pubDate>Mon, 27 Jul 2026 04:55:44 +0000</pubDate>
-    </item>
-    <item>
-      <title>2 dead, 5 injured in shooting at Seattle Center during food festival: Officials (ABC)</title>
+      <title>3 dead, 4 injured in shooting at Seattle Center during food festival: Officials (ABC)</title>
       <link>https://abcnews.com/US/multiple-people-shot-seattle-center-police/story?id=135108867</link>
       <guid isPermaLink="false">https://abcnews.com/US/multiple-people-shot-seattle-center-police/story?id=135108867</guid>
-      <pubDate>Mon, 27 Jul 2026 04:45:04 +0000</pubDate>
+      <pubDate>Mon, 27 Jul 2026 08:20:41 +0000</pubDate>
+    </item>
+    <item>
+      <title>Seattle Center shooting latest: Suspect in custody after three killed in mass shooting at popular food festival (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/world/americas/crime/seattle-center-shooting-latest-updates-police-space-needle-food-festival-b3021966.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/crime/seattle-center-shooting-latest-updates-police-space-needle-food-festival-b3021966.html</guid>
+      <pubDate>Mon, 27 Jul 2026 08:06:29 +0000</pubDate>
+    </item>
+    <item>
+      <title>Netanyahu accuses Mamdani of ‘fomenting hate’ ahead of US visit (AL JAZEERA)</title>
+      <link>https://www.aljazeera.com/video/newsfeed/2026/7/27/netanyahu-accuses-mamdani-of-fomenting-hate-ahead-of-us-visit?traffic_source=rss</link>
+      <guid isPermaLink="false">https://www.aljazeera.com/video/newsfeed/2026/7/27/netanyahu-accuses-mamdani-of-fomenting-hate-ahead-of-us-visit?traffic_source=rss</guid>
+      <pubDate>Mon, 27 Jul 2026 08:11:26 +0000</pubDate>
+    </item>
+    <item>
+      <title>3 killed, 4 wounded in shooting near Seattle's Space Needle, authorities say (CBS)</title>
+      <link>https://www.cbsnews.com/news/seattle-shooting-bite-of-seattle/</link>
+      <guid isPermaLink="false">https://www.cbsnews.com/news/seattle-shooting-bite-of-seattle/</guid>
+      <pubDate>Mon, 27 Jul 2026 07:08:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Three dead and several injured in shooting at food festival near Seattle's Space Needle (BBC US)</title>
+      <link>https://www.bbc.co.uk/news/articles/c78gjyx4q2yo?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/c78gjyx4q2yo?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Mon, 27 Jul 2026 06:11:20 +0000</pubDate>
+    </item>
+    <item>
+      <title>US pauses attacks on Iran for a second straight day, Tehran does too (FRANCE 24)</title>
+      <link>https://www.france24.com/en/video/20260727-us-pauses-attacks-on-iran-for-a-second-straight-day-tehran-does-too</link>
+      <guid isPermaLink="false">https://www.france24.com/en/video/20260727-us-pauses-attacks-on-iran-for-a-second-straight-day-tehran-does-too</guid>
+      <pubDate>Mon, 27 Jul 2026 08:54:12 +0000</pubDate>
+    </item>
+    <item>
+      <title>‘Pop, pop, pop’: Witnesses describe screams, chaos and crowds fleeing after shooting at Seattle food festival (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/world/americas/crime/seattle-gunfire-festival-three-dead-witnesses-b3022010.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/crime/seattle-gunfire-festival-three-dead-witnesses-b3022010.html</guid>
+      <pubDate>Mon, 27 Jul 2026 07:53:21 +0000</pubDate>
     </item>
     <item>
       <title>Ukraine-Russia war latest: Trump and Zelensky to discuss air ceasefire after Russian attack triggers Kyiv fires (INDEPENDENT)</title>
@@ -67,16 +85,22 @@
       <pubDate>Mon, 27 Jul 2026 03:12:37 +0000</pubDate>
     </item>
     <item>
-      <title>Two dead, 2-year-old boy among 5 others injured in Seattle Center mass shooting (FOX)</title>
+      <title>Three dead, 2-year-old boy among 5 others injured in Seattle Center mass shooting (FOX)</title>
       <link>https://www.foxnews.com/us/multiple-people-wounded-mass-shooting-seattle-center-police-say</link>
       <guid isPermaLink="false">https://www.foxnews.com/us/multiple-people-wounded-mass-shooting-seattle-center-police-say</guid>
       <pubDate>Mon, 27 Jul 2026 02:22:19 +0000</pubDate>
     </item>
     <item>
-      <title>Macron calls crisis meeting as wildfires threaten Bordeaux and heatwave looms (BBC)</title>
-      <link>https://www.bbc.co.uk/news/articles/c2350zlyy1yo?at_medium=RSS&amp;at_campaign=rss</link>
-      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/c2350zlyy1yo?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Mon, 27 Jul 2026 02:04:10 +0000</pubDate>
+      <title>Iran warns Ukraine of retaliation after deadly Caspian Sea strike (AL JAZEERA)</title>
+      <link>https://www.aljazeera.com/news/2026/7/27/iran-warns-ukraine-of-retaliation-after-deadly-caspian-sea-strike?traffic_source=rss</link>
+      <guid isPermaLink="false">https://www.aljazeera.com/news/2026/7/27/iran-warns-ukraine-of-retaliation-after-deadly-caspian-sea-strike?traffic_source=rss</guid>
+      <pubDate>Mon, 27 Jul 2026 06:15:01 +0000</pubDate>
+    </item>
+    <item>
+      <title>Infantino tells Fifa critics to 'meditate, pray or watch football' (BBC US)</title>
+      <link>https://www.bbc.co.uk/sport/football/articles/cz0515973gpo?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/sport/football/articles/cz0515973gpo?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Mon, 27 Jul 2026 08:07:28 +0000</pubDate>
     </item>
     <item>
       <title>Nevada man dies at famed Sequoia National Park trail after sudden emergency (FOX)</title>
@@ -85,112 +109,88 @@
       <pubDate>Mon, 27 Jul 2026 01:53:59 +0000</pubDate>
     </item>
     <item>
-      <title>Pentagon Changes How It Reports Casualties in Iran War (NYT)</title>
-      <link>https://www.nytimes.com/2026/07/26/us/politics/pentagon-casualties-iran-war.html</link>
-      <guid isPermaLink="false">https://www.nytimes.com/2026/07/26/us/politics/pentagon-casualties-iran-war.html</guid>
-      <pubDate>Mon, 27 Jul 2026 00:14:22 +0000</pubDate>
+      <title>India protesters celebrate as education minister resigns, Modi announces exam system reform (FRANCE 24)</title>
+      <link>https://www.france24.com/en/video/20260727-india-protesters-celebrate-as-education-minister-resigns-modi-announces-exam-system-reform</link>
+      <guid isPermaLink="false">https://www.france24.com/en/video/20260727-india-protesters-celebrate-as-education-minister-resigns-modi-announces-exam-system-reform</guid>
+      <pubDate>Mon, 27 Jul 2026 08:52:14 +0000</pubDate>
     </item>
     <item>
-      <title>Netanyahu accuses NYC Mayor Mamdani of 'fomenting hate' after arrest threat (BBC)</title>
-      <link>https://www.bbc.co.uk/news/articles/c5yegvd9ddeo?at_medium=RSS&amp;at_campaign=rss</link>
-      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/c5yegvd9ddeo?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Mon, 27 Jul 2026 00:27:58 +0000</pubDate>
+      <title>Police shooting brings one of America’s most liberal cities to a standstill (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/world/americas/madison-police-shooting-corey-ruiz-protests-b3022077.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/madison-police-shooting-corey-ruiz-protests-b3022077.html</guid>
+      <pubDate>Mon, 27 Jul 2026 08:51:17 +0000</pubDate>
     </item>
     <item>
-      <title>Iran war live: Tehran halts retaliatory strikes after pause in US attacks (AL JAZEERA)</title>
-      <link>https://www.aljazeera.com/news/liveblog/2026/7/27/iran-war-live-iran-halts-retaliatory-strikes-after-pause-in-us-attacks?traffic_source=rss</link>
-      <guid isPermaLink="false">https://www.aljazeera.com/news/liveblog/2026/7/27/iran-war-live-iran-halts-retaliatory-strikes-after-pause-in-us-attacks?traffic_source=rss</guid>
-      <pubDate>Mon, 27 Jul 2026 00:00:00 +0000</pubDate>
+      <title>Rapper Yung Filly tells trial 'vibes were good' with woman who accuses him of rape (BBC US)</title>
+      <link>https://www.bbc.co.uk/news/articles/cm2g044ydl4o?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cm2g044ydl4o?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Mon, 27 Jul 2026 07:37:11 +0000</pubDate>
     </item>
     <item>
-      <title>Berlin Pride ramming: Police shoot suspect dead (DW)</title>
-      <link>https://www.dw.com/en/berlin-pride-ramming-police-shoot-suspect-dead/live-78117180?maca=en-rss-en-all-1573-rdf</link>
-      <guid isPermaLink="false">https://www.dw.com/en/berlin-pride-ramming-police-shoot-suspect-dead/live-78117180?maca=en-rss-en-all-1573-rdf</guid>
-      <pubDate>Sun, 26 Jul 2026 20:00:00 +0000</pubDate>
+      <title>Berlin community left wondering how city will recover after devastating Pride festival attack (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/world/europe/berlin-pride-terror-attack-islamist-abdul-ballout-b3022029.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/world/europe/berlin-pride-terror-attack-islamist-abdul-ballout-b3022029.html</guid>
+      <pubDate>Mon, 27 Jul 2026 08:12:21 +0000</pubDate>
     </item>
     <item>
-      <title>Iran-US war latest: Trump pauses nightly attacks to make room for talks, says ambassador (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/middle-east/iran-us-war-live-trump-iranian-strikes-pause-ceasefire-hormuz-b3021934.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/middle-east/iran-us-war-live-trump-iranian-strikes-pause-ceasefire-hormuz-b3021934.html</guid>
-      <pubDate>Mon, 27 Jul 2026 04:49:07 +0000</pubDate>
-    </item>
-    <item>
-      <title>Australia news live: gasps in NSW State Library as AusAlert blares; some users report not receiving test emergency warning (GUARDIAN)</title>
-      <link>https://www.theguardian.com/australia-news/live/2026/jul/27/ausalert-emergency-warning-test-antisemitism-royal-commission-nsw-icac-inquiry-politics-anthony-albanese-labor-angus-taylor-coalition-victoria-jacinta-allan-ntwnfb</link>
-      <guid isPermaLink="false">https://www.theguardian.com/australia-news/live/2026/jul/27/ausalert-emergency-warning-test-antisemitism-royal-commission-nsw-icac-inquiry-politics-anthony-albanese-labor-angus-taylor-coalition-victoria-jacinta-allan-ntwnfb</guid>
-      <pubDate>Mon, 27 Jul 2026 05:15:03 +0000</pubDate>
-    </item>
-    <item>
-      <title>Iran War Forces Energy Buyers to ‘Unshackle’ From Global Markets (NYT)</title>
-      <link>https://www.nytimes.com/2026/07/27/business/natural-gas-lng-asia-exposure.html</link>
-      <guid isPermaLink="false">https://www.nytimes.com/2026/07/27/business/natural-gas-lng-asia-exposure.html</guid>
-      <pubDate>Mon, 27 Jul 2026 04:01:10 +0000</pubDate>
+      <title>PM pledges continued support for Ukraine ahead of Zelensky visit (BBC US)</title>
+      <link>https://www.bbc.co.uk/news/articles/cy8me5vyjg2o?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cy8me5vyjg2o?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Mon, 27 Jul 2026 06:48:02 +0000</pubDate>
     </item>
     <item>
       <title>NHS 'will collapse' without social care reform, PM tells BBC (BBC US)</title>
       <link>https://www.bbc.co.uk/news/articles/cn0n5xpzlz2o?at_medium=RSS&amp;at_campaign=rss</link>
       <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cn0n5xpzlz2o?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Mon, 27 Jul 2026 05:00:07 +0000</pubDate>
+      <pubDate>Mon, 27 Jul 2026 08:19:08 +0000</pubDate>
     </item>
     <item>
-      <title>Quiet change to Pentagon website adds 142 wounded US service members to Iran war casualty count (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/americas/us-politics/pentagon-website-change-adds-wounded-service-members-b3021917.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/us-politics/pentagon-website-change-adds-wounded-service-members-b3021917.html</guid>
-      <pubDate>Mon, 27 Jul 2026 03:39:35 +0000</pubDate>
+      <title>India's Gen Z protesters force out a minister, but what's next? (BBC US)</title>
+      <link>https://www.bbc.co.uk/news/articles/c8dng1v72lno?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/c8dng1v72lno?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Mon, 27 Jul 2026 05:59:22 +0000</pubDate>
     </item>
     <item>
-      <title>Vendor’s livestream captures chaos as gunfire erupts at Seattle Center (AL JAZEERA)</title>
-      <link>https://www.aljazeera.com/video/newsfeed/2026/7/27/aje-onl-nf_moment-shots-erupt-at-seattle-festival-260726?traffic_source=rss</link>
-      <guid isPermaLink="false">https://www.aljazeera.com/video/newsfeed/2026/7/27/aje-onl-nf_moment-shots-erupt-at-seattle-festival-260726?traffic_source=rss</guid>
-      <pubDate>Mon, 27 Jul 2026 04:07:57 +0000</pubDate>
+      <title>Salmonella outbreak linked to recalled eggs leaves nearly 100 people ill (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/world/americas/salmonella-eggs-recall-symptoms-kroger-b3022004.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/salmonella-eggs-recall-symptoms-kroger-b3022004.html</guid>
+      <pubDate>Mon, 27 Jul 2026 07:52:11 +0000</pubDate>
     </item>
     <item>
-      <title>House of the Dragon Just Unceremoniously Killed Off a Main Character. It Was the Right Move (TIME)</title>
-      <link>https://time.com/article/2026/07/22/house-of-the-dragon-season-3-episode-6-criston-cole-death/</link>
-      <guid isPermaLink="false">https://time.com/article/2026/07/22/house-of-the-dragon-season-3-episode-6-criston-cole-death/</guid>
-      <pubDate>Mon, 27 Jul 2026 02:00:03 +0000</pubDate>
+      <title>Cruel attack on defenseless sea lion sparks outrage as feds launch probe (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/world/americas/sea-lion-kicking-la-jolla-cove-san-diego-noaa-b3021974.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/sea-lion-kicking-la-jolla-cove-san-diego-noaa-b3021974.html</guid>
+      <pubDate>Mon, 27 Jul 2026 06:50:05 +0000</pubDate>
     </item>
     <item>
-      <title>GOP rep: Trump 'would be derelict in his duty' if Iran had nuclear weapon, despite war's unpopularity (THE HILL)</title>
-      <link>https://thehill.com/homenews/house/5991251-byron-donalds-defends-trump-iran/</link>
-      <guid isPermaLink="false">https://thehill.com/homenews/house/5991251-byron-donalds-defends-trump-iran/</guid>
-      <pubDate>Sun, 26 Jul 2026 19:59:59 +0000</pubDate>
+      <title>Netanyahu accuses NYC Mayor Mamdani of 'fomenting hate' after arrest threat (BBC US)</title>
+      <link>https://www.bbc.co.uk/news/articles/c5yegvd9ddeo?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/c5yegvd9ddeo?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Mon, 27 Jul 2026 00:27:58 +0000</pubDate>
     </item>
     <item>
-      <title>Pedro Sánchez says Spain is suffering effects of climate crisis as firefighters battle wildfires in France (GUARDIAN)</title>
-      <link>https://www.theguardian.com/world/2026/jul/26/firefighters-in-france-battle-to-prevent-huge-blaze-from-approaching-bordeaux</link>
-      <guid isPermaLink="false">https://www.theguardian.com/world/2026/jul/26/firefighters-in-france-battle-to-prevent-huge-blaze-from-approaching-bordeaux</guid>
-      <pubDate>Mon, 27 Jul 2026 03:58:52 +0000</pubDate>
+      <title>Congo Ebola death toll tops 1,400 as vaccine trials start (DW)</title>
+      <link>https://www.dw.com/en/congo-ebola-death-toll-tops-1-400-as-vaccine-trials-start/a-78124937?maca=en-rss-en-all-1573-rdf</link>
+      <guid isPermaLink="false">https://www.dw.com/en/congo-ebola-death-toll-tops-1-400-as-vaccine-trials-start/a-78124937?maca=en-rss-en-all-1573-rdf</guid>
+      <pubDate>Mon, 27 Jul 2026 06:11:00 +0000</pubDate>
     </item>
     <item>
-      <title>Watch: Scaffolding ripped from Hong Kong building as Typhoon Noul makes landfall (BBC)</title>
-      <link>https://www.bbc.co.uk/news/videos/ckg9ewekpk1o?at_medium=RSS&amp;at_campaign=rss</link>
-      <guid isPermaLink="false">https://www.bbc.co.uk/news/videos/ckg9ewekpk1o?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Mon, 27 Jul 2026 01:54:30 +0000</pubDate>
+      <title>Uganda begins emergency food handouts after 19 die from hunger (GUARDIAN)</title>
+      <link>https://www.theguardian.com/global-development/2026/jul/27/uganda-begins-emergency-food-handouts-after-19-die-from-hunger</link>
+      <guid isPermaLink="false">https://www.theguardian.com/global-development/2026/jul/27/uganda-begins-emergency-food-handouts-after-19-die-from-hunger</guid>
+      <pubDate>Mon, 27 Jul 2026 07:00:34 +0000</pubDate>
     </item>
     <item>
-      <title>Berlin Pride attack: Police shoot dead 21-year-old suspect Abdul Ballout after manhunt (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/europe/berlin-pride-islamist-terror-attack-abdul-ballout-lgbtq-b3021798.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/europe/berlin-pride-islamist-terror-attack-abdul-ballout-lgbtq-b3021798.html</guid>
-      <pubDate>Sun, 26 Jul 2026 18:43:30 +0000</pubDate>
+      <title>Chipmaker CXMT’s 466% market debut surge makes it the most valuable China-listed company (CNBC)</title>
+      <link>https://www.cnbc.com/2026/07/27/cxmt-china-market-debut-chipmaker-ipo.html</link>
+      <guid isPermaLink="false">https://www.cnbc.com/2026/07/27/cxmt-china-market-debut-chipmaker-ipo.html</guid>
+      <pubDate>Mon, 27 Jul 2026 08:03:51 +0000</pubDate>
     </item>
     <item>
-      <title>Thousands march in Pakistan-administered Kashmir amid election unrest (AL JAZEERA)</title>
-      <link>https://www.aljazeera.com/video/newsfeed/2026/7/27/aje-onl-nf_26-07-sv-pakistan-kashmir-march-km-270726?traffic_source=rss</link>
-      <guid isPermaLink="false">https://www.aljazeera.com/video/newsfeed/2026/7/27/aje-onl-nf_26-07-sv-pakistan-kashmir-march-km-270726?traffic_source=rss</guid>
-      <pubDate>Mon, 27 Jul 2026 04:40:27 +0000</pubDate>
-    </item>
-    <item>
-      <title>‘A new trajectory’: EVs now almost quarter of Australia’s new car sales as fuel crisis bites (GUARDIAN)</title>
-      <link>https://www.theguardian.com/environment/2026/jul/27/australia-ev-car-sales-electric-vehicles-fuel-crisis-plug-in-hybrids</link>
-      <guid isPermaLink="false">https://www.theguardian.com/environment/2026/jul/27/australia-ev-car-sales-electric-vehicles-fuel-crisis-plug-in-hybrids</guid>
-      <pubDate>Mon, 27 Jul 2026 03:37:41 +0000</pubDate>
-    </item>
-    <item>
-      <title>Wildfires ravage Europe | Could Burnham call early election? (SKY)</title>
-      <link>https://news.sky.com/story/wildfires-ravage-europe-could-burnham-call-early-election-13567271</link>
-      <guid isPermaLink="false">https://news.sky.com/story/wildfires-ravage-europe-could-burnham-call-early-election-13567271</guid>
-      <pubDate>Mon, 27 Jul 2026 04:33:00 +0000</pubDate>
+      <title>Chinese chipmaker shares surge 470% in blockbuster stock market debut (BBC)</title>
+      <link>https://www.bbc.co.uk/news/articles/c9q9w3x9qn2o?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/c9q9w3x9qn2o?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Mon, 27 Jul 2026 07:34:59 +0000</pubDate>
     </item>
   </channel>
 </rss>
