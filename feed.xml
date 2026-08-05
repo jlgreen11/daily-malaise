@@ -4,31 +4,61 @@
     <title>THE DAILY MALAISE</title>
     <link>https://jlgreen11.github.io/daily-malaise/</link>
     <description>The only front page you can tune. A crisis of confidence, every thirty minutes.</description>
-    <lastBuildDate>Wed, 05 Aug 2026 07:17:51 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 Aug 2026 10:10:24 +0000</lastBuildDate>
     <atom:link href="https://jlgreen11.github.io/daily-malaise/feed.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>TODAY'S WIRE: 92% GRIM / 8% ROSY — 15% TRUMP ON THE FRONT PAGE, 11% ON THE FULL WIRE</title>
+      <title>TODAY'S WIRE: 93% GRIM / 7% ROSY — 10% TRUMP ON THE FRONT PAGE, 12% ON THE FULL WIRE</title>
       <link>https://jlgreen11.github.io/daily-malaise/</link>
       <guid isPermaLink="false">stat-2026-08-05</guid>
       <pubDate>Wed, 05 Aug 2026 00:00:00 -0500</pubDate>
     </item>
     <item>
-      <title>Russian ballistic missile strike on Kyiv kills at least 17 (BBC)</title>
+      <title>Afghan boxer appears in court in connection with death of Scottish woman (BBC)</title>
+      <link>https://www.bbc.co.uk/news/articles/cq56qejll6vo?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cq56qejll6vo?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Wed, 05 Aug 2026 09:22:52 +0000</pubDate>
+    </item>
+    <item>
+      <title>Marine veteran Las Vegas officer killed in shooting; armed suspect also dead (FOX)</title>
+      <link>https://www.foxnews.com/us/las-vegas-officer-killed-tropicana-shooting</link>
+      <guid isPermaLink="false">https://www.foxnews.com/us/las-vegas-officer-killed-tropicana-shooting</guid>
+      <pubDate>Wed, 05 Aug 2026 08:11:38 +0000</pubDate>
+    </item>
+    <item>
+      <title>Russian strike kills at least 17 as Zelensky says interceptors could have saved lives (BBC)</title>
       <link>https://www.bbc.co.uk/news/articles/c330pxyvzzyo?at_medium=RSS&amp;at_campaign=rss</link>
       <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/c330pxyvzzyo?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Wed, 05 Aug 2026 06:54:30 +0000</pubDate>
+      <pubDate>Wed, 05 Aug 2026 09:54:20 +0000</pubDate>
     </item>
     <item>
-      <title>Armed man arrested at Trump’s LA golf course ahead of president’s visit (AL JAZEERA)</title>
-      <link>https://www.aljazeera.com/news/2026/8/5/armed-man-arrested-at-trumps-la-golf-course-ahead-of-presidents-visit?traffic_source=rss</link>
-      <guid isPermaLink="false">https://www.aljazeera.com/news/2026/8/5/armed-man-arrested-at-trumps-la-golf-course-ahead-of-presidents-visit?traffic_source=rss</guid>
-      <pubDate>Wed, 05 Aug 2026 01:29:02 +0000</pubDate>
+      <title>Zelenskyy rails at lack of anti-missile defences amid deadly Russian attack on Kyiv – Europe live (GUARDIAN)</title>
+      <link>https://www.theguardian.com/world/live/2026/aug/05/europe-ukraine-russia-kyiv-zelenskyy-heatwave-austria-hungary-poland-czech-republic-latest-news-updates</link>
+      <guid isPermaLink="false">https://www.theguardian.com/world/live/2026/aug/05/europe-ukraine-russia-kyiv-zelenskyy-heatwave-austria-hungary-poland-czech-republic-latest-news-updates</guid>
+      <pubDate>Wed, 05 Aug 2026 09:42:17 +0000</pubDate>
     </item>
     <item>
-      <title>Ukraine-Russia war latest: Putin’s forces launch ballistic missile and drone strikes on Kyiv as 15 killed (INDEPENDENT)</title>
+      <title>Trump warns Iran will be hit 'really hard' if nuclear negotiations collapse again (FOX)</title>
+      <link>https://www.foxnews.com/politics/trump-iran-nuclear-talks-strike-warning</link>
+      <guid isPermaLink="false">https://www.foxnews.com/politics/trump-iran-nuclear-talks-strike-warning</guid>
+      <pubDate>Wed, 05 Aug 2026 06:28:09 +0000</pubDate>
+    </item>
+    <item>
+      <title>Ukraine-Russia war latest: Russian soldier opens fire on comrades in Crimea and 17 killed in Putin’s bombardment of Kyiv (INDEPENDENT)</title>
       <link>https://www.independent.co.uk/news/world/europe/ukraine-russia-war-live-putin-market-drone-strike-wildberries-b3027600.html</link>
       <guid isPermaLink="false">https://www.independent.co.uk/news/world/europe/ukraine-russia-war-live-putin-market-drone-strike-wildberries-b3027600.html</guid>
-      <pubDate>Wed, 05 Aug 2026 06:20:28 +0000</pubDate>
+      <pubDate>Wed, 05 Aug 2026 08:26:41 +0000</pubDate>
+    </item>
+    <item>
+      <title>South Korea: Police raid Starbucks HQ over 'Tank Day' fiasco (DW)</title>
+      <link>https://www.dw.com/en/south-korea-police-raid-starbucks-hq-over-tank-day-fiasco/a-78241294?maca=en-rss-en-all-1573-rdf</link>
+      <guid isPermaLink="false">https://www.dw.com/en/south-korea-police-raid-starbucks-hq-over-tank-day-fiasco/a-78241294?maca=en-rss-en-all-1573-rdf</guid>
+      <pubDate>Wed, 05 Aug 2026 08:13:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Russia’s Deadly Missile Attack on Kyiv Exploits Ukraine’s Depleted Air Defenses (NYT)</title>
+      <link>https://www.nytimes.com/2026/08/05/world/europe/ukraine-war-kyiv-russia-missile-attack.html</link>
+      <guid isPermaLink="false">https://www.nytimes.com/2026/08/05/world/europe/ukraine-war-kyiv-russia-missile-attack.html</guid>
+      <pubDate>Wed, 05 Aug 2026 07:58:16 +0000</pubDate>
     </item>
     <item>
       <title>India condemns ‘unprovoked attack’ after projectile sinks ship off Yemen’s coast (INDEPENDENT)</title>
@@ -37,160 +67,130 @@
       <pubDate>Wed, 05 Aug 2026 05:31:12 +0000</pubDate>
     </item>
     <item>
-      <title>Ukraine live: Russian strikes kill at least 17 in Kyiv region, Zelensky says (FRANCE 24)</title>
-      <link>https://www.france24.com/en/europe/20260805-ukraine-live-russian-strikes-kill-at-least-15-in-kyiv-and-surrounding-region</link>
-      <guid isPermaLink="false">https://www.france24.com/en/europe/20260805-ukraine-live-russian-strikes-kill-at-least-15-in-kyiv-and-surrounding-region</guid>
-      <pubDate>Wed, 05 Aug 2026 05:24:43 +0000</pubDate>
-    </item>
-    <item>
-      <title>Trump warns Iran will be hit 'really hard' if nuclear negotiations collapse again (FOX)</title>
-      <link>https://www.foxnews.com/politics/trump-iran-nuclear-talks-strike-warning</link>
-      <guid isPermaLink="false">https://www.foxnews.com/politics/trump-iran-nuclear-talks-strike-warning</guid>
-      <pubDate>Wed, 05 Aug 2026 06:28:10 +0000</pubDate>
-    </item>
-    <item>
-      <title>Chipotle removes jalapeños linked to Minnesota salmonella outbreak (CBS)</title>
-      <link>https://www.cbsnews.com/news/chipotle-jalapenos-minnesota-salmonella-outbreak/</link>
-      <guid isPermaLink="false">https://www.cbsnews.com/news/chipotle-jalapenos-minnesota-salmonella-outbreak/</guid>
-      <pubDate>Tue, 04 Aug 2026 23:52:01 +0000</pubDate>
-    </item>
-    <item>
-      <title>The avalanche that killed a climbing legend - and a generation of record-setting guides (BBC)</title>
-      <link>https://www.bbc.co.uk/news/articles/cm2ge4dnj80o?at_medium=RSS&amp;at_campaign=rss</link>
-      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cm2ge4dnj80o?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Tue, 04 Aug 2026 22:09:51 +0000</pubDate>
-    </item>
-    <item>
-      <title>Trump says Iran will be 'hit very hard' if Hormuz Strait not open soon as oil prices fall (BBC)</title>
-      <link>https://www.bbc.co.uk/news/articles/cpw9v0gnzxwo?at_medium=RSS&amp;at_campaign=rss</link>
-      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cpw9v0gnzxwo?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Wed, 05 Aug 2026 03:44:31 +0000</pubDate>
+      <title>Ukrainian capital lit up by massive overnight Russian strikes, killing 17 (FRANCE 24)</title>
+      <link>https://www.france24.com/en/ukrainian-capital-lit-up-by-massive-overnight-russian-strikes-killing-17</link>
+      <guid isPermaLink="false">https://www.france24.com/en/ukrainian-capital-lit-up-by-massive-overnight-russian-strikes-killing-17</guid>
+      <pubDate>Wed, 05 Aug 2026 09:51:46 +0000</pubDate>
     </item>
     <item>
       <title>Iran-US war latest: Trump warns Tehran will be ‘hit very hard’ unless Hormuz reopens (INDEPENDENT)</title>
       <link>https://www.independent.co.uk/news/world/middle-east/iran-us-war-live-trump-hormuz-strikes-oil-news-b3027628.html</link>
       <guid isPermaLink="false">https://www.independent.co.uk/news/world/middle-east/iran-us-war-live-trump-hormuz-strikes-oil-news-b3027628.html</guid>
-      <pubDate>Wed, 05 Aug 2026 06:36:36 +0000</pubDate>
+      <pubDate>Wed, 05 Aug 2026 08:35:12 +0000</pubDate>
+    </item>
+    <item>
+      <title>Armed man arrested near Trump golf course in California ahead of president’s visit (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/world/americas/us-politics/trump-golf-course-man-arrested-palos-verdes-b3027569.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/us-politics/trump-golf-course-man-arrested-palos-verdes-b3027569.html</guid>
+      <pubDate>Wed, 05 Aug 2026 00:30:49 +0000</pubDate>
+    </item>
+    <item>
+      <title>The avalanche that killed a climbing legend - and a generation of record-setting guides (BBC)</title>
+      <link>https://www.bbc.co.uk/news/articles/cm2ge4dnj80o?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cm2ge4dnj80o?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Tue, 04 Aug 2026 22:09:50 +0000</pubDate>
+    </item>
+    <item>
+      <title>British mother dies weeks after being trapped in raging Spanish wildfires (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/uk/home-news/spain-wildfire-lisa-fryett-death-b3027813.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/uk/home-news/spain-wildfire-lisa-fryett-death-b3027813.html</guid>
+      <pubDate>Wed, 05 Aug 2026 10:05:12 +0000</pubDate>
+    </item>
+    <item>
+      <title>Anthropic AI created fake profiles and impersonated people in attempted hack (BBC US)</title>
+      <link>https://www.bbc.co.uk/news/articles/c1w1lvn7d9go?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/c1w1lvn7d9go?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Wed, 05 Aug 2026 09:24:18 +0000</pubDate>
+    </item>
+    <item>
+      <title>We're headed toward the first true AI election (AXIOS)</title>
+      <link>https://www.axios.com/2026/08/05/ai-election-bots-simulated-voters-2026-2028</link>
+      <guid isPermaLink="false">https://www.axios.com/2026/08/05/ai-election-bots-simulated-voters-2026-2028</guid>
+      <pubDate>Wed, 05 Aug 2026 09:20:04 +0000</pubDate>
+    </item>
+    <item>
+      <title>Man charged over death of nine-year-old girl on industrial estate (BBC US)</title>
+      <link>https://www.bbc.co.uk/news/articles/cyvlgyg4l5do?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cyvlgyg4l5do?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Wed, 05 Aug 2026 09:41:03 +0000</pubDate>
+    </item>
+    <item>
+      <title>Perez Hilton recovering in hospital after reports he self-harmed during livestream (BBC)</title>
+      <link>https://www.bbc.co.uk/news/articles/cly5kvdkyjro?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cly5kvdkyjro?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Wed, 05 Aug 2026 08:29:30 +0000</pubDate>
     </item>
     <item>
       <title>Man carrying ammunition arrested near Trump National Golf Club before president's visit (CBS)</title>
       <link>https://www.cbsnews.com/news/president-trump-los-angeles-county-golf-club-armed-suspect-arrested/</link>
       <guid isPermaLink="false">https://www.cbsnews.com/news/president-trump-los-angeles-county-golf-club-armed-suspect-arrested/</guid>
-      <pubDate>Wed, 05 Aug 2026 06:18:15 +0000</pubDate>
+      <pubDate>Wed, 05 Aug 2026 06:18:14 +0000</pubDate>
     </item>
     <item>
       <title>The real worry for Ukraine’s allies as beach strike on Russian civilians marks a shift in the war (INDEPENDENT)</title>
       <link>https://www.independent.co.uk/news/world/europe/ukraine-black-sea-russia-beach-strike-nuclear-weapons-b3027633.html</link>
       <guid isPermaLink="false">https://www.independent.co.uk/news/world/europe/ukraine-black-sea-russia-beach-strike-nuclear-weapons-b3027633.html</guid>
-      <pubDate>Wed, 05 Aug 2026 06:02:34 +0000</pubDate>
+      <pubDate>Wed, 05 Aug 2026 08:36:28 +0000</pubDate>
     </item>
     <item>
-      <title>North Korea’s Kim Yo Jong issues military threat over Japan missile test (AL JAZEERA)</title>
-      <link>https://www.aljazeera.com/news/2026/8/5/north-koreas-kim-yo-jong-issues-military-threat-over-japan-missile-test?traffic_source=rss</link>
-      <guid isPermaLink="false">https://www.aljazeera.com/news/2026/8/5/north-koreas-kim-yo-jong-issues-military-threat-over-japan-missile-test?traffic_source=rss</guid>
-      <pubDate>Wed, 05 Aug 2026 03:48:22 +0000</pubDate>
+      <title>Piece of SpaceX rocket the size of a school bus crashes into the Moon (AL JAZEERA)</title>
+      <link>https://www.aljazeera.com/news/2026/8/5/piece-of-spacex-rocket-the-size-of-a-school-bus-crashes-into-the-moon?traffic_source=rss</link>
+      <guid isPermaLink="false">https://www.aljazeera.com/news/2026/8/5/piece-of-spacex-rocket-the-size-of-a-school-bus-crashes-into-the-moon?traffic_source=rss</guid>
+      <pubDate>Wed, 05 Aug 2026 08:17:03 +0000</pubDate>
     </item>
     <item>
-      <title>North Korea sends missile unit to Russia as Putin tries to exploit Ukraine weakness (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/europe/north-korea-russia-missile-40-kn23-b3027639.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/europe/north-korea-russia-missile-40-kn23-b3027639.html</guid>
-      <pubDate>Wed, 05 Aug 2026 06:29:43 +0000</pubDate>
+      <title>Russian attacks kill 17, exploiting Ukraine’s lack of missile interceptors (AL JAZEERA)</title>
+      <link>https://www.aljazeera.com/news/2026/8/5/russian-attacks-kill-17-exploiting-ukraines-lack-of-missile-interceptors?traffic_source=rss</link>
+      <guid isPermaLink="false">https://www.aljazeera.com/news/2026/8/5/russian-attacks-kill-17-exploiting-ukraines-lack-of-missile-interceptors?traffic_source=rss</guid>
+      <pubDate>Wed, 05 Aug 2026 09:16:39 +0000</pubDate>
     </item>
     <item>
-      <title>Russian missile attack kills 14, injures 27 in Ukraine’s Kyiv region (AL JAZEERA)</title>
-      <link>https://www.aljazeera.com/news/2026/8/4/russia-strikes-ukrainian-capital-kyiv-with-ballistic-missiles?traffic_source=rss</link>
-      <guid isPermaLink="false">https://www.aljazeera.com/news/2026/8/4/russia-strikes-ukrainian-capital-kyiv-with-ballistic-missiles?traffic_source=rss</guid>
-      <pubDate>Tue, 04 Aug 2026 23:24:44 +0000</pubDate>
+      <title>‘I saw people stepping on the dead’: The 1,000 child migrants stuck in Ceuta (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/world/europe/ceuta-morocco-children-spain-laws-migrants-b3027669.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/world/europe/ceuta-morocco-children-spain-laws-migrants-b3027669.html</guid>
+      <pubDate>Wed, 05 Aug 2026 08:06:10 +0000</pubDate>
     </item>
     <item>
-      <title>Australian teen who killed UK woman has reduced sentence overturned (BBC US)</title>
-      <link>https://www.bbc.co.uk/news/articles/cn0n9lwgreqo?at_medium=RSS&amp;at_campaign=rss</link>
-      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cn0n9lwgreqo?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Wed, 05 Aug 2026 05:24:20 +0000</pubDate>
+      <title>SpaceX dives 10% after AI spending surge rattles investors (CNBC)</title>
+      <link>https://www.cnbc.com/2026/08/05/spacex-spcx-stock-today-earnings.html</link>
+      <guid isPermaLink="false">https://www.cnbc.com/2026/08/05/spacex-spcx-stock-today-earnings.html</guid>
+      <pubDate>Wed, 05 Aug 2026 09:04:08 +0000</pubDate>
     </item>
     <item>
-      <title>Mexican social media influencer shot to death in middle of livestream (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/americas/cesar-gastelum-shot-dead-tiktok-video-b3027630.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/cesar-gastelum-shot-dead-tiktok-video-b3027630.html</guid>
-      <pubDate>Wed, 05 Aug 2026 06:09:59 +0000</pubDate>
+      <title>Russian attack kills at least 17 in Kyiv as Ukraine hammers more Wildberries warehouses (CNBC)</title>
+      <link>https://www.cnbc.com/2026/08/05/russia-ukraine-kyiv-putin-wildberries.html</link>
+      <guid isPermaLink="false">https://www.cnbc.com/2026/08/05/russia-ukraine-kyiv-putin-wildberries.html</guid>
+      <pubDate>Wed, 05 Aug 2026 08:55:42 +0000</pubDate>
     </item>
     <item>
-      <title>Russia accused of war crime after video shows ‘sadist’ drone pilot hunting market vendor (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/europe/russia-market-vendor-drone-stike-war-crimes-ukraine-b3027634.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/europe/russia-market-vendor-drone-stike-war-crimes-ukraine-b3027634.html</guid>
-      <pubDate>Wed, 05 Aug 2026 06:08:35 +0000</pubDate>
+      <title>Oil prices move higher after Yemen's Iran-backed Houthis claim Saudi tanker strike (CNBC)</title>
+      <link>https://www.cnbc.com/2026/08/05/oil-prices-iran-war-houthis-saudi-tanker.html</link>
+      <guid isPermaLink="false">https://www.cnbc.com/2026/08/05/oil-prices-iran-war-houthis-saudi-tanker.html</guid>
+      <pubDate>Wed, 05 Aug 2026 09:53:06 +0000</pubDate>
     </item>
     <item>
-      <title>Russian attack on Kyiv region kills at least 14 people, say Ukrainian authorities (GUARDIAN)</title>
-      <link>https://www.theguardian.com/world/2026/aug/05/russia-kyiv-attack-kills-at-least-14-people-ukraine-authorities</link>
-      <guid isPermaLink="false">https://www.theguardian.com/world/2026/aug/05/russia-kyiv-attack-kills-at-least-14-people-ukraine-authorities</guid>
-      <pubDate>Wed, 05 Aug 2026 05:53:39 +0000</pubDate>
+      <title>How the Ukraine War Became a Fight for the Skies (NYT)</title>
+      <link>https://www.nytimes.com/2026/08/05/world/europe/russia-ukraine-air-war.html</link>
+      <guid isPermaLink="false">https://www.nytimes.com/2026/08/05/world/europe/russia-ukraine-air-war.html</guid>
+      <pubDate>Wed, 05 Aug 2026 08:52:43 +0000</pubDate>
     </item>
     <item>
-      <title>China's super-rich 'in shock' and hunting for cash as Beijing issues surprise tax on offshore trusts (CNBC)</title>
-      <link>https://www.cnbc.com/2026/08/05/wealthy-chinese-race-for-tax-advice-as-beijing-targets-offshore-trusts.html</link>
-      <guid isPermaLink="false">https://www.cnbc.com/2026/08/05/wealthy-chinese-race-for-tax-advice-as-beijing-targets-offshore-trusts.html</guid>
-      <pubDate>Wed, 05 Aug 2026 06:33:48 +0000</pubDate>
+      <title>WHO chief arrives in Congo to help tackle deadly Ebola outbreak as confirmed cases soar (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/world/africa/ebola-outbreak-cases-congo-world-health-organisation-b3027806.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/world/africa/ebola-outbreak-cases-congo-world-health-organisation-b3027806.html</guid>
+      <pubDate>Wed, 05 Aug 2026 09:46:06 +0000</pubDate>
     </item>
     <item>
-      <title>&lt;a href='https://news.sky.com/video/inside-silwan-jerusalems-demolition-zone-13569791'&gt;Israel guilty of 'ethnic cleansing' in Jerusalem, says top lawyer&lt;/a&gt; (SKY)</title>
-      <link>https://news.sky.com/story/inside-silwan-jerusalems-demolition-zone-13569921</link>
-      <guid isPermaLink="false">https://news.sky.com/story/inside-silwan-jerusalems-demolition-zone-13569921</guid>
-      <pubDate>Wed, 05 Aug 2026 06:01:00 +0000</pubDate>
+      <title>Japan tests US-Tomahawk missile as it moves away from Post-WWII status (AL JAZEERA)</title>
+      <link>https://www.aljazeera.com/video/newsfeed/2026/8/5/japan-tests-us-tomahawk-missile-as-it-moves-away-from-post-wwii-status?traffic_source=rss</link>
+      <guid isPermaLink="false">https://www.aljazeera.com/video/newsfeed/2026/8/5/japan-tests-us-tomahawk-missile-as-it-moves-away-from-post-wwii-status?traffic_source=rss</guid>
+      <pubDate>Wed, 05 Aug 2026 08:37:04 +0000</pubDate>
     </item>
     <item>
-      <title>Capybaras crash Brazilian lawmakers' voting session and steal the show (FOX)</title>
-      <link>https://www.foxnews.com/world/capybaras-crash-brazilian-lawmakers-voting-session-steal-show</link>
-      <guid isPermaLink="false">https://www.foxnews.com/world/capybaras-crash-brazilian-lawmakers-voting-session-steal-show</guid>
-      <pubDate>Wed, 05 Aug 2026 06:00:45 +0000</pubDate>
-    </item>
-    <item>
-      <title>Protesters demand answers from ICE after second man dies at Delaney Hall (AL JAZEERA)</title>
-      <link>https://www.aljazeera.com/video/newsfeed/2026/8/5/protesters-demand-answers-from-ice-after-second-man-dies-at-delaney-hall?traffic_source=rss</link>
-      <guid isPermaLink="false">https://www.aljazeera.com/video/newsfeed/2026/8/5/protesters-demand-answers-from-ice-after-second-man-dies-at-delaney-hall?traffic_source=rss</guid>
-      <pubDate>Wed, 05 Aug 2026 03:33:22 +0000</pubDate>
-    </item>
-    <item>
-      <title>Suspect accused of starting Washington wildfire once went to prison for dad’s death (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/americas/crime/aaron-farinacci-washington-spokane-wildfire-manslaughter-b3027544.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/crime/aaron-farinacci-washington-spokane-wildfire-manslaughter-b3027544.html</guid>
-      <pubDate>Tue, 04 Aug 2026 23:29:55 +0000</pubDate>
-    </item>
-    <item>
-      <title>Funeral for family killed in US strike on Iran’s Qeshm Island (AL JAZEERA)</title>
-      <link>https://www.aljazeera.com/video/newsfeed/2026/8/4/funeral-for-family-killed-in-us-strike-on-irans-qeshm-island?traffic_source=rss</link>
-      <guid isPermaLink="false">https://www.aljazeera.com/video/newsfeed/2026/8/4/funeral-for-family-killed-in-us-strike-on-irans-qeshm-island?traffic_source=rss</guid>
-      <pubDate>Tue, 04 Aug 2026 21:11:51 +0000</pubDate>
-    </item>
-    <item>
-      <title>UK papers: 'Profits of war' and 'Super-rain' (BBC US)</title>
-      <link>https://www.bbc.co.uk/news/articles/cdx8484plwzo?at_medium=RSS&amp;at_campaign=rss</link>
-      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cdx8484plwzo?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Wed, 05 Aug 2026 03:45:43 +0000</pubDate>
-    </item>
-    <item>
-      <title>Judge 'reluctantly' grants DOJ motion to dismiss final prosecution in Jan. 6 attack (ABC)</title>
-      <link>https://abcnews.com/US/judge-reluctantly-grants-doj-motion-dismiss-final-prosecution/story?id=135367722</link>
-      <guid isPermaLink="false">https://abcnews.com/US/judge-reluctantly-grants-doj-motion-dismiss-final-prosecution/story?id=135367722</guid>
-      <pubDate>Wed, 05 Aug 2026 03:42:06 +0000</pubDate>
-    </item>
-    <item>
-      <title>Explosions across Kyiv as Russian missiles strike Ukraine’s capital (AL JAZEERA)</title>
-      <link>https://www.aljazeera.com/video/newsfeed/2026/8/5/explosions-across-kyiv-as-russian-missiles-strike-ukraines-capital?traffic_source=rss</link>
-      <guid isPermaLink="false">https://www.aljazeera.com/video/newsfeed/2026/8/5/explosions-across-kyiv-as-russian-missiles-strike-ukraines-capital?traffic_source=rss</guid>
-      <pubDate>Wed, 05 Aug 2026 04:38:01 +0000</pubDate>
-    </item>
-    <item>
-      <title>Taiwan launches annual war games as pressure from China grows (FRANCE 24)</title>
-      <link>https://www.france24.com/en/asia-pacific/20260805-taiwan-launches-major-war-games-as-china-pressure-grows</link>
-      <guid isPermaLink="false">https://www.france24.com/en/asia-pacific/20260805-taiwan-launches-major-war-games-as-china-pressure-grows</guid>
-      <pubDate>Wed, 05 Aug 2026 03:35:20 +0000</pubDate>
-    </item>
-    <item>
-      <title>Breaking down the race between El-Sayed and Stevens for Michigan's Democratic Senate primary (CBS)</title>
-      <link>https://www.cbsnews.com/video/breaking-down-the-race-between-el-sayed-and-stevens-for-michigans-democratic-senate-primary/</link>
-      <guid isPermaLink="false">https://www.cbsnews.com/video/breaking-down-the-race-between-el-sayed-and-stevens-for-michigans-democratic-senate-primary/</guid>
-      <pubDate>Wed, 05 Aug 2026 00:20:02 +0000</pubDate>
+      <title>America’s biggest parasite outbreak forces food giant to ditch Mexican lettuce (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/world/americas/sysco-iceberg-lettuce-mexico-cyclosporiasis-outbreak-b3027781.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/sysco-iceberg-lettuce-mexico-cyclosporiasis-outbreak-b3027781.html</guid>
+      <pubDate>Wed, 05 Aug 2026 09:07:15 +0000</pubDate>
     </item>
   </channel>
 </rss>
