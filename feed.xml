@@ -4,19 +4,25 @@
     <title>THE DAILY MALAISE</title>
     <link>https://jlgreen11.github.io/daily-malaise/</link>
     <description>The only front page you can tune. A crisis of confidence, every thirty minutes.</description>
-    <lastBuildDate>Mon, 10 Aug 2026 12:10:28 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 10 Aug 2026 13:58:13 +0000</lastBuildDate>
     <atom:link href="https://jlgreen11.github.io/daily-malaise/feed.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>TODAY'S WIRE: 92% GRIM / 8% ROSY — 7% TRUMP ON THE FRONT PAGE, 10% ON THE FULL WIRE</title>
+      <title>TODAY'S WIRE: 92% GRIM / 8% ROSY — 2% TRUMP ON THE FRONT PAGE, 10% ON THE FULL WIRE</title>
       <link>https://jlgreen11.github.io/daily-malaise/</link>
       <guid isPermaLink="false">stat-2026-08-10</guid>
       <pubDate>Mon, 10 Aug 2026 00:00:00 -0500</pubDate>
     </item>
     <item>
-      <title>At least 13 killed in Ukrainian drone attack on Russia’s Nizhnekamsk (AL JAZEERA)</title>
-      <link>https://www.aljazeera.com/news/2026/8/10/at-least-13-killed-in-ukrainian-drone-attack-on-russias-nizhnekamsk?traffic_source=rss</link>
-      <guid isPermaLink="false">https://www.aljazeera.com/news/2026/8/10/at-least-13-killed-in-ukrainian-drone-attack-on-russias-nizhnekamsk?traffic_source=rss</guid>
-      <pubDate>Mon, 10 Aug 2026 10:55:38 +0000</pubDate>
+      <title>At least 13 killed in Ukrainian drone strike deep into Russia (BBC US)</title>
+      <link>https://www.bbc.co.uk/news/articles/cvgjvgv926po?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cvgjvgv926po?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Mon, 10 Aug 2026 12:54:13 +0000</pubDate>
+    </item>
+    <item>
+      <title>Ukraine Drone Attack on Industrial City in Russia Kills at Least 13 (NYT)</title>
+      <link>https://www.nytimes.com/2026/08/10/world/europe/ukraine-drone-attack-russia.html</link>
+      <guid isPermaLink="false">https://www.nytimes.com/2026/08/10/world/europe/ukraine-drone-attack-russia.html</guid>
+      <pubDate>Mon, 10 Aug 2026 13:16:06 +0000</pubDate>
     </item>
     <item>
       <title>Record-breaking climber Jake Whisenant dies aged 30 after accident ‘doing what he loves’ (INDEPENDENT)</title>
@@ -25,16 +31,10 @@
       <pubDate>Mon, 10 Aug 2026 11:21:13 +0000</pubDate>
     </item>
     <item>
-      <title>At least 13 killed in Ukrainian strike on Russia's Tatarstan region, officials say (BBC US)</title>
-      <link>https://www.bbc.co.uk/news/articles/cvgjvgv926po?at_medium=RSS&amp;at_campaign=rss</link>
-      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cvgjvgv926po?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Mon, 10 Aug 2026 10:03:58 +0000</pubDate>
-    </item>
-    <item>
-      <title>British couple held in Iran end hunger strike (BBC US)</title>
-      <link>https://www.bbc.co.uk/news/articles/cp8x4n9gd3ko?at_medium=RSS&amp;at_campaign=rss</link>
-      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cp8x4n9gd3ko?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Mon, 10 Aug 2026 10:19:52 +0000</pubDate>
+      <title>Meta to open source its most powerful AI model as it takes swipe at OpenAI, Anthropic (CNBC)</title>
+      <link>https://www.cnbc.com/2026/08/10/meta-muse-glimmer-open-weight-ai.html</link>
+      <guid isPermaLink="false">https://www.cnbc.com/2026/08/10/meta-muse-glimmer-open-weight-ai.html</guid>
+      <pubDate>Mon, 10 Aug 2026 12:40:36 +0000</pubDate>
     </item>
     <item>
       <title>Breaking Down the Euphoric Ending of Teenage Sex and Death at Camp Miasma (TIME)</title>
@@ -43,34 +43,58 @@
       <pubDate>Mon, 10 Aug 2026 12:00:03 +0000</pubDate>
     </item>
     <item>
-      <title>Wildfires burn across western US and Canada as residents are evacuated (THE HILL)</title>
-      <link>https://thehill.com/homenews/state-watch/6019551-wildfires-evacuate-okanagan-lake/</link>
-      <guid isPermaLink="false">https://thehill.com/homenews/state-watch/6019551-wildfires-evacuate-okanagan-lake/</guid>
-      <pubDate>Mon, 10 Aug 2026 11:19:17 +0000</pubDate>
+      <title>World's oceans hit record-high July temperatures (BBC US)</title>
+      <link>https://www.bbc.co.uk/news/articles/cpvw8vmmgrwo?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cpvw8vmmgrwo?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Mon, 10 Aug 2026 10:24:46 +0000</pubDate>
+    </item>
+    <item>
+      <title>7.4 earthquake strikes western Colombia, injuries and damage reported (CBS)</title>
+      <link>https://www.cbsnews.com/news/colombia-earthquake-western-region-evacuations/</link>
+      <guid isPermaLink="false">https://www.cbsnews.com/news/colombia-earthquake-western-region-evacuations/</guid>
+      <pubDate>Mon, 10 Aug 2026 13:55:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>British couple held in Iran end hunger strike (BBC US)</title>
+      <link>https://www.bbc.co.uk/news/articles/cp8x4n9gd3ko?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cp8x4n9gd3ko?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Mon, 10 Aug 2026 12:40:15 +0000</pubDate>
+    </item>
+    <item>
+      <title>After Record-Breaking Summer Start, Europe Braces for New Heat Wave (NYT)</title>
+      <link>https://www.nytimes.com/2026/08/09/weather/extreme-heat-wave-uk-france-spain-forecast.html</link>
+      <guid isPermaLink="false">https://www.nytimes.com/2026/08/09/weather/extreme-heat-wave-uk-france-spain-forecast.html</guid>
+      <pubDate>Mon, 10 Aug 2026 12:16:54 +0000</pubDate>
+    </item>
+    <item>
+      <title>Man dies paragliding from Morocco into Spanish territory Ceuta amid migrant crisis (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/world/europe/migrant-paraglider-ceuta-video-b3030288.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/world/europe/migrant-paraglider-ceuta-video-b3030288.html</guid>
+      <pubDate>Mon, 10 Aug 2026 12:13:52 +0000</pubDate>
+    </item>
+    <item>
+      <title>Ukraine-Russia war latest: Ukrainian drone strike 600 miles inside Russia kills 13, including child (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/world/europe/ukraine-russia-war-live-putin-zelensky-drone-strikes-north-korea-b3030149.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/world/europe/ukraine-russia-war-live-putin-zelensky-drone-strikes-north-korea-b3030149.html</guid>
+      <pubDate>Mon, 10 Aug 2026 12:34:44 +0000</pubDate>
     </item>
     <item>
       <title>With ‘The Galloping Cure’ in Edinburgh, Missy Mazzoli Tackles the Opioid Crisis (NYT)</title>
       <link>https://www.nytimes.com/2026/08/10/arts/music/the-galloping-cure-edinburgh-festival-missy-mazzoli.html</link>
       <guid isPermaLink="false">https://www.nytimes.com/2026/08/10/arts/music/the-galloping-cure-edinburgh-festival-missy-mazzoli.html</guid>
-      <pubDate>Mon, 10 Aug 2026 11:27:14 +0000</pubDate>
+      <pubDate>Mon, 10 Aug 2026 12:59:58 +0000</pubDate>
     </item>
     <item>
-      <title>Don Nelson, Hall of Fame basketball coach and NBA player, dies at 86 (AL JAZEERA)</title>
-      <link>https://www.aljazeera.com/sports/2026/8/10/don-nelson-hall-of-fame-basketball-coach-and-nba-player-dies-at-86?traffic_source=rss</link>
-      <guid isPermaLink="false">https://www.aljazeera.com/sports/2026/8/10/don-nelson-hall-of-fame-basketball-coach-and-nba-player-dies-at-86?traffic_source=rss</guid>
-      <pubDate>Mon, 10 Aug 2026 07:47:11 +0000</pubDate>
+      <title>Alleged rebel leader killed in Colombia as president targets armed groups (BBC)</title>
+      <link>https://www.bbc.co.uk/news/articles/c5yrljp9x9eo?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/c5yrljp9x9eo?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Mon, 10 Aug 2026 12:23:21 +0000</pubDate>
     </item>
     <item>
       <title>June and July hottest on record in Western Europe, monitor says (AL JAZEERA)</title>
       <link>https://www.aljazeera.com/news/2026/8/10/june-and-july-hottest-on-record-in-western-europe-monitor-says?traffic_source=rss</link>
       <guid isPermaLink="false">https://www.aljazeera.com/news/2026/8/10/june-and-july-hottest-on-record-in-western-europe-monitor-says?traffic_source=rss</guid>
       <pubDate>Mon, 10 Aug 2026 10:21:08 +0000</pubDate>
-    </item>
-    <item>
-      <title>Ukraine-Russia war latest: Putin told he ‘must stop’ after Russian strike destroys WHO warehouse in Ukraine (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/europe/ukraine-russia-war-live-putin-zelensky-drone-strikes-north-korea-b3030149.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/europe/ukraine-russia-war-live-putin-zelensky-drone-strikes-north-korea-b3030149.html</guid>
-      <pubDate>Mon, 10 Aug 2026 09:05:01 +0000</pubDate>
     </item>
     <item>
       <title>Decades of abuse revealed at Michigan art school. And, the Iran war's impact on midterms (NPR)</title>
@@ -85,10 +109,40 @@
       <pubDate>Mon, 10 Aug 2026 08:16:41 +0000</pubDate>
     </item>
     <item>
-      <title>Ex-Thai MP arrested for killing official in country's second deadly shooting in three days (SKY)</title>
-      <link>https://news.sky.com/story/ex-thai-mp-arrested-for-killing-official-in-countrys-second-deadly-shooting-in-three-days-13571565</link>
-      <guid isPermaLink="false">https://news.sky.com/story/ex-thai-mp-arrested-for-killing-official-in-countrys-second-deadly-shooting-in-three-days-13571565</guid>
-      <pubDate>Mon, 10 Aug 2026 07:58:00 +0000</pubDate>
+      <title>Powerful earthquake shakes Colombia and Ecuador prompting people to evacuate (ABC)</title>
+      <link>https://abcnews.com/International/wireStory/powerful-earthquake-shakes-colombia-ecuador-prompting-people-evacuate-135515580</link>
+      <guid isPermaLink="false">https://abcnews.com/International/wireStory/powerful-earthquake-shakes-colombia-ecuador-prompting-people-evacuate-135515580</guid>
+      <pubDate>Mon, 10 Aug 2026 13:52:26 +0000</pubDate>
+    </item>
+    <item>
+      <title>Large earthquake hits western Colombia causing damage (DW)</title>
+      <link>https://www.dw.com/en/large-earthquake-hits-western-colombia-causing-damage/a-78307841?maca=en-rss-en-all-1573-rdf</link>
+      <guid isPermaLink="false">https://www.dw.com/en/large-earthquake-hits-western-colombia-causing-damage/a-78307841?maca=en-rss-en-all-1573-rdf</guid>
+      <pubDate>Mon, 10 Aug 2026 13:42:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>World's biggest chipmaker TSMC's sales surge 45% amid buoyant AI demand (CNBC)</title>
+      <link>https://www.cnbc.com/2026/08/10/tsmc-revenue-surge-ai-chip-big-tech.html</link>
+      <guid isPermaLink="false">https://www.cnbc.com/2026/08/10/tsmc-revenue-surge-ai-chip-big-tech.html</guid>
+      <pubDate>Mon, 10 Aug 2026 13:39:56 +0000</pubDate>
+    </item>
+    <item>
+      <title>Battle for Mali base has killed dozens of militants, army says (BBC)</title>
+      <link>https://www.bbc.co.uk/news/articles/cly8j7ygwvlo?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cly8j7ygwvlo?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Mon, 10 Aug 2026 12:32:26 +0000</pubDate>
+    </item>
+    <item>
+      <title>Powerful 6.6-magnitude earthquake shakes Colombia as governor confirms ‘significant damage’ (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/world/americas/colombia-earthquake-choco-bogota-venezuela-b3030473.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/colombia-earthquake-choco-bogota-venezuela-b3030473.html</guid>
+      <pubDate>Mon, 10 Aug 2026 13:20:14 +0000</pubDate>
+    </item>
+    <item>
+      <title>Taiwan holds military drills to prepare for invasion by China (AL JAZEERA)</title>
+      <link>https://www.aljazeera.com/video/newsfeed/2026/8/10/taiwan-holds-military-drills-to-prepare-for-invasion-by-china?traffic_source=rss</link>
+      <guid isPermaLink="false">https://www.aljazeera.com/video/newsfeed/2026/8/10/taiwan-holds-military-drills-to-prepare-for-invasion-by-china?traffic_source=rss</guid>
+      <pubDate>Mon, 10 Aug 2026 12:09:08 +0000</pubDate>
     </item>
     <item>
       <title>British schoolgirl killed in ‘terrible accident’ on Caribbean holiday as siblings ‘badly injured’ (INDEPENDENT)</title>
@@ -97,100 +151,46 @@
       <pubDate>Mon, 10 Aug 2026 11:43:46 +0000</pubDate>
     </item>
     <item>
+      <title>Ukraine confirms strikes on oil refinery in Russia’s Tatarstan – Europe live (GUARDIAN)</title>
+      <link>https://www.theguardian.com/world/live/2026/aug/10/ukraine-drones-russia-oil-facilities-europe-heat-drought-latest-updates-news</link>
+      <guid isPermaLink="false">https://www.theguardian.com/world/live/2026/aug/10/ukraine-drones-russia-oil-facilities-europe-heat-drought-latest-updates-news</guid>
+      <pubDate>Mon, 10 Aug 2026 13:43:06 +0000</pubDate>
+    </item>
+    <item>
+      <title>WATCH: Woman dedicated to helping people in crisis (ABC)</title>
+      <link>https://abcnews.com/video/135515321/</link>
+      <guid isPermaLink="false">https://abcnews.com/video/135515321/</guid>
+      <pubDate>Mon, 10 Aug 2026 13:40:44 +0000</pubDate>
+    </item>
+    <item>
+      <title>Flood death toll in India's Assam reaches 100 as thousands lose their homes (NPR)</title>
+      <link>https://www.npr.org/2026/08/10/g-s1-138015/flood-death-toll-in-indias-assam-reaches-100-as-thousands-lose-their-homes</link>
+      <guid isPermaLink="false">https://www.npr.org/2026/08/10/g-s1-138015/flood-death-toll-in-indias-assam-reaches-100-as-thousands-lose-their-homes</guid>
+      <pubDate>Mon, 10 Aug 2026 12:39:05 +0000</pubDate>
+    </item>
+    <item>
       <title>Under strAIn: breaking the British state (ECONOMIST)</title>
       <link>https://www.economist.com/podcasts/2026/08/10/under-strain-breaking-the-british-state</link>
       <guid isPermaLink="false">https://www.economist.com/podcasts/2026/08/10/under-strain-breaking-the-british-state</guid>
       <pubDate>Mon, 10 Aug 2026 09:36:39 +0000</pubDate>
     </item>
     <item>
-      <title>Radio Caroline breached Ofcom rules after mistakenly announcing King's death (BBC US)</title>
-      <link>https://www.bbc.co.uk/news/articles/ckge094k2k1o?at_medium=RSS&amp;at_campaign=rss</link>
-      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/ckge094k2k1o?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Mon, 10 Aug 2026 11:57:40 +0000</pubDate>
+      <title>Socialists are winning battles, but not the war (THE HILL)</title>
+      <link>https://thehill.com/opinion/campaign/6017893-progressive-left-primary-limits/</link>
+      <guid isPermaLink="false">https://thehill.com/opinion/campaign/6017893-progressive-left-primary-limits/</guid>
+      <pubDate>Mon, 10 Aug 2026 12:30:00 +0000</pubDate>
     </item>
     <item>
-      <title>Ukraine launches drone attack on Russian oil refining facilities – Europe live (GUARDIAN)</title>
-      <link>https://www.theguardian.com/world/live/2026/aug/10/ukraine-drones-russia-oil-facilities-europe-heat-drought-latest-updates-news</link>
-      <guid isPermaLink="false">https://www.theguardian.com/world/live/2026/aug/10/ukraine-drones-russia-oil-facilities-europe-heat-drought-latest-updates-news</guid>
-      <pubDate>Mon, 10 Aug 2026 11:56:27 +0000</pubDate>
+      <title>Wildfires burn across western US and Canada as residents are evacuated (THE HILL)</title>
+      <link>https://thehill.com/homenews/state-watch/6019551-wildfires-evacuate-okanagan-lake/</link>
+      <guid isPermaLink="false">https://thehill.com/homenews/state-watch/6019551-wildfires-evacuate-okanagan-lake/</guid>
+      <pubDate>Mon, 10 Aug 2026 11:19:17 +0000</pubDate>
     </item>
     <item>
-      <title>Farage welcomes revived police investigation into alleged arson attack at his home after Widdecombe killing – UK politics live (GUARDIAN)</title>
-      <link>https://www.theguardian.com/politics/live/2026/aug/10/labour-prisons-crisis-andy-burnham-reform-nigel-farage-latest-news-updates</link>
-      <guid isPermaLink="false">https://www.theguardian.com/politics/live/2026/aug/10/labour-prisons-crisis-andy-burnham-reform-nigel-farage-latest-news-updates</guid>
-      <pubDate>Mon, 10 Aug 2026 11:49:37 +0000</pubDate>
-    </item>
-    <item>
-      <title>Roman shipwreck with 500 amphorae found off coast of Sicily (GUARDIAN)</title>
-      <link>https://www.theguardian.com/science/2026/aug/10/roman-shipwreck-with-500-amphorae-found-off-coast-of-sicily</link>
-      <guid isPermaLink="false">https://www.theguardian.com/science/2026/aug/10/roman-shipwreck-with-500-amphorae-found-off-coast-of-sicily</guid>
-      <pubDate>Mon, 10 Aug 2026 10:44:55 +0000</pubDate>
-    </item>
-    <item>
-      <title>Ukraine Drone Attack on Industrial City in Russia Kills at Least 13 (NYT)</title>
-      <link>https://www.nytimes.com/2026/08/10/world/europe/ukraine-drone-attack-russia.html</link>
-      <guid isPermaLink="false">https://www.nytimes.com/2026/08/10/world/europe/ukraine-drone-attack-russia.html</guid>
-      <pubDate>Mon, 10 Aug 2026 11:32:17 +0000</pubDate>
-    </item>
-    <item>
-      <title>Millions in Great Britain could face emergency power cuts at short notice (GUARDIAN)</title>
-      <link>https://www.theguardian.com/business/2026/aug/10/great-britain-emergency-power-cuts-grid-neso-blackouts</link>
-      <guid isPermaLink="false">https://www.theguardian.com/business/2026/aug/10/great-britain-emergency-power-cuts-grid-neso-blackouts</guid>
-      <pubDate>Mon, 10 Aug 2026 11:45:57 +0000</pubDate>
-    </item>
-    <item>
-      <title>Dem rep, in first video since hit-and-run crash, opens up about wreck (FOX)</title>
-      <link>https://www.foxnews.com/politics/dem-rep-first-video-since-hit-and-run-crash-opens-wreck</link>
-      <guid isPermaLink="false">https://www.foxnews.com/politics/dem-rep-first-video-since-hit-and-run-crash-opens-wreck</guid>
-      <pubDate>Mon, 10 Aug 2026 11:41:40 +0000</pubDate>
-    </item>
-    <item>
-      <title>Suspected crime boss Kinahan spends first night in custody in Ireland (BBC US)</title>
-      <link>https://www.bbc.co.uk/news/articles/c62qd5plzp6o?at_medium=RSS&amp;at_campaign=rss</link>
-      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/c62qd5plzp6o?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Mon, 10 Aug 2026 09:33:25 +0000</pubDate>
-    </item>
-    <item>
-      <title>World's biggest chipmaker TSMC's sales surge 45% amid buoyant AI demand (CNBC)</title>
-      <link>https://www.cnbc.com/2026/08/10/tsmc-revenue-surge-ai-chip-big-tech.html</link>
-      <guid isPermaLink="false">https://www.cnbc.com/2026/08/10/tsmc-revenue-surge-ai-chip-big-tech.html</guid>
-      <pubDate>Mon, 10 Aug 2026 10:29:27 +0000</pubDate>
-    </item>
-    <item>
-      <title>Iran-US war latest: Trump says ‘it always works out’ as plan to reopen Strait of Hormuz stalls and oil prices rise (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/middle-east/iran-us-war-live-trump-hormuz-nuclear-deal-netanyahu-b3030133.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/middle-east/iran-us-war-live-trump-hormuz-nuclear-deal-netanyahu-b3030133.html</guid>
-      <pubDate>Mon, 10 Aug 2026 10:28:33 +0000</pubDate>
-    </item>
-    <item>
-      <title>Romania issues nuclear reactor update after redirecting flow of drought-stricken Danube river (INDEPENDENT)</title>
-      <link>https://www.independent.co.uk/news/world/europe/romania-nuclear-reactor-danube-river-b3030335.html</link>
-      <guid isPermaLink="false">https://www.independent.co.uk/news/world/europe/romania-nuclear-reactor-danube-river-b3030335.html</guid>
-      <pubDate>Mon, 10 Aug 2026 10:18:16 +0000</pubDate>
-    </item>
-    <item>
-      <title>One year on, Gaza mourns journalist Anas al-Sharif’s death (AL JAZEERA)</title>
-      <link>https://www.aljazeera.com/gallery/2026/8/10/one-year-on-gaza-mourns-journalist-anas-al-sharifs-death?traffic_source=rss</link>
-      <guid isPermaLink="false">https://www.aljazeera.com/gallery/2026/8/10/one-year-on-gaza-mourns-journalist-anas-al-sharifs-death?traffic_source=rss</guid>
-      <pubDate>Mon, 10 Aug 2026 10:13:31 +0000</pubDate>
-    </item>
-    <item>
-      <title>Tupac Shakur murder suspect takes center stage at trial nearly 30 years after shooting shocked music world (FOX)</title>
-      <link>https://www.foxnews.com/us/tupac-shakur-murder-suspect-takes-center-stage-trial-nearly-30-years-after-shooting-shocked-music-world</link>
-      <guid isPermaLink="false">https://www.foxnews.com/us/tupac-shakur-murder-suspect-takes-center-stage-trial-nearly-30-years-after-shooting-shocked-music-world</guid>
-      <pubDate>Mon, 10 Aug 2026 10:00:02 +0000</pubDate>
-    </item>
-    <item>
-      <title>Ukrainian strikes 750 miles inside Russia kill at least 13, authorities say (CBS)</title>
-      <link>https://www.cbsnews.com/news/ukraine-russia-war-drone-attack-tatarstan-oil/</link>
-      <guid isPermaLink="false">https://www.cbsnews.com/news/ukraine-russia-war-drone-attack-tatarstan-oil/</guid>
-      <pubDate>Mon, 10 Aug 2026 10:59:31 +0000</pubDate>
-    </item>
-    <item>
-      <title>China evacuates a million from homes as Typhoon Dolphin arrives (AL JAZEERA)</title>
-      <link>https://www.aljazeera.com/video/newsfeed/2026/8/10/china-evacuates-a-million-from-homes-as-typhoon-dolphin-arrives?traffic_source=rss</link>
-      <guid isPermaLink="false">https://www.aljazeera.com/video/newsfeed/2026/8/10/china-evacuates-a-million-from-homes-as-typhoon-dolphin-arrives?traffic_source=rss</guid>
-      <pubDate>Mon, 10 Aug 2026 08:44:34 +0000</pubDate>
+      <title>Intel plans $15 billion stock offering as AI demand accelerates (CNBC)</title>
+      <link>https://www.cnbc.com/2026/08/10/intel-intc-stock-offering-ai.html</link>
+      <guid isPermaLink="false">https://www.cnbc.com/2026/08/10/intel-intc-stock-offering-ai.html</guid>
+      <pubDate>Mon, 10 Aug 2026 13:15:44 +0000</pubDate>
     </item>
   </channel>
 </rss>
