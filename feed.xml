@@ -4,10 +4,10 @@
     <title>THE DAILY MALAISE</title>
     <link>https://jlgreen11.github.io/daily-malaise/</link>
     <description>The only front page you can tune. A crisis of confidence, every thirty minutes.</description>
-    <lastBuildDate>Fri, 14 Aug 2026 19:03:57 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 14 Aug 2026 19:51:05 +0000</lastBuildDate>
     <atom:link href="https://jlgreen11.github.io/daily-malaise/feed.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>TODAY'S WIRE: 92% GRIM / 8% ROSY — 12% TRUMP ON THE FRONT PAGE, 12% ON THE FULL WIRE</title>
+      <title>TODAY'S WIRE: 92% GRIM / 8% ROSY — 12% TRUMP ON THE FRONT PAGE, 13% ON THE FULL WIRE</title>
       <link>https://jlgreen11.github.io/daily-malaise/</link>
       <guid isPermaLink="false">stat-2026-08-14</guid>
       <pubDate>Fri, 14 Aug 2026 00:00:00 -0500</pubDate>
@@ -16,7 +16,19 @@
       <title>Luigi Mangione pleads guilty in federal case related to UnitedHealthcare CEO killing (CNBC)</title>
       <link>https://www.cnbc.com/2026/08/14/luigi-mangione-pleads-guilty-brian-thompson-killing.html</link>
       <guid isPermaLink="false">https://www.cnbc.com/2026/08/14/luigi-mangione-pleads-guilty-brian-thompson-killing.html</guid>
-      <pubDate>Fri, 14 Aug 2026 18:43:55 +0000</pubDate>
+      <pubDate>Fri, 14 Aug 2026 19:50:11 +0000</pubDate>
+    </item>
+    <item>
+      <title>Trump asks Supreme Court to allow ballroom work to continue (BBC)</title>
+      <link>https://www.bbc.co.uk/news/articles/c3v0yz2r4wlo?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/c3v0yz2r4wlo?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Fri, 14 Aug 2026 19:05:22 +0000</pubDate>
+    </item>
+    <item>
+      <title>DOJ Charges Kentucky Woman in World War II Memorial Vandalism Case (NYT)</title>
+      <link>https://www.nytimes.com/2026/08/14/us/politics/world-war-2-memorial-vandalism.html</link>
+      <guid isPermaLink="false">https://www.nytimes.com/2026/08/14/us/politics/world-war-2-memorial-vandalism.html</guid>
+      <pubDate>Fri, 14 Aug 2026 19:04:23 +0000</pubDate>
     </item>
     <item>
       <title>British cyclist Finlay Tarling dies in Tour of Portugal crash aged 19 (AL JAZEERA)</title>
@@ -25,16 +37,40 @@
       <pubDate>Fri, 14 Aug 2026 18:04:08 +0000</pubDate>
     </item>
     <item>
-      <title>Trump asks Supreme Court to allow ballroom work to continue (BBC US)</title>
-      <link>https://www.bbc.co.uk/news/articles/c3v0yz2r4wlo?at_medium=RSS&amp;at_campaign=rss</link>
-      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/c3v0yz2r4wlo?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Fri, 14 Aug 2026 18:57:52 +0000</pubDate>
+      <title>French court blocks Macron’s social media ban for under-15s (GUARDIAN)</title>
+      <link>https://www.theguardian.com/world/2026/aug/14/french-court-blocks-macron-social-media-ban-under-15s</link>
+      <guid isPermaLink="false">https://www.theguardian.com/world/2026/aug/14/french-court-blocks-macron-social-media-ban-under-15s</guid>
+      <pubDate>Fri, 14 Aug 2026 17:12:14 +0000</pubDate>
     </item>
     <item>
-      <title>Mangione pleads guilty in federal case, says he shot UnitedHealthcare CEO (ABC)</title>
-      <link>https://abcnews.com/US/luigi-mangione-guilty-plea-expected-announced-friday-federal/story?id=135607454</link>
-      <guid isPermaLink="false">https://abcnews.com/US/luigi-mangione-guilty-plea-expected-announced-friday-federal/story?id=135607454</guid>
-      <pubDate>Fri, 14 Aug 2026 18:47:01 +0000</pubDate>
+      <title>Mangione admits killing healthcare CEO and pleads guilty to federal charges (BBC US)</title>
+      <link>https://www.bbc.co.uk/news/articles/cwy0nlq1l2wo?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cwy0nlq1l2wo?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Fri, 14 Aug 2026 19:20:43 +0000</pubDate>
+    </item>
+    <item>
+      <title>Trump asks Supreme Court to let White House ballroom construction continue (CNBC)</title>
+      <link>https://www.cnbc.com/2026/08/14/trump-ballroom-supreme-court-white-house.html</link>
+      <guid isPermaLink="false">https://www.cnbc.com/2026/08/14/trump-ballroom-supreme-court-white-house.html</guid>
+      <pubDate>Fri, 14 Aug 2026 19:10:18 +0000</pubDate>
+    </item>
+    <item>
+      <title>Army identifies 2 pilots killed in Apache helicopter crash near Fort Hood during training exercise (FOX)</title>
+      <link>https://www.foxnews.com/us/army-identifies-2-pilots-killed-apache-helicopter-crash-fort-hood-training-exercise</link>
+      <guid isPermaLink="false">https://www.foxnews.com/us/army-identifies-2-pilots-killed-apache-helicopter-crash-fort-hood-training-exercise</guid>
+      <pubDate>Fri, 14 Aug 2026 19:02:53 +0000</pubDate>
+    </item>
+    <item>
+      <title>Italian police recover stolen paintings worth over $10m (AL JAZEERA)</title>
+      <link>https://www.aljazeera.com/news/2026/8/14/italian-police-recover-stolen-paintings-worth-over-10m?traffic_source=rss</link>
+      <guid isPermaLink="false">https://www.aljazeera.com/news/2026/8/14/italian-police-recover-stolen-paintings-worth-over-10m?traffic_source=rss</guid>
+      <pubDate>Fri, 14 Aug 2026 18:37:59 +0000</pubDate>
+    </item>
+    <item>
+      <title>Afghan women tell the BBC their lives are unrecognisable after five years of Taliban rule (BBC)</title>
+      <link>https://www.bbc.co.uk/news/articles/clyje43dz4eo?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/clyje43dz4eo?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Fri, 14 Aug 2026 18:25:38 +0000</pubDate>
     </item>
     <item>
       <title>Two dead after light aircraft crash (BBC US)</title>
@@ -49,10 +85,10 @@
       <pubDate>Fri, 14 Aug 2026 18:38:00 +0000</pubDate>
     </item>
     <item>
-      <title>El-Sayed’s half sister revealed as radical professor arrested for allegedly assaulting a cop at anti-ICE riot (FOX)</title>
-      <link>https://www.foxnews.com/politics/el-sayed-half-sister-revealed-radical-professor-arrested-allegedly-assaulting-cop-anti-ice-riot</link>
-      <guid isPermaLink="false">https://www.foxnews.com/politics/el-sayed-half-sister-revealed-radical-professor-arrested-allegedly-assaulting-cop-anti-ice-riot</guid>
-      <pubDate>Fri, 14 Aug 2026 16:07:07 +0000</pubDate>
+      <title>Son of former Mexican president challenges Trump after visa revoked (THE HILL)</title>
+      <link>https://thehill.com/policy/international/6030501-mexican-president-son-trump-visa-challenge/</link>
+      <guid isPermaLink="false">https://thehill.com/policy/international/6030501-mexican-president-son-trump-visa-challenge/</guid>
+      <pubDate>Fri, 14 Aug 2026 19:16:50 +0000</pubDate>
     </item>
     <item>
       <title>Luigi Mangione pleads guilty in federal case, admits shooting Brian Thompson (CBS)</title>
@@ -61,16 +97,34 @@
       <pubDate>Fri, 14 Aug 2026 17:42:00 +0000</pubDate>
     </item>
     <item>
-      <title>Soldiers killed in Fort Hood chopper crash identified (THE HILL)</title>
-      <link>https://thehill.com/policy/defense/6029854-fort-hood-soldiers-killed-helicopter-crash-texas-identified/</link>
-      <guid isPermaLink="false">https://thehill.com/policy/defense/6029854-fort-hood-soldiers-killed-helicopter-crash-texas-identified/</guid>
-      <pubDate>Fri, 14 Aug 2026 15:09:46 +0000</pubDate>
+      <title>Emergency alert warning of wildfire risk sent to phones in England and Wales (GUARDIAN)</title>
+      <link>https://www.theguardian.com/world/2026/aug/14/emergency-alert-warning-wildfire-risk-sent-phones-england-wales</link>
+      <guid isPermaLink="false">https://www.theguardian.com/world/2026/aug/14/emergency-alert-warning-wildfire-risk-sent-phones-england-wales</guid>
+      <pubDate>Fri, 14 Aug 2026 19:19:48 +0000</pubDate>
     </item>
     <item>
-      <title>American missionary kidnapped in Niger freed after nine months (GUARDIAN)</title>
-      <link>https://www.theguardian.com/world/2026/aug/14/american-missionary-kevin-rideout-niger-released-kidnapping</link>
-      <guid isPermaLink="false">https://www.theguardian.com/world/2026/aug/14/american-missionary-kevin-rideout-niger-released-kidnapping</guid>
-      <pubDate>Fri, 14 Aug 2026 14:55:17 +0000</pubDate>
+      <title>Luigi Mangione Pleads Guilty to Federal Charges in UnitedHealthcare CEO's Fatal Shooting (TIME)</title>
+      <link>https://time.com/article/2026/08/14/luigi-mangione-guilty-plea-federal-case-unitedhealthcare-brian-thompson/</link>
+      <guid isPermaLink="false">https://time.com/article/2026/08/14/luigi-mangione-guilty-plea-federal-case-unitedhealthcare-brian-thompson/</guid>
+      <pubDate>Fri, 14 Aug 2026 15:41:30 +0000</pubDate>
+    </item>
+    <item>
+      <title>Ex-Cambridge professor at centre of plagiarism row found dead (BBC US)</title>
+      <link>https://www.bbc.co.uk/news/articles/c1j1ye6n30no?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/c1j1ye6n30no?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Fri, 14 Aug 2026 19:45:11 +0000</pubDate>
+    </item>
+    <item>
+      <title>Britain's Finlay Tarling dies in Volta a Portugal accident (BBC US)</title>
+      <link>https://www.bbc.co.uk/sport/cycling/articles/ceqed1g3j48o?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/sport/cycling/articles/ceqed1g3j48o?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Fri, 14 Aug 2026 19:43:03 +0000</pubDate>
+    </item>
+    <item>
+      <title>Golfer Jessica Bang, 18, dies while preparing for tournament in Thailand (CBS)</title>
+      <link>https://www.cbsnews.com/news/jessica-bang-dies-golfer-age-18-brain-hemorrhage/</link>
+      <guid isPermaLink="false">https://www.cbsnews.com/news/jessica-bang-dies-golfer-age-18-brain-hemorrhage/</guid>
+      <pubDate>Fri, 14 Aug 2026 19:37:23 +0000</pubDate>
     </item>
     <item>
       <title>Five dead in Japan after record-breaking rainfall causes severe flooding (SKY)</title>
@@ -85,13 +139,13 @@
       <pubDate>Fri, 14 Aug 2026 12:43:56 +0000</pubDate>
     </item>
     <item>
-      <title>Britain's Finlay Tarling dies in Volta a Portugal accident (BBC US)</title>
-      <link>https://www.bbc.co.uk/sport/cycling/articles/ceqed1g3j48o?at_medium=RSS&amp;at_campaign=rss</link>
-      <guid isPermaLink="false">https://www.bbc.co.uk/sport/cycling/articles/ceqed1g3j48o?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Fri, 14 Aug 2026 18:40:14 +0000</pubDate>
+      <title>US missionary kidnapped in Niger is released after nine months in captivity (INDEPENDENT)</title>
+      <link>https://www.independent.co.uk/news/world/americas/kevin-rideout-niger-us-missionary-kidnapping-freed-b3033227.html</link>
+      <guid isPermaLink="false">https://www.independent.co.uk/news/world/americas/kevin-rideout-niger-us-missionary-kidnapping-freed-b3033227.html</guid>
+      <pubDate>Fri, 14 Aug 2026 14:42:19 +0000</pubDate>
     </item>
     <item>
-      <title>Instagram accounts fuelling Ceuta migrant crisis with paid advice for help to cross (BBC US)</title>
+      <title>Instagram accounts fuelling Ceuta crisis with paid advice for help to cross (BBC)</title>
       <link>https://www.bbc.co.uk/news/articles/c89n20wj9kko?at_medium=RSS&amp;at_campaign=rss</link>
       <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/c89n20wj9kko?at_medium=RSS&amp;at_campaign=rss</guid>
       <pubDate>Fri, 14 Aug 2026 12:19:21 +0000</pubDate>
@@ -109,88 +163,34 @@
       <pubDate>Fri, 14 Aug 2026 16:13:50 +0000</pubDate>
     </item>
     <item>
+      <title>The True Story Behind The Brink of War (TIME)</title>
+      <link>https://time.com/article/2026/08/14/brink-of-war-true-story/</link>
+      <guid isPermaLink="false">https://time.com/article/2026/08/14/brink-of-war-true-story/</guid>
+      <pubDate>Fri, 14 Aug 2026 19:03:46 +0000</pubDate>
+    </item>
+    <item>
       <title>Feds charge woman for allegedly vandalizing World War II Memorial in D.C. (CBS)</title>
       <link>https://www.cbsnews.com/news/world-war-ii-memorial-vandalism-charges-melissa-farris/</link>
       <guid isPermaLink="false">https://www.cbsnews.com/news/world-war-ii-memorial-vandalism-charges-melissa-farris/</guid>
       <pubDate>Fri, 14 Aug 2026 19:02:55 +0000</pubDate>
     </item>
     <item>
-      <title>French court blocks Macron’s social media ban for under-15s (GUARDIAN)</title>
-      <link>https://www.theguardian.com/world/2026/aug/14/french-court-blocks-macron-social-media-ban-under-15s</link>
-      <guid isPermaLink="false">https://www.theguardian.com/world/2026/aug/14/french-court-blocks-macron-social-media-ban-under-15s</guid>
-      <pubDate>Fri, 14 Aug 2026 17:12:14 +0000</pubDate>
+      <title>Woman charged over vandalism of World War II Memorial in Washington, DC (AL JAZEERA)</title>
+      <link>https://www.aljazeera.com/news/2026/8/14/woman-charged-over-vandalism-of-world-war-ii-memorial-in-washington-dc?traffic_source=rss</link>
+      <guid isPermaLink="false">https://www.aljazeera.com/news/2026/8/14/woman-charged-over-vandalism-of-world-war-ii-memorial-in-washington-dc?traffic_source=rss</guid>
+      <pubDate>Fri, 14 Aug 2026 18:55:24 +0000</pubDate>
     </item>
     <item>
-      <title>Activists try to deliver aid to Palestinians in homes besieged by Israeli settlers (BBC US)</title>
-      <link>https://www.bbc.co.uk/news/articles/c1w1ylw0p3no?at_medium=RSS&amp;at_campaign=rss</link>
-      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/c1w1ylw0p3no?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Fri, 14 Aug 2026 17:03:17 +0000</pubDate>
+      <title>Derailed Essex to London train leads to travel chaos (BBC US)</title>
+      <link>https://www.bbc.co.uk/news/articles/cq561qvg7qgo?at_medium=RSS&amp;at_campaign=rss</link>
+      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cq561qvg7qgo?at_medium=RSS&amp;at_campaign=rss</guid>
+      <pubDate>Fri, 14 Aug 2026 19:49:23 +0000</pubDate>
     </item>
     <item>
-      <title>Warren demands answers from RFK Jr. on 'calamitous' cyclosporiasis outbreak response (ABC)</title>
-      <link>https://abcnews.com/Politics/sen-warren-demands-answers-rfk-jr-calamitous-response/story?id=135633761</link>
-      <guid isPermaLink="false">https://abcnews.com/Politics/sen-warren-demands-answers-rfk-jr-calamitous-response/story?id=135633761</guid>
-      <pubDate>Fri, 14 Aug 2026 19:02:18 +0000</pubDate>
-    </item>
-    <item>
-      <title>UK diplomats no longer get hardship bonus for being posted to Buenos Aires (BBC US)</title>
-      <link>https://www.bbc.co.uk/news/articles/cly5p995ykko?at_medium=RSS&amp;at_campaign=rss</link>
-      <guid isPermaLink="false">https://www.bbc.co.uk/news/articles/cly5p995ykko?at_medium=RSS&amp;at_campaign=rss</guid>
-      <pubDate>Fri, 14 Aug 2026 17:00:46 +0000</pubDate>
-    </item>
-    <item>
-      <title>Indiana river breaks 1913 flooding record as governor declares state of emergency (CBS)</title>
-      <link>https://www.cbsnews.com/news/indiana-white-river-flooding-record-emergency/</link>
-      <guid isPermaLink="false">https://www.cbsnews.com/news/indiana-white-river-flooding-record-emergency/</guid>
-      <pubDate>Fri, 14 Aug 2026 14:59:43 +0000</pubDate>
-    </item>
-    <item>
-      <title>How double jeopardy could come into play after Mangione guilty plea (CBS)</title>
-      <link>https://www.cbsnews.com/news/mangione-guilty-plea-federal-case-jeopardize-state-murder-trial/</link>
-      <guid isPermaLink="false">https://www.cbsnews.com/news/mangione-guilty-plea-federal-case-jeopardize-state-murder-trial/</guid>
-      <pubDate>Fri, 14 Aug 2026 18:56:43 +0000</pubDate>
-    </item>
-    <item>
-      <title>‘C' From ‘Coexist’ Sticker Arrested For Running Over Other Letters With A Truck (BABYLON BEE)</title>
-      <link>https://babylonbee.com/news/c-from-coexist-sticker-arrested-for-running-over-other-letters-with-a-truck/</link>
-      <guid isPermaLink="false">https://babylonbee.com/news/c-from-coexist-sticker-arrested-for-running-over-other-letters-with-a-truck/</guid>
-      <pubDate>Fri, 14 Aug 2026 18:55:34 +0000</pubDate>
-    </item>
-    <item>
-      <title>How to get a refund for Trump tariffs struck down by Supreme Court (CBS)</title>
-      <link>https://www.cbsnews.com/news/how-to-get-a-tariff-refund-ieepa/</link>
-      <guid isPermaLink="false">https://www.cbsnews.com/news/how-to-get-a-tariff-refund-ieepa/</guid>
-      <pubDate>Fri, 14 Aug 2026 18:47:08 +0000</pubDate>
-    </item>
-    <item>
-      <title>Five Arrested in Connection to Stolen Works by Cézanne, Renoir and Matisse, Prosecutors Say (NYT)</title>
-      <link>https://www.nytimes.com/2026/08/14/world/europe/cezanne-renoir-matisse-heist-recovered.html</link>
-      <guid isPermaLink="false">https://www.nytimes.com/2026/08/14/world/europe/cezanne-renoir-matisse-heist-recovered.html</guid>
-      <pubDate>Fri, 14 Aug 2026 18:30:34 +0000</pubDate>
-    </item>
-    <item>
-      <title>Hawaii under a hurricane warning as Tropical Storm Lala takes aim (CBS)</title>
-      <link>https://www.cbsnews.com/news/tropical-storm-lala-big-island-hawaii-hurricane-track/</link>
-      <guid isPermaLink="false">https://www.cbsnews.com/news/tropical-storm-lala-big-island-hawaii-hurricane-track/</guid>
-      <pubDate>Fri, 14 Aug 2026 18:03:15 +0000</pubDate>
-    </item>
-    <item>
-      <title>Mangione Says He Is Only Guilty Of Stealing The Hearts Of Liberal Women Everywhere (BABYLON BEE)</title>
-      <link>https://babylonbee.com/news/mangione-says-he-is-only-guilty-of-stealing-the-hearts-of-liberal-women-everywhere/</link>
-      <guid isPermaLink="false">https://babylonbee.com/news/mangione-says-he-is-only-guilty-of-stealing-the-hearts-of-liberal-women-everywhere/</guid>
-      <pubDate>Fri, 14 Aug 2026 18:00:02 +0000</pubDate>
-    </item>
-    <item>
-      <title>France blocks under 15 social media ban (FRANCE 24)</title>
-      <link>https://www.france24.com/en/france-blocks-under-15-social-media-ban</link>
-      <guid isPermaLink="false">https://www.france24.com/en/france-blocks-under-15-social-media-ban</guid>
-      <pubDate>Fri, 14 Aug 2026 15:25:17 +0000</pubDate>
-    </item>
-    <item>
-      <title>One dead, dozens injured and thousands evacuated in Croatian wildfires – as it happened (GUARDIAN)</title>
-      <link>https://www.theguardian.com/world/live/2026/aug/14/fires-wildfires-extreme-heat-west-midlands-stourbridge-uk-greece-france-croatia-climate-crisis-europe-latest-news-updates</link>
-      <guid isPermaLink="false">https://www.theguardian.com/world/live/2026/aug/14/fires-wildfires-extreme-heat-west-midlands-stourbridge-uk-greece-france-croatia-climate-crisis-europe-latest-news-updates</guid>
-      <pubDate>Fri, 14 Aug 2026 15:23:29 +0000</pubDate>
+      <title>Art offers young Gaza survivors solace and escape from war’s devastation (AL JAZEERA)</title>
+      <link>https://www.aljazeera.com/features/2026/8/14/art-offers-young-gaza-survivors-solace-and-escape-from-wars-devastation?traffic_source=rss</link>
+      <guid isPermaLink="false">https://www.aljazeera.com/features/2026/8/14/art-offers-young-gaza-survivors-solace-and-escape-from-wars-devastation?traffic_source=rss</guid>
+      <pubDate>Fri, 14 Aug 2026 18:43:36 +0000</pubDate>
     </item>
   </channel>
 </rss>
